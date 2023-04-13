@@ -31,13 +31,15 @@
             this.aoAdicionar = new System.Windows.Forms.Button();
             this.aoRemover = new System.Windows.Forms.Button();
             this.aoEditar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // aoAdicionar
             // 
-            this.aoAdicionar.Location = new System.Drawing.Point(436, 412);
+            this.aoAdicionar.Location = new System.Drawing.Point(148, 372);
             this.aoAdicionar.Name = "aoAdicionar";
-            this.aoAdicionar.Size = new System.Drawing.Size(133, 26);
+            this.aoAdicionar.Size = new System.Drawing.Size(140, 25);
             this.aoAdicionar.TabIndex = 0;
             this.aoAdicionar.Text = "Adiconar";
             this.aoAdicionar.UseVisualStyleBackColor = true;
@@ -45,7 +47,7 @@
             // 
             // aoRemover
             // 
-            this.aoRemover.Location = new System.Drawing.Point(301, 412);
+            this.aoRemover.Location = new System.Drawing.Point(441, 373);
             this.aoRemover.Name = "aoRemover";
             this.aoRemover.Size = new System.Drawing.Size(129, 26);
             this.aoRemover.TabIndex = 1;
@@ -55,7 +57,7 @@
             // 
             // aoEditar
             // 
-            this.aoEditar.Location = new System.Drawing.Point(154, 412);
+            this.aoEditar.Location = new System.Drawing.Point(294, 373);
             this.aoEditar.Name = "aoEditar";
             this.aoEditar.Size = new System.Drawing.Size(141, 26);
             this.aoEditar.TabIndex = 2;
@@ -63,17 +65,28 @@
             this.aoEditar.UseVisualStyleBackColor = true;
             this.aoEditar.Click += new System.EventHandler(this.aoEditar_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(558, 354);
+            this.dataGridView1.TabIndex = 3;
+            // 
             // ControleDePecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 446);
+            this.ClientSize = new System.Drawing.Size(582, 403);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.aoEditar);
             this.Controls.Add(this.aoRemover);
             this.Controls.Add(this.aoAdicionar);
             this.Name = "ControleDePecas";
             this.Text = "Controle de Peças";
             this.Load += new System.EventHandler(this.ControleDePecas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -83,5 +96,6 @@
         private Button aoAdicionar;
         private Button aoRemover;
         private Button aoEditar;
+        private DataGridView dataGridView1;
     }
 }

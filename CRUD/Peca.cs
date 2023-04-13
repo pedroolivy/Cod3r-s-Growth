@@ -15,6 +15,7 @@ namespace CRUD
             this.Descricao= Descricao;
             this.Estoque = Estoque;
         }
+
         public int Id { get; set; }
         public string Nome { get; set; }
         public String Categoria { get; set; } 
