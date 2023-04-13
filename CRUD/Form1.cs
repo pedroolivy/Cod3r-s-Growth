@@ -1,8 +1,8 @@
 namespace CRUD
 {
-    public partial class livro : Form
+    public partial class ControleDePecas : Form
     {
-        public livro()
+        public ControleDePecas()
         {
             InitializeComponent();
         }

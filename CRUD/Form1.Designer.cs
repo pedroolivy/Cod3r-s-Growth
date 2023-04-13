@@ -1,6 +1,6 @@
 ﻿namespace CRUD
 {
-    partial class livro
+    partial class ControleDePecas
     {
         /// <summary>
         ///  Required designer variable.
