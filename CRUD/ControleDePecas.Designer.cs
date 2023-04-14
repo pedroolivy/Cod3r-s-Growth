@@ -33,20 +33,20 @@
             this.aoRemover = new System.Windows.Forms.Button();
             this.aoEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pecaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descricaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estoqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataDeFabricacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pecaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pecaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // aoAdicionar
             // 
-            this.aoAdicionar.Location = new System.Drawing.Point(148, 372);
+            this.aoAdicionar.Location = new System.Drawing.Point(529, 240);
             this.aoAdicionar.Name = "aoAdicionar";
             this.aoAdicionar.Size = new System.Drawing.Size(140, 25);
             this.aoAdicionar.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             // aoRemover
             // 
-            this.aoRemover.Location = new System.Drawing.Point(441, 373);
+            this.aoRemover.Location = new System.Drawing.Point(822, 240);
             this.aoRemover.Name = "aoRemover";
             this.aoRemover.Size = new System.Drawing.Size(129, 26);
             this.aoRemover.TabIndex = 1;
@@ -66,7 +66,7 @@
             // 
             // aoEditar
             // 
-            this.aoEditar.Location = new System.Drawing.Point(294, 373);
+            this.aoEditar.Location = new System.Drawing.Point(675, 240);
             this.aoEditar.Name = "aoEditar";
             this.aoEditar.Size = new System.Drawing.Size(141, 26);
             this.aoEditar.TabIndex = 2;
@@ -89,13 +89,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(558, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(939, 222);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // pecaBindingSource
-            // 
-            this.pecaBindingSource.DataSource = typeof(CRUD.Peca);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -133,18 +129,21 @@
             this.dataDeFabricacaoDataGridViewTextBoxColumn.HeaderText = "DataDeFabricacao";
             this.dataDeFabricacaoDataGridViewTextBoxColumn.Name = "dataDeFabricacaoDataGridViewTextBoxColumn";
             // 
+            // pecaBindingSource
+            // 
+            this.pecaBindingSource.DataSource = typeof(CRUD.Peca);
+            // 
             // ControleDePecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 403);
+            this.ClientSize = new System.Drawing.Size(963, 272);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.aoEditar);
             this.Controls.Add(this.aoRemover);
             this.Controls.Add(this.aoAdicionar);
             this.Name = "ControleDePecas";
             this.Text = "Controle de Peças";
-            this.Load += new System.EventHandler(this.ControleDePecas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pecaBindingSource)).EndInit();
             this.ResumeLayout(false);
