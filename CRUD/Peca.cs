@@ -8,12 +8,12 @@ namespace CRUD
 {
     public class Peca
     {
-        public Peca(string Nome, string Categoria, string Descricao, int Estoque) 
+        public Peca(string nome, string categoria, string descricao, int estoque) 
         {
-            this.Nome= Nome;
-            this.Categoria= Categoria;
-            this.Descricao= Descricao;
-            this.Estoque = Estoque;
+            Nome= nome;
+            Categoria= categoria;
+            Descricao= descricao;
+            Estoque = estoque;
         }
 
         public int Id { get; set; }
