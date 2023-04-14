@@ -28,11 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.aoAdicionar = new System.Windows.Forms.Button();
             this.aoRemover = new System.Windows.Forms.Button();
             this.aoEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pecaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estoqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataDeFabricacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pecaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // aoAdicionar
@@ -67,13 +76,62 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nomeDataGridViewTextBoxColumn,
+            this.categoriaDataGridViewTextBoxColumn,
+            this.descricaoDataGridViewTextBoxColumn,
+            this.estoqueDataGridViewTextBoxColumn,
+            this.dataDeFabricacaoDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.pecaBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(558, 354);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // pecaBindingSource
+            // 
+            this.pecaBindingSource.DataSource = typeof(CRUD.Peca);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // nomeDataGridViewTextBoxColumn
+            // 
+            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            // 
+            // categoriaDataGridViewTextBoxColumn
+            // 
+            this.categoriaDataGridViewTextBoxColumn.DataPropertyName = "Categoria";
+            this.categoriaDataGridViewTextBoxColumn.HeaderText = "Categoria";
+            this.categoriaDataGridViewTextBoxColumn.Name = "categoriaDataGridViewTextBoxColumn";
+            // 
+            // descricaoDataGridViewTextBoxColumn
+            // 
+            this.descricaoDataGridViewTextBoxColumn.DataPropertyName = "Descricao";
+            this.descricaoDataGridViewTextBoxColumn.HeaderText = "Descricao";
+            this.descricaoDataGridViewTextBoxColumn.Name = "descricaoDataGridViewTextBoxColumn";
+            // 
+            // estoqueDataGridViewTextBoxColumn
+            // 
+            this.estoqueDataGridViewTextBoxColumn.DataPropertyName = "Estoque";
+            this.estoqueDataGridViewTextBoxColumn.HeaderText = "Estoque";
+            this.estoqueDataGridViewTextBoxColumn.Name = "estoqueDataGridViewTextBoxColumn";
+            // 
+            // dataDeFabricacaoDataGridViewTextBoxColumn
+            // 
+            this.dataDeFabricacaoDataGridViewTextBoxColumn.DataPropertyName = "DataDeFabricacao";
+            this.dataDeFabricacaoDataGridViewTextBoxColumn.HeaderText = "DataDeFabricacao";
+            this.dataDeFabricacaoDataGridViewTextBoxColumn.Name = "dataDeFabricacaoDataGridViewTextBoxColumn";
             // 
             // ControleDePecas
             // 
@@ -88,6 +146,7 @@
             this.Text = "Controle de Peças";
             this.Load += new System.EventHandler(this.ControleDePecas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pecaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -98,5 +157,12 @@
         private Button aoRemover;
         private Button aoEditar;
         private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn categoriaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn descricaoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn estoqueDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataDeFabricacaoDataGridViewTextBoxColumn;
+        private BindingSource pecaBindingSource;
     }
 }
