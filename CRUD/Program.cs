@@ -13,7 +13,7 @@ namespace CRUD
             ApplicationConfiguration.Initialize();
             Application.Run(new ControleDePecas());
 
-            Peca teste = new Peca("", "", "", 1);
+
 
         }
     }
