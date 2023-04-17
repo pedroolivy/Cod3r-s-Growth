@@ -1,10 +1,24 @@
-﻿namespace CRUD
+﻿
+
+namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
-        public CadastroDePecas()
+        public Peca _peca = new Peca();
+
+        public CadastroDePecas(Peca novaPeca)
         {
             InitializeComponent();
+            novaPeca = _peca;
+        }
+
+        public CadastroDePecas()
+        {
+        }
+
+        public void Pedro()
+        {
+
         }
 
         private void CadastroDePecas_Load(object sender, EventArgs e)
@@ -25,9 +39,10 @@
             };
 
             //adicionar peça dentro da lista
-               
-              
 
+            _peca = peca ;
+
+            this.Close();
         }
     }
 }

@@ -30,8 +30,16 @@
 
         private void AoAdicionar_Click(object sender, EventArgs e)
         {
-            CadastroDePecas cadastroDePecas = new CadastroDePecas();
+            CadastroDePecas cadastroDePecas = new CadastroDePecas(new Peca());
             cadastroDePecas.ShowDialog();
+
+            var pecaPreenchida = cadastroDePecas._peca;
+
+            listaPecas.Add(pecaPreenchida);
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = listaPecas;
+
         }
 
         private void AoRemover_Click(object sender, EventArgs e)
@@ -51,7 +59,7 @@
 
         private void ControleDePecas_Load(object sender, EventArgs e)
         {
-
+            
         }
-    }
+    }  
 }
