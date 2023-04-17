@@ -17,6 +17,9 @@ namespace CRUD
             InitializeComponent();
         }
 
+        private void CadastroDePecas_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
