@@ -44,18 +44,19 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(25, 277);
+            this.button1.Location = new System.Drawing.Point(173, 289);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 38);
+            this.button1.Size = new System.Drawing.Size(87, 26);
             this.button1.TabIndex = 0;
             this.button1.Text = "Salvar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.AoClicarEmSalvar);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(266, 277);
+            this.button2.Location = new System.Drawing.Point(266, 289);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 38);
+            this.button2.Size = new System.Drawing.Size(87, 26);
             this.button2.TabIndex = 1;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
@@ -144,7 +145,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(150, 23);
             this.dateTimePicker1.TabIndex = 16;
             // 
-            // text
+            // CadastroDePecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -161,7 +162,7 @@
             this.Controls.Add(this.categoria);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "text";
+            this.Name = "CadastroDePecas";
             this.Text = "Cadastro de Peças";
             this.Load += new System.EventHandler(this.CadastroDePecas_Load);
             this.ResumeLayout(false);

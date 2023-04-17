@@ -15,9 +15,7 @@
         public void recebeLista()
         {
             listaPecas.Add(new Peca(ObterProximoId(), "Parafuso", "Ferramenta", "Usada", 5));
-            listaPecas.Add(new Peca(ObterProximoId(), "teste", "Ferramenta", "Seminova", 2));
-            listaPecas.Add(new Peca(ObterProximoId(), "Prego", "Ferramenta", "Gold", 15));
-            listaPecas.Add(new Peca(ObterProximoId(), "teste", "Ferramenta", "Usada", 25));
+            listaPecas.Add(new Peca(ObterProximoId(), "teste", "Ferramenta", "Seminova", 2));                     
         }
 
         public int ObterProximoId()
@@ -30,13 +28,13 @@
             dataGridView1.DataSource = listaPecas;
         }
 
-        private void aoAdicionar_Click(object sender, EventArgs e)
+        private void AoAdicionar_Click(object sender, EventArgs e)
         {
             CadastroDePecas cadastroDePecas = new CadastroDePecas();
             cadastroDePecas.ShowDialog();
         }
 
-        private void aoRemover_Click(object sender, EventArgs e)
+        private void AoRemover_Click(object sender, EventArgs e)
         {
 
         }

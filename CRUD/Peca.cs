@@ -9,6 +9,10 @@
         public int Estoque { get; set; }
         public DateTime DataDeFabricacao { get; set; }
 
+        public Peca()
+        {
+        }
+
         public Peca(int id, string nome, string categoria, string descricao, int estoque)
         {
             Id = id;
