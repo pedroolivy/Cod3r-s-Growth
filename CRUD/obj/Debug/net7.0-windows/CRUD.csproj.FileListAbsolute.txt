@@ -4,6 +4,7 @@ C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\bin\Debug\net7.0-windows\CRUD.run
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\bin\Debug\net7.0-windows\CRUD.dll
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\bin\Debug\net7.0-windows\CRUD.pdb
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\obj\Debug\net7.0-windows\CRUD.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\obj\Debug\net7.0-windows\CRUD.CadastroDePecas.resources
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\obj\Debug\net7.0-windows\CRUD.ControleDePecas.resources
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\obj\Debug\net7.0-windows\CRUD.csproj.GenerateResource.cache
 C:\Users\Usuario\Desktop\treinamento\CRUD\CRUD\obj\Debug\net7.0-windows\CRUD.GeneratedMSBuildEditorConfig.editorconfig
