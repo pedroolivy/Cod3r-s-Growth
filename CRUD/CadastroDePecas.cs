@@ -1,24 +1,19 @@
-﻿
-
-namespace CRUD
+﻿namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
-        public Peca _peca = new Peca();
+        public Peca _peca = new();
 
         public CadastroDePecas(Peca novaPeca)
         {
             InitializeComponent();
-            novaPeca = _peca;
+
+            //criar uma nova peça
+            _peca = new Peca();
         }
 
         public CadastroDePecas()
         {
-        }
-
-        public void Pedro()
-        {
-
         }
 
         private void CadastroDePecas_Load(object sender, EventArgs e)
@@ -28,8 +23,7 @@ namespace CRUD
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
-            //pegar o valor dentro de todos os campos e salvar dentro de um objeto - peça
-            var peca = new Peca()
+            var pecaParaAdicionar = new Peca()
             {
                 Nome = textBox2.Text,
                 Categoria = textBox6.Text,
@@ -38,9 +32,7 @@ namespace CRUD
                 DataDeFabricacao = dateTimePicker1.Value,
             };
 
-            //adicionar peça dentro da lista
-
-            _peca = peca ;
+            _peca = pecaParaAdicionar;
 
             this.Close();
         }

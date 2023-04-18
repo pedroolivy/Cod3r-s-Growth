@@ -2,44 +2,32 @@
 {
     public partial class ControleDePecas : Form
     {   
+        public int _proximoId;
         public List<Peca> listaPecas = new();
-        public int proximoId = 0;
         
         public ControleDePecas()
         {
             InitializeComponent();
-            recebeLista();
-            ControleDePecas_Load();
-        }
+            AtualizarLista();
+        }      
 
-        public void recebeLista()
+        private void AtualizarLista()
         {
-            listaPecas.Add(new Peca(ObterProximoId(), "Parafuso", "Ferramenta", "Usada", 5));
-            listaPecas.Add(new Peca(ObterProximoId(), "teste", "Ferramenta", "Seminova", 2));                     
-        }
-
-        public int ObterProximoId()
-        {
-            return ++proximoId;
-        }
-
-        private void ControleDePecas_Load()
-        {
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = listaPecas;
         }
 
         private void AoAdicionar_Click(object sender, EventArgs e)
         {
-            CadastroDePecas cadastroDePecas = new CadastroDePecas(new Peca());
+            CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
             cadastroDePecas.ShowDialog();
 
             var pecaPreenchida = cadastroDePecas._peca;
+            pecaPreenchida.Id = ObterProximoId();
 
             listaPecas.Add(pecaPreenchida);
 
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = listaPecas;
-
+            AtualizarLista();
         }
 
         private void AoRemover_Click(object sender, EventArgs e)
@@ -60,6 +48,11 @@
         private void ControleDePecas_Load(object sender, EventArgs e)
         {
             
+        }
+
+        public int ObterProximoId()
+        {
+            return ++_proximoId;
         }
     }  
 }
