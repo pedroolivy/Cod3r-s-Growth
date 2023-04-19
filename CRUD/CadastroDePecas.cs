@@ -4,16 +4,24 @@
     {
         public Peca _peca = new();
 
-        public CadastroDePecas(Peca novaPeca)
+        public CadastroDePecas(Peca peca)
         {
             InitializeComponent();
 
-            //criar uma nova peça
-            _peca = new Peca();
-        }
+            if (peca == null)
+            {
+                _peca = new Peca();
+            }
+            else
+            {
+                textBox1.Text = peca.Descricao;
+                textBox2.Text = peca.Nome;
+                textBox4.Text = peca.Categoria;
+                textBox6.Text = peca.Categoria;
+                dateTimePicker1.Value = peca.DataDeFabricacao;
 
-        public CadastroDePecas()
-        {
+                //joga o valor atualizado para o coringa
+            }
         }
 
         private void CadastroDePecas_Load(object sender, EventArgs e)

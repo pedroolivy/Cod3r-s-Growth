@@ -37,8 +37,24 @@ namespace CRUD
 
         private void aoEditar_Click(object sender, EventArgs e)
         {
-            var id = int.Parse(dataGridView2.SelectedRows[0].Cells[0].Value.ToString());
-            var peca = listaPecas.Find(x => x.Id == id);
+            var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+            var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+
+            CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
+            cadastroPeca.ShowDialog();
+
+            //pegar os novos valores atualizados 
+            //salvar esse novo valor sobrepondo o valor já existente
+
+
+            //pegar o item da lista e substituir pelo valor atualizado
+
+
+
+
+
+
+            var peca = listaPecas.Find(x => x.Id == pecaSelecionada.Id);
 
             if (dataGridView2.SelectedRows.Count != 1) {
                 MessageBox.Show("Selecione apenas um linha !");               
