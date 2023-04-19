@@ -46,11 +46,10 @@ namespace CRUD
             }
             else
             {
-                CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
+                CadastroDePecas cadastroDePecas = new CadastroDePecas(peca);
                 cadastroDePecas.ShowDialog();
             }
             
-
         }
 
         private void ControleDePecas_Load(object sender, EventArgs e)
