@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.aoAdicionar = new System.Windows.Forms.Button();
             this.aoRemover = new System.Windows.Forms.Button();
             this.aoEditar = new System.Windows.Forms.Button();
@@ -66,9 +65,6 @@
             this.aoEditar.UseVisualStyleBackColor = true;
             this.aoEditar.Click += new System.EventHandler(this.AoClicarEditar);
             // 
-            // pecaBindingSource
-            // 
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -77,6 +73,7 @@
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(638, 289);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // ControleDePecas
             // 

@@ -28,14 +28,20 @@ namespace CRUD
 
         private void AoRemover_Click(object sender, EventArgs e)
         {
-
-            var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
-            var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
-
             var retiraPecas = listaPecas;
 
-            retiraPecas.Remove(pecaSelecionada);
-            AtualizarLista();
+            if (dataGridView2.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Selecione um item");
+            }
+            else
+            {
+                var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+
+                retiraPecas.Remove(pecaSelecionada);
+                AtualizarLista();
+            }
         }
 
         private void AtualizarLista()
@@ -70,5 +76,9 @@ namespace CRUD
             return ++_proximoId;
         }
 
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }  
 }
