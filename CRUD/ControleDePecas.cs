@@ -1,4 +1,6 @@
-﻿namespace CRUD
+﻿using System.Windows.Forms;
+
+namespace CRUD
 {
     public partial class ControleDePecas : Form
     {   
@@ -8,14 +10,7 @@
         public ControleDePecas()
         {
             InitializeComponent();
-            AtualizarLista();
         }      
-
-        private void AtualizarLista()
-        {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = listaPecas;
-        }
 
         private void AoAdicionar_Click(object sender, EventArgs e)
         {
@@ -26,7 +21,6 @@
             pecaPreenchida.Id = ObterProximoId();
 
             listaPecas.Add(pecaPreenchida);
-
             AtualizarLista();
         }
 
@@ -35,14 +29,26 @@
 
         }
 
-        private void aoEditar_Click(object sender, EventArgs e)
+        private void AtualizarLista()
         {
-
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = listaPecas;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void AoClicarEditar(object sender, EventArgs e)
         {
+            var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+            var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
+            CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
+            cadastroPeca.ShowDialog();
+
+            var pecaAtualizada = cadastroPeca._peca;
+            pecaAtualizada.Id = pecaSelecionada.Id;
+
+            listaPecas[linhaSelecionada] = pecaAtualizada;
+        
+            AtualizarLista();
         }
 
         private void ControleDePecas_Load(object sender, EventArgs e)
@@ -54,5 +60,6 @@
         {
             return ++_proximoId;
         }
+
     }  
 }
