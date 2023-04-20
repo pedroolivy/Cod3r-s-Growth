@@ -47,9 +47,6 @@
         {
             Close();
         }
-        public void pdro()
-        {
 
-        }
     }
 }

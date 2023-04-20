@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CRUD
 {
@@ -27,6 +29,13 @@ namespace CRUD
         private void AoRemover_Click(object sender, EventArgs e)
         {
 
+            var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+            var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+
+            var retiraPecas = listaPecas;
+
+            retiraPecas.Remove(pecaSelecionada);
+            AtualizarLista();
         }
 
         private void AtualizarLista()
