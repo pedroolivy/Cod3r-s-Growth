@@ -39,7 +39,9 @@ namespace CRUD
                 var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                retiraPecas.Remove(pecaSelecionada);
+                var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
+
+                retiraPecas.Remove(peca);
                 AtualizarLista();
             }
         }
