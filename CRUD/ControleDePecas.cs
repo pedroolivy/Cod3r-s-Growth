@@ -14,7 +14,7 @@ namespace CRUD
             InitializeComponent();
         }      
 
-        private void AoAdicionar_Click(object sender, EventArgs e)
+        private void AoClicarAdicionar(object sender, EventArgs e)
         {
             CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
             cadastroDePecas.ShowDialog();
@@ -26,7 +26,7 @@ namespace CRUD
             AtualizarLista();
         }
 
-        private void AoRemover_Click(object sender, EventArgs e)
+        private void AoClicarRemover(object sender, EventArgs e)
         {
             var retiraPecas = listaPecas;
 
@@ -82,11 +82,6 @@ namespace CRUD
         public int ObterProximoId()
         {
             return ++_proximoId;
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }  
 }

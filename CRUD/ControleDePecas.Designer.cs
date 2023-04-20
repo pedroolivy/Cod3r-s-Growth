@@ -43,7 +43,7 @@
             this.aoAdicionar.TabIndex = 0;
             this.aoAdicionar.Text = "Adiconar";
             this.aoAdicionar.UseVisualStyleBackColor = true;
-            this.aoAdicionar.Click += new System.EventHandler(this.AoAdicionar_Click);
+            this.aoAdicionar.Click += new System.EventHandler(this.AoClicarAdicionar);
             // 
             // aoRemover
             // 
@@ -53,7 +53,7 @@
             this.aoRemover.TabIndex = 1;
             this.aoRemover.Text = "Remover";
             this.aoRemover.UseVisualStyleBackColor = true;
-            this.aoRemover.Click += new System.EventHandler(this.AoRemover_Click);
+            this.aoRemover.Click += new System.EventHandler(this.AoClicarRemover);
             // 
             // aoEditar
             // 
@@ -73,7 +73,7 @@
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(638, 289);
             this.dataGridView2.TabIndex = 4;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            
             // 
             // ControleDePecas
             // 
