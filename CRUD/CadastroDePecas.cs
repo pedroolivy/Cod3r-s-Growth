@@ -6,22 +6,20 @@
 
         public CadastroDePecas(Peca peca)
         {
-            InitializeComponent();
+            InitializeComponent();         
 
-            if (peca == null)
-            {
-                _peca = new Peca();
-            }
-            else
-            {
-                textBox1.Text = peca.Descricao;
-                textBox2.Text = peca.Nome;
-                textBox4.Text = peca.Categoria;
-                textBox6.Text = peca.Categoria;
-                dateTimePicker1.Value = peca.DataDeFabricacao;
-
-                //joga o valor atualizado para o coringa
-            }
+                if (peca == null)
+                {
+                    _peca = new Peca();
+                }
+                else
+                {
+                    textBox1.Text = peca.Descricao;
+                    textBox2.Text = peca.Nome;
+                    textBox4.Text = peca.Estoque.ToString();
+                    textBox6.Text = peca.Categoria;
+                    dateTimePicker1.Value = peca.DataDeFabricacao;
+                }
         }
 
         private void CadastroDePecas_Load(object sender, EventArgs e)
@@ -42,7 +40,12 @@
 
             _peca = pecaParaAdicionar;
 
-            this.Close();
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -43,27 +43,19 @@ namespace CRUD
             CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
             cadastroPeca.ShowDialog();
 
+
             //pegar os novos valores atualizados 
+
+            var pecaAtualizada = cadastroPeca._peca;
+            pecaAtualizada.Id = linhaSelecionada;
+
             //salvar esse novo valor sobrepondo o valor já existente
 
+            listaPecas[linhaSelecionada] = pecaAtualizada;
 
             //pegar o item da lista e substituir pelo valor atualizado
 
-
-
-
-
-
-            var peca = listaPecas.Find(x => x.Id == pecaSelecionada.Id);
-
-            if (dataGridView2.SelectedRows.Count != 1) {
-                MessageBox.Show("Selecione apenas um linha !");               
-            }
-            else
-            {
-                CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
-                cadastroDePecas.ShowDialog();
-            }
+            AtualizarLista();
 
         }
 
@@ -75,6 +67,7 @@ namespace CRUD
         public int ObterProximoId()
         {
             return ++_proximoId;
+
         }
     }  
 }
