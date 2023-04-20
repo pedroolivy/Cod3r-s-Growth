@@ -47,7 +47,7 @@ namespace CRUD
             //pegar os novos valores atualizados 
 
             var pecaAtualizada = cadastroPeca._peca;
-            pecaAtualizada.Id = linhaSelecionada;
+            pecaAtualizada.Id = pecaSelecionada.Id;
 
             //salvar esse novo valor sobrepondo o valor já existente
 
@@ -67,7 +67,7 @@ namespace CRUD
         public int ObterProximoId()
         {
             return ++_proximoId;
-
         }
+
     }  
 }
