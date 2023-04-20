@@ -64,7 +64,7 @@
             this.aoEditar.TabIndex = 2;
             this.aoEditar.Text = "Editar";
             this.aoEditar.UseVisualStyleBackColor = true;
-            this.aoEditar.Click += new System.EventHandler(this.aoEditar_Click);
+            this.aoEditar.Click += new System.EventHandler(this.AoClicarEditar);
             // 
             // pecaBindingSource
             // 
