@@ -36,13 +36,19 @@ namespace CRUD
             }
             else
             {
-                var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
-                var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+                string mensagem = "Tem certeza que deseja remover essa linha ?";
+                var resultado = MessageBox.Show(mensagem, "",MessageBoxButtons.YesNo);
 
-                var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
+                if (resultado == DialogResult.Yes) {
 
-                retiraPecas.Remove(peca);
-                AtualizarLista();
+                    var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                    var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+
+                    var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
+
+                    retiraPecas.Remove(peca);
+                    AtualizarLista();
+                } 
             }
         }
 
