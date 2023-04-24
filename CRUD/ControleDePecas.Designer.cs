@@ -86,7 +86,6 @@
             this.Controls.Add(this.aoAdicionar);
             this.Name = "ControleDePecas";
             this.Text = "Controle de Peças";
-            this.Load += new System.EventHandler(this.ControleDePecas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 

@@ -22,11 +22,6 @@
                 }
         }
 
-        private void CadastroDePecas_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
             var pecaParaAdicionar = new Peca()

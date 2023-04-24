@@ -165,7 +165,6 @@
             this.Controls.Add(this.button1);
             this.Name = "CadastroDePecas";
             this.Text = "Cadastro de Peças";
-            this.Load += new System.EventHandler(this.CadastroDePecas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

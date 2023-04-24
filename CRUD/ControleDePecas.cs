@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace CRUD
+﻿namespace CRUD
 {
     public partial class ControleDePecas : Form
     {   
@@ -28,8 +24,6 @@ namespace CRUD
 
         private void AoClicarRemover(object sender, EventArgs e)
         {
-            var retiraPecas = listaPecas;
-
             if (dataGridView2.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Selecione um item");
@@ -46,7 +40,7 @@ namespace CRUD
 
                     var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
 
-                    retiraPecas.Remove(peca);
+                    listaPecas.Remove(peca);
                     AtualizarLista();
                 } 
             }
@@ -72,11 +66,6 @@ namespace CRUD
             listaPecas[linhaSelecionada] = pecaAtualizada;
         
             AtualizarLista();
-        }
-
-        private void ControleDePecas_Load(object sender, EventArgs e)
-        {
-            
         }
 
         public int ObterProximoId()
