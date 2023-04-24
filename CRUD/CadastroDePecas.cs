@@ -1,4 +1,6 @@
-﻿namespace CRUD
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
