@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CRUD
 {
@@ -12,7 +14,7 @@ namespace CRUD
             InitializeComponent();
         }      
 
-        private void AoAdicionar_Click(object sender, EventArgs e)
+        private void AoClicarAdicionar(object sender, EventArgs e)
         {
             CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
             cadastroDePecas.ShowDialog();
@@ -24,9 +26,30 @@ namespace CRUD
             AtualizarLista();
         }
 
-        private void AoRemover_Click(object sender, EventArgs e)
+        private void AoClicarRemover(object sender, EventArgs e)
         {
+            var retiraPecas = listaPecas;
 
+            if (dataGridView2.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Selecione um item");
+            }
+            else
+            {
+                string mensagem = "Tem certeza que deseja remover essa linha ?";
+                var resultado = MessageBox.Show(mensagem, "",MessageBoxButtons.YesNo);
+
+                if (resultado == DialogResult.Yes) {
+
+                    var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                    var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+
+                    var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
+
+                    retiraPecas.Remove(peca);
+                    AtualizarLista();
+                } 
+            }
         }
 
         private void AtualizarLista()
@@ -60,6 +83,5 @@ namespace CRUD
         {
             return ++_proximoId;
         }
-
     }  
 }
