@@ -1,26 +1,45 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 
 namespace CRUD
 {
     internal class Servico
     {
+        
+        public Peca _peca = new(); 
 
         public static void ValidarCampos(Peca pecas)
         {
-            if (String.IsNullOrEmpty(pecas.Nome))
+            if (pecas.Nome == string.Empty)
             {
-                MessageBox.Show("Preencha o campo corretamente");
+                MessageBox.Show("campo Nome vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            if (String.IsNullOrEmpty(pecas.Descricao))
+
+            /*else if (Regex.IsMatch(pecas.Estoque, "[^0-9]") || string.IsNullOrEmpty(pecas.Estoque))
             {
-                MessageBox.Show("Preencha o campo corretamente");
-            }
-            if (String.IsNullOrEmpty(pecas.Categoria))
+                MessageBox.Show("Preencha o campo Descrição e insira somente números.");
+                pecas.Estoque = tpecas.Estoque.Remove(pecas.Estoque.Length - 1);
+                return;
+            }*/
+
+            else if (pecas.Categoria == string.Empty)
             {
-                MessageBox.Show("Preencha o campo corretamente");
+                MessageBox.Show("campo Categoria vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            else if (pecas.Descricao == string.Empty)
+            {
+                MessageBox.Show("campo Descrição vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            pecas.DataDeFabricacao = DateTime.Today;
+           
 
         }
     }
