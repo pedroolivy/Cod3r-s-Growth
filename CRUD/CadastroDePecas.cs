@@ -8,7 +8,7 @@ namespace CRUD
 
         public CadastroDePecas(Peca peca)
         {
-            InitializeComponent();         
+            InitializeComponent();
 
                 if (peca == null)
                 {
@@ -35,9 +35,33 @@ namespace CRUD
                 DataDeFabricacao = dateTimePicker1.Value,
             };
 
-            _peca = pecaParaAdicionar;
+            if (textBox2.Text == string.Empty)
+            {
+                MessageBox.Show("campo Nome vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox2.BackColor = Color.Red;
+            }
+            else if (textBox6.Text == string.Empty)
+            {
+                MessageBox.Show("campo Categoria vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox6.BackColor = Color.Red;
+            }
+            else if (textBox1.Text == string.Empty)
+            {
+                MessageBox.Show("campo Descrição vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.BackColor = Color.Red;
+            }
+            else if (textBox4.Text == string.Empty)
+            {
+                MessageBox.Show("campo Estoque vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox4.BackColor = Color.Red;
+            }
 
-            Close();
+            else { 
+                _peca = pecaParaAdicionar;
+
+                Close();
+            }
+
         }
 
         private void AoClicarCancelar(object sender, EventArgs e)
