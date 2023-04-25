@@ -10,22 +10,44 @@ namespace CRUD
         {
             InitializeComponent();
 
-                if (peca == null)
-                {
-                    _peca = new Peca();
-                }
-                else
-                {
-                    textBox1.Text = peca.Descricao;
-                    textBox2.Text = peca.Nome;
-                    textBox4.Text = peca.Estoque.ToString();
-                    textBox6.Text = peca.Categoria;
-                    dateTimePicker1.Value = peca.DataDeFabricacao;
-                }
+            if (peca == null)
+            {
+                _peca = new Peca();
+            }
+            else
+            {
+                textBox1.Text = peca.Descricao;
+                textBox2.Text = peca.Nome;
+                textBox4.Text = peca.Estoque.ToString();
+                textBox6.Text = peca.Categoria;
+                dateTimePicker1.Value = peca.DataDeFabricacao;
+            }
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
+            if (textBox2.Text == string.Empty)
+            {
+                MessageBox.Show("campo Nome vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (System.Text.RegularExpressions.Regex.IsMatch(textBox4.Text, "[^0-9]") || string.IsNullOrEmpty(textBox4.Text))
+            {
+                MessageBox.Show("Insira somente números.");
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                return;
+            }
+            else if (textBox6.Text == string.Empty)
+            {
+                MessageBox.Show("campo Categoria vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (textBox1.Text == string.Empty)
+            {
+                MessageBox.Show("campo Descrição vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var pecaParaAdicionar = new Peca()
             {
                 Nome = textBox2.Text,
@@ -35,33 +57,9 @@ namespace CRUD
                 DataDeFabricacao = dateTimePicker1.Value,
             };
 
-            if (textBox2.Text == string.Empty)
-            {
-                MessageBox.Show("campo Nome vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox2.BackColor = Color.Red;
-            }
-            else if (textBox6.Text == string.Empty)
-            {
-                MessageBox.Show("campo Categoria vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox6.BackColor = Color.Red;
-            }
-            else if (textBox1.Text == string.Empty)
-            {
-                MessageBox.Show("campo Descrição vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox1.BackColor = Color.Red;
-            }
-            else if (textBox4.Text == string.Empty)
-            {
-                MessageBox.Show("campo Estoque vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBox4.BackColor = Color.Red;
-            }
+            _peca = pecaParaAdicionar;
 
-            else { 
-                _peca = pecaParaAdicionar;
-
-                Close();
-            }
-
+            Close();
         }
 
         private void AoClicarCancelar(object sender, EventArgs e)
