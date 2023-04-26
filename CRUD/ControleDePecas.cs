@@ -59,18 +59,26 @@
 
         private void AoClicarEditar(object sender, EventArgs e)
         {
-            var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
-            var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
+            if (dataGridView2.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Selecione um item");
+            }
+            else { 
+                var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-            CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
-            cadastroPeca.ShowDialog();
+                CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
+                cadastroPeca.ShowDialog();
 
-            var pecaAtualizada = cadastroPeca._peca;
-            pecaAtualizada.Id = pecaSelecionada.Id;
-
-            listaPecas[linhaSelecionada] = pecaAtualizada;
-
-            AtualizarLista();
+                var pecaAtualizada = cadastroPeca._peca;
+                pecaAtualizada.Id = pecaSelecionada.Id;
+                      
+                if(cadastroPeca.DialogResult == DialogResult.OK)
+                {
+                    listaPecas[linhaSelecionada] = pecaAtualizada;
+                    AtualizarLista();
+                }
+            }
         }
 
         public int ObterProximoId()
