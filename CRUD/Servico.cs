@@ -14,14 +14,6 @@ namespace CRUD
             {
                 return "campo Nome vazio!";
             }
-
-            /*else if (Regex.IsMatch(peca.Estoque, "[^0-9]") || string.IsNullOrEmpty(peca.Estoque))
-            {
-                MessageBox.Show("Preencha o campo Descrição e insira somente números.");
-                peca.Estoque = peca.Estoque.Remove(peca.Estoque.Length - 1);
-                return;
-            }*/
-
             else if (string.IsNullOrEmpty(peca.Categoria))
             {
                 return "campo Categoria vazio!";
@@ -32,7 +24,10 @@ namespace CRUD
                 return "campo Descrição vazio!";
             }
 
-            peca.DataDeFabricacao = DateTime.Today;
+            else if (peca.Estoque <= 0)
+            {
+                return "campo Descrição sem valor!";
+            }
 
             return null;
         }

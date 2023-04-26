@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace CRUD
 {
@@ -21,10 +22,12 @@ namespace CRUD
             {
                 textBox1.Text = peca.Descricao;
                 textBox2.Text = peca.Nome;
-                textBox4.Text = peca.Estoque.ToString();
+                numericUpDown1.Text = peca.Estoque.ToString();
                 textBox6.Text = peca.Categoria;
                 dateTimePicker1.Value = peca.DataDeFabricacao;
             }
+
+            dateTimePicker1.MaxDate = DateTime.Today;
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
@@ -36,7 +39,7 @@ namespace CRUD
                 Nome = textBox2.Text,
                 Categoria = textBox6.Text,
                 Descricao = textBox1.Text,
-                Estoque = int.Parse(textBox4.Text),
+                Estoque = int.Parse(numericUpDown1.Text),
                 DataDeFabricacao = dateTimePicker1.Value,
             };
 
@@ -53,6 +56,8 @@ namespace CRUD
                 }
                 _peca = pecaParaAdicionar;
 
+
+
                 DialogResult = DialogResult.OK;
 
                 Close();
@@ -62,7 +67,9 @@ namespace CRUD
             {
                 MessageBox.Show(ex.Message);               
             }
-           
+
+            
+
         }
         private void AoClicarCancelar(object sender, EventArgs e)
         {
@@ -70,5 +77,7 @@ namespace CRUD
 
             Close();
         }
+
+
     }
 }
