@@ -33,6 +33,11 @@ namespace CRUD
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
             //Validar Campos
+            if (string.IsNullOrEmpty(numericUpDown1.Text) || int.Parse(numericUpDown1.Text) == 0)
+            {
+                MessageBox.Show("campo Estoque sem valor");
+                return;
+            }
 
             var pecaParaAdicionar = new Peca()
             {

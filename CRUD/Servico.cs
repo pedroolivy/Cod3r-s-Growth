@@ -24,12 +24,13 @@ namespace CRUD
                 return "campo Descrição vazio!";
             }
 
-            else if (peca.Estoque <= 0)
+            else if (peca.Estoque < 0 || peca.Estoque == null)
             {
-                return "campo Descrição sem valor!";
+                return "campo Estoque sem valor!";
             }
 
             return null;
+
         }
     }
 }
