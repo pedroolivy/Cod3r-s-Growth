@@ -1,14 +1,14 @@
 ﻿namespace CRUD
 {
     public partial class ControleDePecas : Form
-    {   
+    {
         public int _proximoId;
         public List<Peca> listaPecas = new();
-        
+
         public ControleDePecas()
         {
             InitializeComponent();
-        }      
+        }
 
         private void AoClicarAdicionar(object sender, EventArgs e)
         {
@@ -18,7 +18,11 @@
             var pecaPreenchida = cadastroDePecas._peca;
             pecaPreenchida.Id = ObterProximoId();
 
-            listaPecas.Add(pecaPreenchida);
+            if (cadastroDePecas.DialogResult == DialogResult.OK)
+            {
+                listaPecas.Add(pecaPreenchida);
+            }
+
             AtualizarLista();
         }
 
@@ -31,9 +35,10 @@
             else
             {
                 string mensagem = "Tem certeza que deseja remover essa linha ?";
-                var resultado = MessageBox.Show(mensagem, "",MessageBoxButtons.YesNo);
+                var resultado = MessageBox.Show(mensagem, "", MessageBoxButtons.YesNo);
 
-                if (resultado == DialogResult.Yes) {
+                if (resultado == DialogResult.Yes)
+                {
 
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
@@ -42,14 +47,14 @@
 
                     listaPecas.Remove(peca);
                     AtualizarLista();
-                } 
+                }
             }
         }
 
         private void AtualizarLista()
         {
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = listaPecas;
+            dataGridView2.DataSource = listaPecas.ToList();
         }
 
         private void AoClicarEditar(object sender, EventArgs e)
@@ -64,7 +69,7 @@
             pecaAtualizada.Id = pecaSelecionada.Id;
 
             listaPecas[linhaSelecionada] = pecaAtualizada;
-        
+
             AtualizarLista();
         }
 
@@ -72,6 +77,6 @@
         {
             return ++_proximoId;
         }
- 
-    }  
+
+    }
 }

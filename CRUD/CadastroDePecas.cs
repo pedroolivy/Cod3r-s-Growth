@@ -39,24 +39,36 @@ namespace CRUD
                 Estoque = int.Parse(textBox4.Text),
                 DataDeFabricacao = dateTimePicker1.Value,
             };
+
             try
             {
-                Servico.ValidarCampos(pecaParaAdicionar);
+
+                var validador = new Servico();
+                var resultado = validador.ValidarCampos(pecaParaAdicionar);
+
+                if(resultado != null)
+                {
+                    MessageBox.Show(resultado);
+                    return;
+                }
                 _peca = pecaParaAdicionar;
+
+                DialogResult = DialogResult.OK;
+
+                Close();
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                Close();
-            }        
-
+                MessageBox.Show(ex.Message);               
+            }
+           
         }
-
         private void AoClicarCancelar(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
+
             Close();
         }
-
-
     }
 }

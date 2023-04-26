@@ -6,41 +6,35 @@ using System.Text.RegularExpressions;
 
 namespace CRUD
 {
-    internal class Servico
+    public class Servico
     {
-        
-        public Peca _peca = new(); 
-
-        public static void ValidarCampos(Peca pecas)
+        public string? ValidarCampos(Peca peca)
         {
-            if (pecas.Nome == string.Empty)
+            if(string.IsNullOrEmpty(peca.Nome))
             {
-                MessageBox.Show("campo Nome vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return "campo Nome vazio!";
             }
 
-            /*else if (Regex.IsMatch(pecas.Estoque, "[^0-9]") || string.IsNullOrEmpty(pecas.Estoque))
+            /*else if (Regex.IsMatch(peca.Estoque, "[^0-9]") || string.IsNullOrEmpty(peca.Estoque))
             {
                 MessageBox.Show("Preencha o campo Descrição e insira somente números.");
-                pecas.Estoque = tpecas.Estoque.Remove(pecas.Estoque.Length - 1);
+                peca.Estoque = peca.Estoque.Remove(peca.Estoque.Length - 1);
                 return;
             }*/
 
-            else if (pecas.Categoria == string.Empty)
+            else if (string.IsNullOrEmpty(peca.Categoria))
             {
-                MessageBox.Show("campo Categoria vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return "campo Categoria vazio!";
             }
 
-            else if (pecas.Descricao == string.Empty)
+            else if (string.IsNullOrEmpty(peca.Descricao))
             {
-                MessageBox.Show("campo Descrição vazio!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return "campo Descrição vazio!";
             }
 
-            pecas.DataDeFabricacao = DateTime.Today;
-           
+            peca.DataDeFabricacao = DateTime.Today;
 
+            return null;
         }
     }
 }
