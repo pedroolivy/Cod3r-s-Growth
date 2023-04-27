@@ -23,6 +23,7 @@ namespace CRUD
             return _instancia;
 
         }
+
         public static int ObterProximoId()
         {
             return ++_proximoId;
