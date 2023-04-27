@@ -73,7 +73,6 @@
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(638, 289);
             this.dataGridView2.TabIndex = 4;
-            
             // 
             // ControleDePecas
             // 
@@ -85,7 +84,7 @@
             this.Controls.Add(this.aoRemover);
             this.Controls.Add(this.aoAdicionar);
             this.Name = "ControleDePecas";
-            this.Text = "Controle de Peças";
+            this.Text = "Controle de Peças";           
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
