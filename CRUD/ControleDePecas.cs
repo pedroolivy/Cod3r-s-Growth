@@ -12,7 +12,7 @@
 
         private void AoClicarAdicionar(object sender, EventArgs e)
         {
-            CadastroDePecas cadastroDePecas = new CadastroDePecas(null);
+            CadastroDePecas cadastroDePecas = new(null);
             cadastroDePecas.ShowDialog();
 
             var pecaPreenchida = cadastroDePecas._peca;
@@ -28,14 +28,16 @@
 
         private void AoClicarRemover(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count != 1)
+            try
             {
-                MessageBox.Show("Selecione um item");
-            }
-            else
-            {
-                string mensagem = "Tem certeza que deseja remover essa linha ?";
-                var resultado = MessageBox.Show(mensagem, "", MessageBoxButtons.YesNo);
+                if (dataGridView2.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Selecione um item");
+                    return;
+                }
+
+                string mensagem = "Tem certeza que deseja remover essa linha?";
+                var resultado = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
@@ -43,11 +45,16 @@
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                    var peca = listaPecas.FirstOrDefault(x => x.Id == pecaSelecionada.Id);
+                    var peca = listaPecas.First(x => x.Id == pecaSelecionada.Id);
 
                     listaPecas.Remove(peca);
-                    AtualizarLista();
                 }
+
+                AtualizarLista();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -59,11 +66,13 @@
 
         private void AoClicarEditar(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count != 1)
+            try
             {
-                MessageBox.Show("Selecione um item");
-            }
-            else { 
+                if (dataGridView2.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Selecione um item");
+                    return;
+                }
                 var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
@@ -72,12 +81,17 @@
 
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
-                      
-                if(cadastroPeca.DialogResult == DialogResult.OK)
+
+                if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
                     listaPecas[linhaSelecionada] = pecaAtualizada;
-                    AtualizarLista();
                 }
+
+                AtualizarLista();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

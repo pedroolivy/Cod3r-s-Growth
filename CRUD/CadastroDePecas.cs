@@ -1,16 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-
-namespace CRUD
+﻿namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
         public Peca _peca = new();
-        
-        public CadastroDePecas(Peca peca)
+
+        public CadastroDePecas(Peca? peca)
         {
             InitializeComponent();
 
@@ -32,57 +26,41 @@ namespace CRUD
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
-            //Validar Campos
-            if (string.IsNullOrEmpty(numericUpDown1.Text) || int.Parse(numericUpDown1.Text) == 0)
-            {
-                MessageBox.Show("campo Estoque sem valor");
-                return;
-            }
-
-            var pecaParaAdicionar = new Peca()
-            {
-                Nome = textBox2.Text,
-                Categoria = textBox6.Text,
-                Descricao = textBox1.Text,
-                Estoque = (int)numericUpDown1.Value,
-                DataDeFabricacao = dateTimePicker1.Value,
-            };
-
             try
             {
-
-                var validador = new Servico();
-                var resultado = validador.ValidarCampos(pecaParaAdicionar);
-
-                if(resultado != null)
+                var pecaParaAdicionar = new Peca()
                 {
-                    MessageBox.Show(resultado);
+                    Nome = textBox2.Text,
+                    Categoria = textBox6.Text,
+                    Descricao = textBox1.Text,
+                    Estoque = (int)numericUpDown1.Value,
+                    DataDeFabricacao = dateTimePicker1.Value,
+                };
+
+                var errosValidacao = Servico.ValidarCampos(pecaParaAdicionar);
+
+                if (!string.IsNullOrEmpty(errosValidacao))
+                {
+                    MessageBox.Show(errosValidacao);
                     return;
                 }
+
                 _peca = pecaParaAdicionar;
-
-
 
                 DialogResult = DialogResult.OK;
 
                 Close();
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);               
+                MessageBox.Show(ex.Message);
             }
-
-            
-
         }
+
         private void AoClicarCancelar(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-
             Close();
         }
-
-
     }
 }

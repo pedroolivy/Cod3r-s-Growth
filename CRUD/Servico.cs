@@ -1,14 +1,8 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
-
-
-namespace CRUD
+﻿namespace CRUD
 {
     public class Servico
     {
-        public string? ValidarCampos(Peca peca)
+        public static string ValidarCampos(Peca peca)
         {
             if(string.IsNullOrEmpty(peca.Nome))
             {
@@ -24,13 +18,12 @@ namespace CRUD
                 return "campo Descrição vazio!";
             }
 
-            else if (peca.Estoque <= 0)
+            else if (peca.Estoque < 1)
             {
                 return "campo Estoque sem valor!";
             }
 
-            return null;
-
+            return string.Empty;
         }
     }
 }
