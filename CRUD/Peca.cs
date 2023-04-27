@@ -1,5 +1,4 @@
 ﻿
-
 namespace CRUD
 {
     public class Peca
