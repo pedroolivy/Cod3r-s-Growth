@@ -38,8 +38,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -117,6 +118,7 @@
             // 
             // textBox6
             // 
+            this.textBox6.HideSelection = false;
             this.textBox6.Location = new System.Drawing.Point(25, 53);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -131,14 +133,6 @@
             this.textBox2.Size = new System.Drawing.Size(150, 21);
             this.textBox2.TabIndex = 13;
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(203, 95);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(150, 21);
-            this.textBox4.TabIndex = 15;
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(203, 51);
@@ -146,13 +140,30 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(150, 23);
             this.dateTimePicker1.TabIndex = 16;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(203, 93);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(150, 23);
+            this.numericUpDown1.TabIndex = 17;
+            // 
             // CadastroDePecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 327);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox1);
@@ -165,6 +176,7 @@
             this.Controls.Add(this.button1);
             this.Name = "CadastroDePecas";
             this.Text = "Cadastro de Peças";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,7 +194,7 @@
         private TextBox textBox1;
         private TextBox textBox6;
         private TextBox textBox2;
-        private TextBox textBox4;
         private DateTimePicker dateTimePicker1;
+        private NumericUpDown numericUpDown1;
     }
 }
