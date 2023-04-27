@@ -22,7 +22,7 @@ namespace CRUD
             {
                 textBox1.Text = peca.Descricao;
                 textBox2.Text = peca.Nome;
-                numericUpDown1.Text = peca.Estoque.ToString();
+                numericUpDown1.Value = peca.Estoque;
                 textBox6.Text = peca.Categoria;
                 dateTimePicker1.Value = peca.DataDeFabricacao;
             }
@@ -44,7 +44,7 @@ namespace CRUD
                 Nome = textBox2.Text,
                 Categoria = textBox6.Text,
                 Descricao = textBox1.Text,
-                Estoque = int.Parse(numericUpDown1.Text),
+                Estoque = (int)numericUpDown1.Value,
                 DataDeFabricacao = dateTimePicker1.Value,
             };
 

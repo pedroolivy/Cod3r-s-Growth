@@ -24,7 +24,7 @@ namespace CRUD
                 return "campo Descrição vazio!";
             }
 
-            else if (peca.Estoque < 0 || peca.Estoque == null)
+            else if (peca.Estoque <= 0)
             {
                 return "campo Estoque sem valor!";
             }
