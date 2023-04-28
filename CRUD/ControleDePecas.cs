@@ -2,8 +2,6 @@
 {
     public partial class ControleDePecas : Form
     {
-        public int _proximoId;
-        public List<Peca> listaPecas = new();
 
         public ControleDePecas()
         {
@@ -16,11 +14,11 @@
             cadastroDePecas.ShowDialog();
 
             var pecaPreenchida = cadastroDePecas._peca;
-            pecaPreenchida.Id = ObterProximoId();
+            pecaPreenchida.Id = Singleton.ObterProximoId();
 
             if (cadastroDePecas.DialogResult == DialogResult.OK)
             {
-                listaPecas.Add(pecaPreenchida);
+                Singleton.Instancia().listaPecas.Add(pecaPreenchida);
             }
 
             AtualizarLista();
@@ -45,9 +43,9 @@
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                    var peca = listaPecas.First(x => x.Id == pecaSelecionada.Id);
+                    var peca = Singleton.Instancia().listaPecas.First(x => x.Id == pecaSelecionada.Id);
 
-                    listaPecas.Remove(peca);
+                    Singleton.Instancia().listaPecas.Remove(peca);
                 }
 
                 AtualizarLista();
@@ -61,7 +59,7 @@
         private void AtualizarLista()
         {
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = listaPecas.ToList();
+            dataGridView2.DataSource = Singleton.Instancia().listaPecas.ToList();
         }
 
         private void AoClicarEditar(object sender, EventArgs e)
@@ -84,7 +82,7 @@
 
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
-                    listaPecas[linhaSelecionada] = pecaAtualizada;
+                    Singleton.Instancia().listaPecas[linhaSelecionada] = pecaAtualizada;
                 }
 
                 AtualizarLista();
@@ -93,12 +91,7 @@
             {
                 MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
 
-        public int ObterProximoId()
-        {
-            return ++_proximoId;
         }
-
     }
 }
