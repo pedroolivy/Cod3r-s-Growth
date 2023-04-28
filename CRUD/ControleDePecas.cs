@@ -2,8 +2,6 @@
 {
     public partial class ControleDePecas : Form
     {
-        public int _proximoId;
-        public List<Peca> listaPecas = new();
 
         public ControleDePecas()
         {
@@ -12,18 +10,28 @@
 
         private void AoClicarAdicionar(object sender, EventArgs e)
         {
-            CadastroDePecas cadastroDePecas = new(null);
-            cadastroDePecas.ShowDialog();
-
-            var pecaPreenchida = cadastroDePecas._peca;
-            pecaPreenchida.Id = ObterProximoId();
-
-            if (cadastroDePecas.DialogResult == DialogResult.OK)
+            try
             {
-                listaPecas.Add(pecaPreenchida);
+                var listaPecas = Singleton.Instancia()._listaPecas;
+
+                CadastroDePecas cadastroDePecas = new(null);
+                cadastroDePecas.ShowDialog();
+
+                var pecaPreenchida = cadastroDePecas._peca;
+                pecaPreenchida.Id = Singleton.ObterProximoId();
+
+                if (cadastroDePecas.DialogResult == DialogResult.OK)
+                {
+                    listaPecas.Add(pecaPreenchida);
+                }
+
+                AtualizarLista();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            AtualizarLista();
         }
 
         private void AoClicarRemover(object sender, EventArgs e)
@@ -39,9 +47,9 @@
                 string mensagem = "Tem certeza que deseja remover essa linha?";
                 var resultado = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                var listaPecas = Singleton.Instancia()._listaPecas;
                 if (resultado == DialogResult.Yes)
                 {
-
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
@@ -61,7 +69,7 @@
         private void AtualizarLista()
         {
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = listaPecas.ToList();
+            dataGridView2.DataSource = Singleton.Instancia()._listaPecas.ToList();
         }
 
         private void AoClicarEditar(object sender, EventArgs e)
@@ -73,6 +81,7 @@
                     MessageBox.Show("Selecione um item");
                     return;
                 }
+
                 var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
@@ -82,6 +91,7 @@
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
+                var listaPecas = Singleton.Instancia()._listaPecas;
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
                     listaPecas[linhaSelecionada] = pecaAtualizada;
@@ -94,11 +104,5 @@
                 MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public int ObterProximoId()
-        {
-            return ++_proximoId;
-        }
-
     }
 }
