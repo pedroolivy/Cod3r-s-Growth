@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CRUD.Repositorio
 {
-    internal class IRepositorio
+    public interface IRepositorio
     {
-        public interface IPecaRepositorio : 
-        {
-            
-        }
+        public List<Peca> ObterTodos();
 
     }
 }
