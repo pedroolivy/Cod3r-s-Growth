@@ -2,11 +2,10 @@
 {
     public class Singleton
     {
-        private Singleton() { }
-        private static Singleton _instancia;
+        private static Singleton? _instancia;
         public static int _proximoId;
 
-        public List<Peca> listaPecas { get; private set; }
+        public List<Peca>? _listaPecas;
 
         public static Singleton Instancia()
         {
@@ -15,11 +14,11 @@
                 {
                     _instancia = new Singleton
                     {
-                        listaPecas = new List<Peca>()
+                        _listaPecas = new List<Peca>()
                     };
                 };
-            return _instancia;
 
+            return _instancia;
         }
 
         public static int ObterProximoId()
