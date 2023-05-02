@@ -5,5 +5,9 @@ namespace CRUD.Repositorio
     {
         public List<Peca> ObterTodos();
 
+        void Adicionar(Peca pecaNova);
+        void Editar(Peca peca);
+        void remover(Peca peca);
+
     }
 }
