@@ -10,4 +10,5 @@ namespace CRUD.Repositorio
         void remover(Peca peca);
 
     }
+
 }
