@@ -1,6 +1,4 @@
-﻿using Accessibility;
-using CRUD.Repositorio;
-
+﻿
 namespace CRUD
 {
     public partial class ControleDePecas : Form
@@ -50,8 +48,7 @@ namespace CRUD
 
                 string mensagem = "Tem certeza que deseja remover essa linha?";
                 var resultado = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                //var listaPecas = Singleton.Instancia()._listaPecas;
+             
                 var listaPecas = _repositorio;
 
                 if (resultado == DialogResult.Yes)
@@ -59,9 +56,8 @@ namespace CRUD
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;                
 
-                    listaPecas.Remover(linhaSelecionada);
-
-                    //listaPecas.Remove(peca);             
+                    listaPecas.Remover(pecaSelecionada.Id);
+                              
                 }
 
                 AtualizarLista();

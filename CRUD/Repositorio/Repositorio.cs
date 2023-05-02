@@ -1,5 +1,4 @@
 ﻿
-
 namespace CRUD.Repositorio
 {
     public class Repositorio : IRepositorio
