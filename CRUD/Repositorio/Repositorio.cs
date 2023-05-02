@@ -19,14 +19,23 @@ namespace CRUD.Repositorio
         {
             ListaDePecas.Add(pecaNova);
         }
-        public void Editar(Peca peca, int id)
+        public void Editar(int id)
         {
-            //ListaDePecas._listaPecas./**/(peca);
+
         }
-        public void Remover(Peca pecaNova, int id)
+
+        public Peca ObterPorId(int id)
         {
-            ListaDePecas.Remove(pecaNova);
+            return ListaDePecas.First(x => x.Id == id);
         }
+
+        public void Remover(int id)
+        {
+            var pegarId = ObterPorId(id);
+            ListaDePecas.Remove(pegarId);
+        }
+
 
     }
 }
+
