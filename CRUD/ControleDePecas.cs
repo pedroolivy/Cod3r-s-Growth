@@ -93,10 +93,14 @@ namespace CRUD
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
-                var listaPecas = Singleton.Instancia()._listaPecas;
+                //var listaPecas = Singleton.Instancia()._listaPecas;
+
+                var listaPecas = _repositorio;
+
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
-                    listaPecas[linhaSelecionada] = pecaAtualizada;
+                    listaPecas.Editar(pecaSelecionada.Id);
+                    //listaPecas[linhaSelecionada] = pecaAtualizada;
                 }
 
                 AtualizarLista();
