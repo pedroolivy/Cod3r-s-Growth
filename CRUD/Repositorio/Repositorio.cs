@@ -8,23 +8,24 @@ namespace CRUD.Repositorio
 {
     public class Repositorio : IRepositorio
     {
+        protected List<Peca> ListaDePecas = Singleton.Instancia()._listaPecas;
 
         public List<Peca> ObterTodos()
         {
-            return Singleton.Instancia()._listaPecas;
+            return ListaDePecas;
         }
 
         public void Adicionar (Peca pecaNova)
         {
-            Singleton.Instancia()._listaPecas.Add(pecaNova);
+            ListaDePecas.Add(pecaNova);
         }
-        public void Editar(Peca pecaNova)
+        public void Editar(Peca peca, int id)
         {
-            //Singleton.Instancia()._listaPecas.Add(pecaNova);
+            //ListaDePecas._listaPecas./**/(peca);
         }
-        public void remover(Peca pecaNova)
+        public void Remover(Peca pecaNova, int id)
         {
-            //Singleton.Instancia()._listaPecas.Add(pecaNova);
+            ListaDePecas.Remove(pecaNova);
         }
 
     }

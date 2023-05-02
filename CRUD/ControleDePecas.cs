@@ -2,7 +2,6 @@
 {
     public partial class ControleDePecas : Form
     {
-
         public ControleDePecas()
         {
             InitializeComponent();
