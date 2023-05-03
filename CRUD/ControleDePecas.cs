@@ -16,8 +16,6 @@ namespace CRUD
         {
             try
             {
-                var listaPecas = _repositorio;
-
                 CadastroDePecas cadastroDePecas = new(null);
                 cadastroDePecas.ShowDialog();
 
@@ -26,7 +24,7 @@ namespace CRUD
 
                 if (cadastroDePecas.DialogResult == DialogResult.OK)
                 {
-                    listaPecas.Adicionar(pecaPreenchida);
+                    _repositorio.Adicionar(pecaPreenchida);
                 }
 
                 AtualizarLista();
@@ -50,14 +48,12 @@ namespace CRUD
                 string mensagem = "Tem certeza que deseja remover essa linha?";
                 var resultado = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
              
-                var listaPecas = _repositorio;
-
                 if (resultado == DialogResult.Yes)
                 {
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
-                    var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;                
+                    var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                    listaPecas.Remover(pecaSelecionada.Id);                          
+                    _repositorio.Remover(pecaSelecionada.Id);                          
                 }
 
                 AtualizarLista();
@@ -78,7 +74,6 @@ namespace CRUD
         {
             try
             {
-                var listaPecass = _repositorio;
 
                 if (dataGridView2.SelectedRows.Count != 1)
                 {
