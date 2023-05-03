@@ -1,7 +1,11 @@
-﻿namespace CRUD
+﻿
+using CRUD.Repositorio;
+
+namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
+        public RepositorioListaSingleton _repositorio = new ();
 
         public ControleDePecas()
         {
@@ -12,8 +16,6 @@
         {
             try
             {
-                var listaPecas = Singleton.Instancia()._listaPecas;
-
                 CadastroDePecas cadastroDePecas = new(null);
                 cadastroDePecas.ShowDialog();
 
@@ -22,7 +24,7 @@
 
                 if (cadastroDePecas.DialogResult == DialogResult.OK)
                 {
-                    listaPecas.Add(pecaPreenchida);
+                    _repositorio.Adicionar(pecaPreenchida);
                 }
 
                 AtualizarLista();
@@ -31,7 +33,6 @@
             {
                 MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void AoClicarRemover(object sender, EventArgs e)
@@ -46,16 +47,13 @@
 
                 string mensagem = "Tem certeza que deseja remover essa linha?";
                 var resultado = MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                var listaPecas = Singleton.Instancia()._listaPecas;
+             
                 if (resultado == DialogResult.Yes)
                 {
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                    var peca = listaPecas.First(x => x.Id == pecaSelecionada.Id);
-
-                    listaPecas.Remove(peca);
+                    _repositorio.Remover(pecaSelecionada.Id);                          
                 }
 
                 AtualizarLista();
@@ -76,6 +74,7 @@
         {
             try
             {
+
                 if (dataGridView2.SelectedRows.Count != 1)
                 {
                     MessageBox.Show("Selecione um item");
@@ -91,10 +90,9 @@
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
-                var listaPecas = Singleton.Instancia()._listaPecas;
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
-                    listaPecas[linhaSelecionada] = pecaAtualizada;
+                    _repositorio.Editar(pecaAtualizada.Id, pecaAtualizada);
                 }
 
                 AtualizarLista();
