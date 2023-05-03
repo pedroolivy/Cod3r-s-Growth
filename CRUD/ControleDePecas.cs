@@ -14,7 +14,7 @@ namespace CRUD
         {
             try
             {
-                var listaPecas = Singleton.Instancia()._listaPecas;
+                var listaPecas = _repositorio;
 
                 CadastroDePecas cadastroDePecas = new(null);
                 cadastroDePecas.ShowDialog();
@@ -24,7 +24,7 @@ namespace CRUD
 
                 if (cadastroDePecas.DialogResult == DialogResult.OK)
                 {
-                    listaPecas.Add(pecaPreenchida);
+                    listaPecas.Adicionar(pecaPreenchida);
                 }
 
                 AtualizarLista();
@@ -93,14 +93,11 @@ namespace CRUD
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
-                //var listaPecas = Singleton.Instancia()._listaPecas;
-
-                var listaPecas = _repositorio;
+                var listaPecas = Singleton.Instancia()._listaPecas;              
 
                 if (cadastroPeca.DialogResult == DialogResult.OK)
-                {
-                    listaPecas.Editar(pecaSelecionada.Id);
-                    //listaPecas[linhaSelecionada] = pecaAtualizada;
+                {                    
+                    listaPecas[linhaSelecionada] = pecaAtualizada;
                 }
 
                 AtualizarLista();
