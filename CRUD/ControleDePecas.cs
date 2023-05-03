@@ -1,9 +1,11 @@
 ﻿
+using CRUD.Repositorio;
+
 namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        public Repositorio.Repositorio _repositorio = new();
+        public RepositorioListaSingleton _repositorio = new ();
 
         public ControleDePecas()
         {
@@ -33,7 +35,6 @@ namespace CRUD
             {
                 MessageBox.Show(ex.Message, "Erro inesperado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void AoClicarRemover(object sender, EventArgs e)
@@ -56,8 +57,7 @@ namespace CRUD
                     var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;                
 
-                    listaPecas.Remover(pecaSelecionada.Id);
-                              
+                    listaPecas.Remover(pecaSelecionada.Id);                          
                 }
 
                 AtualizarLista();
@@ -78,6 +78,8 @@ namespace CRUD
         {
             try
             {
+                var listaPecass = _repositorio;
+
                 if (dataGridView2.SelectedRows.Count != 1)
                 {
                     MessageBox.Show("Selecione um item");
@@ -93,11 +95,9 @@ namespace CRUD
                 var pecaAtualizada = cadastroPeca._peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
-                var listaPecas = Singleton.Instancia()._listaPecas;              
-
                 if (cadastroPeca.DialogResult == DialogResult.OK)
-                {                    
-                    listaPecas[linhaSelecionada] = pecaAtualizada;
+                {
+                    _repositorio.Editar(pecaAtualizada.Id, pecaAtualizada);
                 }
 
                 AtualizarLista();
