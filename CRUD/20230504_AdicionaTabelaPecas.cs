@@ -8,12 +8,12 @@ namespace CRUD
         public override void Up()
         {
             Create.Table("Peca")
-                .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                 .WithColumn("Nome").AsString()
                 .WithColumn("Categoria").AsString()
                 .WithColumn("Descricao").AsString()
-                .WithColumn("Estoque").AsString()
-                .WithColumn("DataDeFabricacao").AsString();
+                .WithColumn("Estoque").AsInt32()
+                .WithColumn("DataDeFabricacao").AsDateTime();
         }
 
         public override void Down()
