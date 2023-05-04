@@ -4,20 +4,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CRUD
 {
-    internal static class Program 
-    {       
+    internal static class Program
+    {
 
         [STAThread]
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new ControleDePecas());         
+            Application.Run(new ControleDePecas());
 
-            using (var serviceProvider = CreateServices())
-            using (var scope = serviceProvider.CreateScope())
-            {
-                UpdateDatabase(scope.ServiceProvider);
-            }
+            using var serviceProvider = CreateServices();
+            var scope = serviceProvider.CreateScope();
+            UpdateDatabase(scope.ServiceProvider);
         }
 
         private static ServiceProvider CreateServices()
