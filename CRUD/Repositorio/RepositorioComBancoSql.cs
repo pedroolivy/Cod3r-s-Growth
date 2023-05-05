@@ -1,38 +1,56 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
-
-
 
 namespace CRUD.Repositorio
 {
-
-    public class RepositorioComBancoSql//: IRepositorio
+    public class RepositorioComBancoSql : IRepositorio
     {
-        private void RepositorioComBancoSql_laod(Object sender, EventArgs e)
+        private static string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+
+        Peca peca = new(); 
+
+        public List<Peca> ObterTodos()
         {
-            //Definindo string de conexão:
-            var connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+            SqlConnection conexaoBanco = new SqlConnection(connectionString);
 
-            //Criando novo objeto SqlConnection usando a string de conexão:
-            SqlConnection conexaoSql = new SqlConnection(connectionString);
+            conexaoBanco.Open();
 
-            //abrindo a conexão:
-            conexaoSql.Open();
+            SqlCommand comandoDeExecucao = new SqlCommand("SELECT * FROM Pecas", conexaoBanco);
 
-            //Operações:
+            var ler = comandoDeExecucao.ExecuteReader();
 
+            List<Peca> lista = new(); 
 
+            while (ler.Read())
+            {
+                peca = new Peca()
+                {
+                    Id = Convert.ToInt32(ler[0]),
+                    Categoria = ler[1].ToString(),
+                    Nome = ler[2].ToString(),
+                    Descricao = ler[3].ToString(),
+                    Estoque = int.Parse(ler[4].ToString()),
+                    DataDeFabricacao = Convert.ToDateTime(ler[5])
+                };
 
+                lista.Add(peca);
+            }
 
-
-
-
-
-
-
-            //Fechando a conexão:
-            conexaoSql.Close();
-
+            conexaoBanco.Close();
+            
+            return lista;
+        }   
+        public Peca? ObterPorId(int id) 
+        {
+            return null;
         }
+
+        public void Remover(int id) { }
+
+        public void Adicionar(Peca pecaNova) { }
+
+        public void Editar(int id, Peca pecaEditada) { }
     }
 }
