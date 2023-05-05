@@ -11,13 +11,13 @@ namespace CRUD.Repositorio
         private void RepositorioComBancoSql_laod(Object sender, EventArgs e)
         {
             //Definindo string de conexão:
-            string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
             //Criando novo objeto SqlConnection usando a string de conexão:
-            SqlConnection sqlConn = new SqlConnection(connectionString);
+            SqlConnection conexaoSql = new SqlConnection(connectionString);
 
             //abrindo a conexão:
-            sqlConn.Open();
+            conexaoSql.Open();
 
             //Operações:
 
@@ -31,7 +31,7 @@ namespace CRUD.Repositorio
 
 
             //Fechando a conexão:
-            sqlConn.Close();
+            conexaoSql.Close();
 
         }
     }
