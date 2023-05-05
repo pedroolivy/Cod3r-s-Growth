@@ -1,27 +1,38 @@
-﻿
+﻿using Microsoft.Data.SqlClient;
+using System.Configuration;
+
+
+
 namespace CRUD.Repositorio
 {
-    public class RepositorioComBancoSql : IRepositorio
+
+    public class RepositorioComBancoSql//: IRepositorio
     {
-
-        public List<Peca> ObterTodos()
+        private void RepositorioComBancoSql_laod(Object sender, EventArgs e)
         {
-        }
+            //Definindo string de conexão:
+            string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
-        public Peca? ObterPorId(int id)
-        {
-        }
+            //Criando novo objeto SqlConnection usando a string de conexão:
+            SqlConnection sqlConn = new SqlConnection(connectionString);
 
-        public void Remover(int id)
-        {
-        }
+            //abrindo a conexão:
+            sqlConn.Open();
 
-        public void Adicionar(Peca pecaNova)
-        {
-        }
+            //Operações:
 
-        public void Editar(int id, Peca pecaEditada)
-        {
+
+
+
+
+
+
+
+
+
+            //Fechando a conexão:
+            sqlConn.Close();
+
         }
     }
 }
