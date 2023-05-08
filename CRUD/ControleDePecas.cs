@@ -5,7 +5,7 @@ namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        public RepositorioListaSingleton _repositorio = new ();
+        public RepositorioComBancoSql _repositorio = new ();
 
         public ControleDePecas()
         {

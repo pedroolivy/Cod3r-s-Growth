@@ -46,7 +46,6 @@ namespace CRUD.Repositorio
 
         public Peca ObterPorId(int id) 
         {
-
             SqlConnection conexaoBanco = new SqlConnection(connectionString);
 
             conexaoBanco.Open();
@@ -70,14 +69,51 @@ namespace CRUD.Repositorio
 
             conexaoBanco.Close();
 
-
             return peca;
         }
 
-        public void Remover(int id) { }
-                  
-        public void Adicionar(Peca pecaNova) { }
+        public void Remover(int id) 
+        {
+            SqlConnection conexaoBanco = new SqlConnection(connectionString);
 
-        public void Editar(int id, Peca pecaEditada) { }
+            conexaoBanco.Open();
+
+            List<Peca> lista = new();
+
+            var pecaARemover = ObterPorId(id);
+
+            if (pecaARemover != null)
+            {
+                lista.Remove(pecaARemover);
+            }           
+            conexaoBanco.Close();
+        }
+                  
+        public void Adicionar(Peca pecaNova) 
+        {
+            SqlConnection conexaoBanco = new SqlConnection(connectionString);
+
+            conexaoBanco.Open();
+
+            List<Peca> lista = new();
+
+            lista.Add(pecaNova);
+
+            conexaoBanco.Close();
+        }
+
+        public void Editar(int id, Peca pecaEditada) 
+        {
+            SqlConnection conexaoBanco = new SqlConnection(connectionString);
+
+            conexaoBanco.Open();
+
+            List<Peca> lista = new();
+
+            var index = lista.FindIndex(x => x.Id == id);
+            lista[index] = pecaEditada;
+
+            conexaoBanco.Close();
+        }
     }
 }
