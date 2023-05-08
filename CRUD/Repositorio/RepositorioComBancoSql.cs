@@ -82,7 +82,7 @@ namespace CRUD.Repositorio
 
             if (pecaARemover != null)
             {
-                new SqlCommand($"DELETE * FROM Pecas WHERE Id = {pecaARemover}", conexaoBanco);
+                new SqlCommand($"DELETE * FROM Pecas WHERE Id = {id}", conexaoBanco);
             }
                      
             conexaoBanco.Close();
