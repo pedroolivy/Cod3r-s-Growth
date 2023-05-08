@@ -75,17 +75,16 @@ namespace CRUD.Repositorio
         public void Remover(int id) 
         {
             SqlConnection conexaoBanco = new SqlConnection(connectionString);
-
+           
             conexaoBanco.Open();
-
-            List<Peca> lista = new();
 
             var pecaARemover = ObterPorId(id);
 
             if (pecaARemover != null)
             {
-                lista.Remove(pecaARemover);
-            }           
+                new SqlCommand($"DELETE * FROM Pecas WHERE Id = {pecaARemover}", conexaoBanco);
+            }
+                     
             conexaoBanco.Close();
         }
                   
