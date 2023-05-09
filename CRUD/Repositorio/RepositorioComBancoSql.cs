@@ -111,12 +111,11 @@ namespace CRUD.Repositorio
         {
             SqlConnection conexaoBanco = new SqlConnection(connectionString);
 
-            conexaoBanco.Open();
+            conexaoBanco.Open();           
 
-            List<Peca> lista = new();
+            var comando = new SqlCommand($"UPDATE Peca SET Categoria = '{pecaEditada.Categoria}', Nome = '{pecaEditada.Nome}', Descricao = '{pecaEditada.Descricao}', Estoque = {pecaEditada.Estoque}, DataDeFabricacao = '{pecaEditada.DataDeFabricacao}' WHERE Id ={id} ", conexaoBanco);
 
-            var index = lista.FindIndex(x => x.Id == id);
-            lista[index] = pecaEditada;
+            comando.ExecuteNonQuery();
 
             conexaoBanco.Close();
         }
