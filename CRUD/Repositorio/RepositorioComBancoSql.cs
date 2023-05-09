@@ -98,13 +98,12 @@ namespace CRUD.Repositorio
                 $"VALUE (Id = {peca.Id}, Categoria{peca.Categoria}, Nome = {peca.Nome}, Descricao = {peca.Descricao}, Estoque = {peca.Estoque}, ataDeFabricacao = {peca.DataDeFabricacao})"  
                 , conexaoBanco);
 
-
             conexaoBanco.Close();
         }
 
         public void Editar(int id, Peca pecaEditada) 
         {
-            SqlConnection conexaoBanco = new SqlConnection(connectionString);
+            /*SqlConnection conexaoBanco = new SqlConnection(connectionString);
 
             conexaoBanco.Open();
 
@@ -113,7 +112,7 @@ namespace CRUD.Repositorio
             var index = lista.FindIndex(x => x.Id == id);
             lista[index] = pecaEditada;
 
-            conexaoBanco.Close();
+            conexaoBanco.Close();*/
         }
     }
 }
