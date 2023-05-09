@@ -10,6 +10,7 @@ namespace CRUD
         public ControleDePecas()
         {
             InitializeComponent();
+            AtualizarLista();
         }
 
         private void AoClicarAdicionar(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace CRUD
         private void AtualizarLista()
         {
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = Singleton.Instancia()._listaPecas.ToList();
+            dataGridView2.DataSource = _repositorio.ObterTodos();
         }
 
         private void AoClicarEditar(object sender, EventArgs e)

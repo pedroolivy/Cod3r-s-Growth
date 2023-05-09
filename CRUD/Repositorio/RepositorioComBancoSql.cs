@@ -18,7 +18,7 @@ namespace CRUD.Repositorio
 
             conexaoBanco.Open();
 
-            SqlCommand comandoDeExecucao = new SqlCommand("SELECT * FROM Pecas", conexaoBanco);
+            SqlCommand comandoDeExecucao = new SqlCommand("SELECT * FROM Peca", conexaoBanco);
 
             var ler = comandoDeExecucao.ExecuteReader();
 
@@ -50,7 +50,7 @@ namespace CRUD.Repositorio
 
             conexaoBanco.Open();
 
-            SqlCommand comandoDeExecucao = new SqlCommand($"SELECT * FROM Pecas WHERE Id = {id}", conexaoBanco);
+            SqlCommand comandoDeExecucao = new SqlCommand($"SELECT * FROM Peca WHERE Id = {id}", conexaoBanco);
 
             var ler = comandoDeExecucao.ExecuteReader();
 
@@ -80,11 +80,13 @@ namespace CRUD.Repositorio
 
             var pecaARemover = ObterPorId(id);
 
+            var comando = new SqlCommand($"DELETE FROM Peca where Id = {id}", conexaoBanco);
+
             if (pecaARemover != null)
-            {
-                new SqlCommand($"DELETE * FROM Pecas WHERE Id = {id}", conexaoBanco);
+            {              
+                comando.ExecuteNonQuery();
             }
-                     
+            
             conexaoBanco.Close();
         }
                   
@@ -97,7 +99,7 @@ namespace CRUD.Repositorio
             var comando = new SqlCommand("INSERT INTO Peca" +
                 "(Categoria, Nome, Descricao, Estoque, DataDeFabricacao) " +
                 "VALUES " +
-                $"('{pecaNova.Categoria}', 'ouy', 'bvc', 5, '2020-12-12T12:00:20.031Z');"  
+                $"('{pecaNova.Categoria}', '{pecaNova.Nome}', '{pecaNova.Descricao}', {pecaNova.Estoque}, '{pecaNova.DataDeFabricacao}');"  
                 , conexaoBanco);
 
             comando.ExecuteNonQuery();
