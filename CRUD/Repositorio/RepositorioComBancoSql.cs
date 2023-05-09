@@ -98,6 +98,7 @@ namespace CRUD.Repositorio
                 $"VALUE (Id = {peca.Id}, Categoria{peca.Categoria}, Nome = {peca.Nome}, Descricao = {peca.Descricao}, Estoque = {peca.Estoque}, ataDeFabricacao = {peca.DataDeFabricacao})"  
                 , conexaoBanco);
 
+
             conexaoBanco.Close();
         }
 
