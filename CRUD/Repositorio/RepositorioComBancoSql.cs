@@ -94,10 +94,10 @@ namespace CRUD.Repositorio
 
             conexaoBanco.Open();
 
-            var comando = new SqlCommand("(INSERT INTO Pecas)" +
-                "(Categoria, Nome, Descricao, Estoque, DataDeFabricacao)" +
-                "VALUE"  +
-                "(Categoria = 'asd', Nome = 'asd', Descricao = 'ads', Estoque = 5, DataDeFabricacao = '2020-12-12T12:00:20.031Z')"  
+            var comando = new SqlCommand("INSERT INTO Peca" +
+                "(Categoria, Nome, Descricao, Estoque, DataDeFabricacao) " +
+                "VALUES " +
+                $"('{pecaNova.Categoria}', 'ouy', 'bvc', 5, '2020-12-12T12:00:20.031Z');"  
                 , conexaoBanco);
 
             comando.ExecuteNonQuery();
@@ -118,8 +118,5 @@ namespace CRUD.Repositorio
 
             conexaoBanco.Close();
         }
-
-
-
     }
 }
