@@ -5,11 +5,14 @@ namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        public RepositorioComBancoSql _repositorio = new();
+        private IRepositorio _repositorio;
 
-        public ControleDePecas()
+        public ControleDePecas(IRepositorio repositorio)
         {
+            _repositorio = repositorio; 
+
             InitializeComponent();
+
             AtualizarLista();
         }
 

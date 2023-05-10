@@ -1,6 +1,9 @@
+using System;
 using System.Configuration;
+using CRUD.Repositorio;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace CRUD
 {
@@ -10,13 +13,49 @@ namespace CRUD
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
-            Application.Run(new ControleDePecas());
+            
+            var builder = CriaHostBuilder();
+            var serviceProvider = builder.Build().Services;
+            //var scope = serviceProvider.CreateScope();
+            //UpdateDatabase(scope.ServiceProvider);
+            
+            var repositorio = serviceProvider.GetService<IRepositorio>();
 
-            using var serviceProvider = CreateServices();
-            var scope = serviceProvider.CreateScope();
-            UpdateDatabase(scope.ServiceProvider);
+            ApplicationConfiguration.Initialize();
+            Application.Run(new ControleDePecas(repositorio));
         }
+
+        static IHostBuilder CriaHostBuilder()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) => {
+                    services.AddScoped<IRepositorio, RepositorioComBancoSql>();
+                });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private static ServiceProvider CreateServices()
         {
