@@ -85,7 +85,7 @@ namespace CRUD
                 var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
+                CadastroDePecas cadastroPeca = new(pecaSelecionada);
                 cadastroPeca.ShowDialog();
 
                 var pecaAtualizada = cadastroPeca._peca;
