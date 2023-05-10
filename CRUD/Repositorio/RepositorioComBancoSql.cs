@@ -7,8 +7,6 @@ namespace CRUD.Repositorio
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
-        Peca peca = new();
-
         public List<Peca> ObterTodos()
         {
             SqlConnection conexaoBanco = new (connectionString);
@@ -43,6 +41,7 @@ namespace CRUD.Repositorio
 
         public Peca ObterPorId(int id)
         {
+            Peca peca = new();
             SqlConnection conexaoBanco = new (connectionString);
 
             conexaoBanco.Open();
@@ -53,7 +52,7 @@ namespace CRUD.Repositorio
 
             while (lerExecucaoQuery.Read())
             {
-                peca = new Peca()
+                peca = new()
                 {
                     Id = Convert.ToInt32(lerExecucaoQuery[0]),
                     Categoria = lerExecucaoQuery[1].ToString(),
@@ -71,7 +70,7 @@ namespace CRUD.Repositorio
 
         public void Remover(int id)
         {
-            SqlConnection conexaoBanco = new (connectionString);
+            SqlConnection conexaoBanco = new(connectionString);
 
             conexaoBanco.Open();
 
@@ -89,7 +88,7 @@ namespace CRUD.Repositorio
 
         public void Adicionar(Peca pecaNova)
         {
-            SqlConnection conexaoBanco = new (connectionString);
+            SqlConnection conexaoBanco = new(connectionString);
 
             conexaoBanco.Open();
 
@@ -102,7 +101,7 @@ namespace CRUD.Repositorio
 
         public void Editar(int id, Peca pecaEditada)
         {
-            SqlConnection conexaoBanco = new (connectionString);
+            SqlConnection conexaoBanco = new(connectionString);
 
             conexaoBanco.Open();
 

@@ -3,7 +3,6 @@ namespace CRUD.Repositorio
 {
     public class RepositorioListaSingleton : IRepositorio
     {
-
         protected List<Peca> ListaDePecas = Singleton.Instancia()._listaPecas;
 
         public List<Peca> ObterTodos()

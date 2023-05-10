@@ -5,7 +5,7 @@ namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        public RepositorioComBancoSql _repositorio = new ();
+        public RepositorioComBancoSql _repositorio = new();
 
         public ControleDePecas()
         {
@@ -51,7 +51,7 @@ namespace CRUD
              
                 if (resultado == DialogResult.Yes)
                 {
-                    var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                    var linhaSelecionada = dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
                     _repositorio.Remover(pecaSelecionada.Id);                          
@@ -82,7 +82,7 @@ namespace CRUD
                     return;
                 }
 
-                var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                var linhaSelecionada = dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
                 CadastroDePecas cadastroPeca = new(pecaSelecionada);
