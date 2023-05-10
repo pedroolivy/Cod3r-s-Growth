@@ -8,32 +8,23 @@ namespace CRUD
 {
     internal static class Program
     {
-
         [STAThread]
         static void Main()
-        {
-            
+        {           
             var builder = CriaHostBuilder();
             var serviceProvider = builder.Build().Services;
             var scope = serviceProvider.CreateScope();
-            UpdateDatabase(scope.ServiceProvider);
-            
-
-
+            UpdateDatabase(scope.ServiceProvider);           
             var repositorio = serviceProvider.GetService<IRepositorio>()
                 ?? throw new Exception("Serviço repositório não encontrado");
-
-
             ApplicationConfiguration.Initialize();
             Application.Run(new ControleDePecas(repositorio));
         }
-
         private static void UpdateDatabase(IServiceProvider serviceProvider)
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.MigrateUp();
         }
-
         static IHostBuilder CriaHostBuilder()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
