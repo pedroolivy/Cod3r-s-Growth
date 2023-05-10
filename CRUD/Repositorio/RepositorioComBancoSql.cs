@@ -19,6 +19,8 @@ namespace CRUD.Repositorio
 
             List<Peca> lista = new();
 
+            Peca peca;
+
             while (lerExecucaoQuery.Read())
             {
                 peca = new Peca()
