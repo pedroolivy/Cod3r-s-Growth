@@ -5,11 +5,15 @@ namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        public RepositorioListaSingleton _repositorio = new ();
+        private readonly IRepositorio _repositorio;
 
-        public ControleDePecas()
+        public ControleDePecas(IRepositorio repositorio)
         {
+            _repositorio = repositorio; 
+
             InitializeComponent();
+
+            AtualizarLista();
         }
 
         private void AoClicarAdicionar(object sender, EventArgs e)
@@ -50,7 +54,7 @@ namespace CRUD
              
                 if (resultado == DialogResult.Yes)
                 {
-                    var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                    var linhaSelecionada = dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                     var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
                     _repositorio.Remover(pecaSelecionada.Id);                          
@@ -67,7 +71,7 @@ namespace CRUD
         private void AtualizarLista()
         {
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = Singleton.Instancia()._listaPecas.ToList();
+            dataGridView2.DataSource = _repositorio.ObterTodos();
         }
 
         private void AoClicarEditar(object sender, EventArgs e)
@@ -81,10 +85,10 @@ namespace CRUD
                     return;
                 }
 
-                var linhaSelecionada = (int)dataGridView2.SelectedRows[0].Cells[0].RowIndex;
+                var linhaSelecionada = dataGridView2.SelectedRows[0].Cells[0].RowIndex;
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
-                CadastroDePecas cadastroPeca = new CadastroDePecas(pecaSelecionada);
+                CadastroDePecas cadastroPeca = new(pecaSelecionada);
                 cadastroPeca.ShowDialog();
 
                 var pecaAtualizada = cadastroPeca._peca;

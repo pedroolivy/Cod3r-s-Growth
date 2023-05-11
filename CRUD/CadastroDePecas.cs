@@ -8,20 +8,21 @@
         {
             InitializeComponent();
 
-            if (peca == null)
-            {
-                _peca = new Peca();
-            }
-            else
-            {
-                textBox1.Text = peca.Descricao;
-                textBox2.Text = peca.Nome;
-                numericUpDown1.Value = peca.Estoque;
-                textBox6.Text = peca.Categoria;
-                dateTimePicker1.Value = peca.DataDeFabricacao;
-            }
+            _peca = peca == null 
+                ? new Peca()
+                : PreencherCampos(peca);
 
             dateTimePicker1.MaxDate = DateTime.Today;
+        }
+
+        private Peca PreencherCampos(Peca peca)
+        {
+            textBox1.Text = peca.Descricao;
+            textBox2.Text = peca.Nome;
+            numericUpDown1.Value = peca.Estoque;
+            textBox6.Text = peca.Categoria;
+            dateTimePicker1.Value = peca.DataDeFabricacao;
+            return peca;
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
