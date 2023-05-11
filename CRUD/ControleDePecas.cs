@@ -5,7 +5,7 @@ namespace CRUD
 {
     public partial class ControleDePecas : Form
     {
-        private IRepositorio _repositorio;
+        private readonly IRepositorio _repositorio;
 
         public ControleDePecas(IRepositorio repositorio)
         {

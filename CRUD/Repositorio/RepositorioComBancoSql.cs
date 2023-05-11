@@ -5,7 +5,7 @@ namespace CRUD.Repositorio
 {
     public class RepositorioComBancoSql : IRepositorio
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
         public List<Peca> ObterTodos()
         {
