@@ -1,40 +1,48 @@
 using System.Configuration;
+using CRUD.Repositorio;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace CRUD
 {
     internal static class Program
     {
-
         [STAThread]
         static void Main()
-        {
-            ApplicationConfiguration.Initialize();
-            Application.Run(new ControleDePecas());
-
-            using var serviceProvider = CreateServices();
+        {           
+            var builder = CriaHostBuilder();
+            var serviceProvider = builder.Build().Services;
             var scope = serviceProvider.CreateScope();
-            UpdateDatabase(scope.ServiceProvider);
-        }
+            UpdateDatabase(scope.ServiceProvider);           
+            var repositorio = serviceProvider.GetService<IRepositorio>()
+                ?? throw new Exception("Serviço repositório não encontrado");
 
-        private static ServiceProvider CreateServices()
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
-            return new ServiceCollection()
-                .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    .AddSqlServer()
-                    .WithGlobalConnectionString(connectionString)
-                    .ScanIn(typeof(AdicionarTabelaPecas).Assembly).For.Migrations())
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                .BuildServiceProvider(false);
+            ApplicationConfiguration.Initialize();
+            Application.Run(new ControleDePecas(repositorio));
         }
 
         private static void UpdateDatabase(IServiceProvider serviceProvider)
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.MigrateUp();
+        }
+
+        static IHostBuilder CriaHostBuilder()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) => {
+                    services.AddScoped<IRepositorio, RepositorioComBancoSql>();
+                    services.AddFluentMigratorCore()
+                        .ConfigureRunner(rb => rb
+                                .AddSqlServer()
+                                .WithGlobalConnectionString(connectionString)
+                                .ScanIn(typeof(AdicionarTabelaPecas).Assembly).For.Migrations())
+                            .AddLogging(lb => lb.AddFluentMigratorConsole())
+                            .BuildServiceProvider(false);
+                });
         }
     }
 }

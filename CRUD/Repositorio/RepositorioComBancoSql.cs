@@ -5,7 +5,7 @@ namespace CRUD.Repositorio
 {
     public class RepositorioComBancoSql : IRepositorio
     {
-        private static string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
         public List<Peca> ObterTodos()
         {
@@ -18,6 +18,8 @@ namespace CRUD.Repositorio
             var lerExecucaoQuery = comandoDeExecucao.ExecuteReader();
 
             List<Peca> lista = new();
+
+            Peca peca;
 
             while (lerExecucaoQuery.Read())
             {
