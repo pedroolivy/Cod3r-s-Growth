@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRAESTRUTURA\\INFRAESTRUTURA.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRAESTRUTURA\\INFRAESTRUTURA.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRAESTRUTURA\\INFRAESTRUTURA.csproj",
-        "projectName": "INFRAESTRUTURA",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRAESTRUTURA\\INFRAESTRUTURA.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
+        "projectName": "INFRA",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRAESTRUTURA\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",

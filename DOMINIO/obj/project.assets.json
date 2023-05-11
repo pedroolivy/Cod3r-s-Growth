@@ -14,10 +14,10 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
-      "projectName": "DOMINIO",
+      "projectName": "Dominio",
       "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\Dominio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
