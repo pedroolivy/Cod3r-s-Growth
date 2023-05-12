@@ -80,3 +80,7 @@ C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\ne
 C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.EventLog.dll
 C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.EventSource.dll
 C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\DOMINIO.dll
+C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\INFRA.dll
+C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\DOMINIO.pdb
+C:\Users\Usuario\Desktop\treinamento\Nova pasta\Cod3r-s-Growth\CRUD\bin\Debug\net7.0-windows\INFRA.pdb

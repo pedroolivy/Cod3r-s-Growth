@@ -1,4 +1,5 @@
-﻿namespace DOMINIO
+﻿
+namespace DOMINIO
 {
     public class Peca
     {

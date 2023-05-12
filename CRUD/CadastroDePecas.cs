@@ -1,4 +1,6 @@
-﻿namespace CRUD
+﻿using DOMINIO;
+
+namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {

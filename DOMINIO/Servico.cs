@@ -1,4 +1,5 @@
-﻿namespace CRUD
+﻿
+namespace DOMINIO
 {
     public class Servico
     {

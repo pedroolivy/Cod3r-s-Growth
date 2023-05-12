@@ -1,5 +1,6 @@
-﻿
-namespace CRUD.Repositorio
+﻿using DOMINIO;
+
+namespace Repositorio
 {
     public interface IRepositorio 
     {

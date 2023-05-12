@@ -1,5 +1,6 @@
-﻿
-namespace CRUD.Repositorio
+﻿using DOMINIO;
+
+namespace INFRA.Repositorio
 {
     public class RepositorioListaSingleton : IRepositorio
     {
