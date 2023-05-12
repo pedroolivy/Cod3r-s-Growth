@@ -1,7 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Configuration;
+using DOMINIO;
 
-namespace CRUD.Repositorio
+namespace INFRA.Repositorio
 {
     public class RepositorioComBancoSql : IRepositorio
     {

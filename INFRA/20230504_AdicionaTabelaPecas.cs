@@ -1,7 +1,7 @@
 ﻿using FluentMigrator;
 using FluentMigrator.SqlServer;
 
-namespace CRUD
+namespace INFRA
 {
     [Migration(20230504094800)]
     public class AdicionarTabelaPecas : Migration
