@@ -5,7 +5,7 @@
         private static Singleton? _instancia;
         private static int proximoId;
 
-        public List<Peca>? _listaPecas;
+        public List<Peca> _listaPecas = new();
 
         public static Singleton Instancia()
         {
