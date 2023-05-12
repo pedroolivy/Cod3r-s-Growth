@@ -1,5 +1,4 @@
-﻿
-using CRUD.Repositorio;
+﻿using DOMINIO;
 
 namespace CRUD
 {
@@ -78,7 +77,6 @@ namespace CRUD
         {
             try
             {
-
                 if (dataGridView2.SelectedRows.Count != 1)
                 {
                     MessageBox.Show("Selecione um item");
