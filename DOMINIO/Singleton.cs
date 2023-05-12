@@ -3,7 +3,7 @@
     public class Singleton
     {
         private static Singleton? _instancia;
-        public static int _proximoId;
+        private static int proximoId;
 
         public List<Peca>? _listaPecas;
 
@@ -18,7 +18,7 @@
 
         public static int ObterProximoId()
         {
-            return ++_proximoId;
+            return ++proximoId;
         }
     }
 }
