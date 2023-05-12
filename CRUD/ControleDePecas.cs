@@ -77,7 +77,6 @@ namespace CRUD
         {
             try
             {
-
                 if (dataGridView2.SelectedRows.Count != 1)
                 {
                     MessageBox.Show("Selecione um item");

@@ -1,5 +1,4 @@
-﻿
-namespace DOMINIO
+﻿namespace DOMINIO
 {
     public class Singleton
     {
@@ -11,14 +10,9 @@ namespace DOMINIO
         public static Singleton Instancia()
         {
             lock (typeof(Singleton))
-                if (_instancia == null)
-                {
-                    _instancia = new Singleton
-                    {
-                        _listaPecas = new List<Peca>()
-                    };
-                };
-
+                _instancia ??= 
+                    new Singleton();
+            
             return _instancia;
         }
 

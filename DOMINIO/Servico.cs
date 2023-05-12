@@ -1,10 +1,11 @@
-﻿
-namespace DOMINIO
+﻿namespace DOMINIO
 {
     public class Servico
     {
         public static string ValidarCampos(Peca peca)
         {
+            const int valorMinimoPeca = 1;
+
             if(string.IsNullOrEmpty(peca.Nome))
             {
                 return "campo Nome vazio!";
@@ -20,7 +21,7 @@ namespace DOMINIO
                 return "campo Descrição vazio!";
             }
 
-            else if (peca.Estoque < 1)
+            else if (peca.Estoque < valorMinimoPeca)
             {
                 return "campo Estoque sem valor!";
             }
