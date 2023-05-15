@@ -219,6 +219,10 @@
             "linq2db": {
               "target": "Package",
               "version": "[5.2.0, )"
+            },
+            "linq2db.SqlServer": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             }
           },
           "imports": [
