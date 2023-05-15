@@ -1449,7 +1449,8 @@
           "FluentMigrator": "3.3.2",
           "FluentMigrator.Runner": "3.3.2",
           "Microsoft.Extensions.Hosting": "7.0.1",
-          "System.Configuration.ConfigurationManager": "7.0.0"
+          "System.Configuration.ConfigurationManager": "7.0.0",
+          "linq2db": "5.2.0"
         },
         "compile": {
           "bin/placeholder/DOMINIO.dll": {}

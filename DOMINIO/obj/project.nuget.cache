@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BmWAP4eS2myrQNNPdRTXlv+hRTLEUk/Uc1l1KoBFeHPzQmQTOqQauuNVT6bM8BqRvHCJtC40JUyK17HpxeNAdA==",
+  "dgSpecHash": "Zp2eYMQLa8pbksZqA4xjFGN5+A6bRMA6JPDCwOqvxd8I7v8ct4sKZURwoGvD0NHcmRy7wqNuL/VMR8LS81BJTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlite\\3.3.2\\fluentmigrator.runner.sqlite.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlserver\\3.3.2\\fluentmigrator.runner.sqlserver.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlserverce\\3.3.2\\fluentmigrator.runner.sqlserverce.3.3.2.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\linq2db\\5.2.0\\linq2db.5.2.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.2\\microsoft.data.sqlclient.2.1.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

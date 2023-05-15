@@ -2,10 +2,9 @@
 
 namespace INFRA.Repositorio
 {
-    internal class RepositorioLinq2Db
+    internal class RepositorioLinq2Db : IRepositorio
     {
-
-
+        
 
     }
 }
