@@ -70,7 +70,16 @@ namespace INFRA.Repositorio
         public void Remover(int id)
         {
             using var conexao = ConexaoLin2Db();
-            throw new NotImplementedException();
+            try
+            {
+                var pecaARemover = ObterPorId(id);
+                conexao.Delete(pecaARemover);
+               
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("MensagensDeTela.ERRO_AO_REMOVER_DADOS", ex);
+            }
         }
     }
 }
