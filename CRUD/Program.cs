@@ -36,7 +36,7 @@ namespace CRUD
 
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddScoped<IRepositorio, RepositorioComBancoSql>();
+                    services.AddScoped<IRepositorio, RepositorioListaSingleton>();
                     services.AddFluentMigratorCore()
                         .ConfigureRunner(rb => rb
                                 .AddSqlServer()

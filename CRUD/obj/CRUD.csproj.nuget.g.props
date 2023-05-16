@@ -15,4 +15,10 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets\7.0.0\buildTransitive\net6.0\Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets\7.0.0\buildTransitive\net6.0\Microsoft.Extensions.Configuration.UserSecrets.props')" />
   </ImportGroup>
+<<<<<<< HEAD
+=======
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Pkglinq2db_SqlServer Condition=" '$(Pkglinq2db_SqlServer)' == '' ">C:\Users\Usuario\.nuget\packages\linq2db.sqlserver\5.2.0</Pkglinq2db_SqlServer>
+  </PropertyGroup>
+>>>>>>> 3ebee095857ad30da4df303f7195e51cc7d6d4e9
 </Project>
