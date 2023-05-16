@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Configuration;
+﻿using System.Configuration;
 using DOMINIO;
 using LinqToDB;
 using LinqToDB.Data;
@@ -7,43 +6,51 @@ using LinqToDB.DataProvider.SqlServer;
 
 namespace INFRA.Repositorio
 {
-    internal class RepositorioLinq2Db : IRepositorio
+    public class RepositorioLinq2Db : IRepositorio
     {
         public static DataConnection ConexaoLin2Db()
         {
             var DataConnection = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
-            var conexao = SqlServerTools.CreateDataConnection(DataConnection);
-            return conexao;
+            return SqlServerTools.CreateDataConnection(DataConnection);
         }
         public List<Peca> ObterTodos()
         {
             using var conexao = ConexaoLin2Db();
             try
             {
-                List<Peca> listaDePeca = new();
-
-                foreach (var Peca in conexao.GetTable<Peca>())
-                {
-                    listaDePeca.Add(Peca);
-                }
-                return listaDePeca;
+                return conexao.GetTable<Peca>().ToList();
             }
             catch (Exception ex)
             {
-                throw new Exception("MensagensDeTela.ERRO_AO_ALTERAR_DADOS", ex);
+                throw new Exception("MensagensDeTela.ERRO_AO_OBTER_DADOS", ex);
             }
         }
 
         public Peca? ObterPorId(int id)
         {
             using var conexao = ConexaoLin2Db();
-            throw new NotImplementedException();
+            try
+            {
+                var recebeLista = conexao.GetTable<Peca>();
+                return recebeLista.FirstOrDefault(x => x.Id == id);
+            }
+            catch(Exception ex)
+            { 
+                throw new Exception("MensagensDeTela.ERRO_AO_OBTER_DADOS_POR_ID", ex);
+            }
         }
 
         public void Adicionar(Peca pecaNova)
         {
             using var conexao = ConexaoLin2Db();
-            throw new NotImplementedException();
+            try
+            {
+                conexao.Insert(pecaNova);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("MensagensDeTela.ERRO_AO_OBTER_DADOS_POR_ID", ex);
+            }
         }
 
         public void Editar(int id, Peca pecaEditada)
