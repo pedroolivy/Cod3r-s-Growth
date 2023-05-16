@@ -6,7 +6,7 @@ using LinqToDB.DataProvider.SqlServer;
 
 namespace INFRA.Repositorio
 {
-    public class RepositorioLinq2Db : IRepositorio
+    public  class RepositorioLinq2Db : IRepositorio
     {
         public static DataConnection ConexaoLin2Db()
         {
@@ -49,14 +49,22 @@ namespace INFRA.Repositorio
             }
             catch(Exception ex)
             {
-                throw new Exception("MensagensDeTela.ERRO_AO_OBTER_DADOS_POR_ID", ex);
+                throw new Exception("MensagensDeTela.ERRO_AO_ADICIONAR_DADOS", ex);
             }
         }
 
         public void Editar(int id, Peca pecaEditada)
         {
             using var conexao = ConexaoLin2Db();
-            throw new NotImplementedException();
+            try
+            {
+                conexao.Update(pecaEditada);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("MensagensDeTela.ERRO_AO_EDITAR_DADOS", ex);
+            }
+            
         }
 
         public void Remover(int id)
