@@ -134,6 +134,10 @@
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "linq2db": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             }
           },
           "imports": [
@@ -211,6 +215,14 @@
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "linq2db": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "linq2db.SqlServer": {
+              "target": "Package",
+              "version": "[5.2.0, )"
             }
           },
           "imports": [

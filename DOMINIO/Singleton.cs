@@ -3,9 +3,9 @@
     public class Singleton
     {
         private static Singleton? _instancia;
-        public static int _proximoId;
+        private static int _proximoId;
 
-        public List<Peca>? _listaPecas;
+        public List<Peca> _listaPecas = new();
 
         public static Singleton Instancia()
         {

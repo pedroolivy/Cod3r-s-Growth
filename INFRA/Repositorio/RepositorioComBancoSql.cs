@@ -30,7 +30,7 @@ namespace INFRA.Repositorio
                     Categoria = lerExecucaoQuery[1].ToString(),
                     Nome = lerExecucaoQuery[2].ToString(),
                     Descricao = lerExecucaoQuery[3].ToString(),
-                    Estoque = int.Parse(lerExecucaoQuery[4].ToString()),
+                    Estoque = Convert.ToInt32(lerExecucaoQuery[4]),
                     DataDeFabricacao = Convert.ToDateTime(lerExecucaoQuery[5])
                 };
 
@@ -61,7 +61,7 @@ namespace INFRA.Repositorio
                     Categoria = lerExecucaoQuery[1].ToString(),
                     Nome = lerExecucaoQuery[2].ToString(),
                     Descricao = lerExecucaoQuery[3].ToString(),
-                    Estoque = int.Parse(lerExecucaoQuery[4].ToString()),
+                    Estoque = Convert.ToInt32(lerExecucaoQuery[4]),
                     DataDeFabricacao = Convert.ToDateTime(lerExecucaoQuery[5])
                 };
             }
