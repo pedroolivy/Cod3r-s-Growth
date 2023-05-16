@@ -11,19 +11,17 @@ namespace INFRA.Repositorio
             return ListaDePecas.ToList();
         }
 
-        public Peca? ObterPorId(int id)
+        public Peca ObterPorId(int id)
         {
-            return ListaDePecas.FirstOrDefault(x => x.Id == id);
+            return ListaDePecas.FirstOrDefault(x => x.Id == id)
+                ?? throw new Exception($"Peça não encontrada com id [{id}]");
         }
 
         public void Remover(int id)
         {
             var pecaARemover = ObterPorId(id);
 
-            if (pecaARemover != null)
-            {
-                ListaDePecas.Remove(pecaARemover);
-            }
+            ListaDePecas.Remove(pecaARemover);
         }
 
         public void Adicionar(Peca pecaNova)
