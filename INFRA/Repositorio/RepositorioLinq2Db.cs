@@ -8,14 +8,15 @@ namespace INFRA.Repositorio
 {
     public  class RepositorioLinq2Db : IRepositorio
     {
-        public static DataConnection ConexaoLin2Db()
+        public static DataConnection ConexaoLinq2Db()
         {
             var DataConnection = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
             return SqlServerTools.CreateDataConnection(DataConnection);
         }
+
         public List<Peca> ObterTodos()
         {
-            using var conexao = ConexaoLin2Db();
+            using var conexao = ConexaoLinq2Db();
             try
             {
                 return conexao.GetTable<Peca>().ToList();
@@ -26,13 +27,14 @@ namespace INFRA.Repositorio
             }
         }
 
-        public Peca? ObterPorId(int id)
+        public Peca ObterPorId(int id)
         {
-            using var conexao = ConexaoLin2Db();
+            using var conexao = ConexaoLinq2Db();
             try
             {
-                var recebeLista = conexao.GetTable<Peca>();
-                return recebeLista.FirstOrDefault(x => x.Id == id);
+                var listaPecas = conexao.GetTable<Peca>();
+                return listaPecas.FirstOrDefault(x => x.Id == id)
+                    ?? throw new Exception($"Peça não encontrada com id [{id}]");
             }
             catch(Exception ex)
             { 
@@ -42,7 +44,7 @@ namespace INFRA.Repositorio
 
         public void Adicionar(Peca pecaNova)
         {
-            using var conexao = ConexaoLin2Db();
+            using var conexao = ConexaoLinq2Db();
             try
             {
                 conexao.Insert(pecaNova);
@@ -55,7 +57,7 @@ namespace INFRA.Repositorio
 
         public void Editar(int id, Peca pecaEditada)
         {
-            using var conexao = ConexaoLin2Db();
+            using var conexao = ConexaoLinq2Db();
             try
             {
                 conexao.Update(pecaEditada);
@@ -64,17 +66,15 @@ namespace INFRA.Repositorio
             {
                 throw new Exception("MensagensDeTela.ERRO_AO_EDITAR_DADOS", ex);
             }
-            
         }
 
         public void Remover(int id)
         {
-            using var conexao = ConexaoLin2Db();
+            using var conexao = ConexaoLinq2Db();
             try
             {
                 var pecaARemover = ObterPorId(id);
                 conexao.Delete(pecaARemover);
-               
             }
             catch (Exception ex)
             {
