@@ -1,10 +1,10 @@
-using System.Configuration;
 using DOMINIO;
 using FluentMigrator.Runner;
 using INFRA;
 using INFRA.Repositorio;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
 
 namespace CRUD
 {
