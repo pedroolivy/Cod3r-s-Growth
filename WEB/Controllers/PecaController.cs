@@ -7,10 +7,18 @@ namespace WEB.Controllers
     [Route("pecas")]
     public class PecaController : ControllerBase
     {
+        private readonly IRepositorio _repositorio;
+
+        public PecaController(IRepositorio _repositorio)
+        {
+            this._repositorio = _repositorio;
+        }
+
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            return null;
+            var x = (IActionResult)_repositorio.ObterTodos().ToList();
+            return x;
         }
         [HttpGet("{id}")]
         public IActionResult ObterPorId(Guid id)
