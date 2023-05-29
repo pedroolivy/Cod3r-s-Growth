@@ -17,25 +17,44 @@ namespace WEB.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            var x = (IActionResult)_repositorio.ObterTodos().ToList();
-            return x;
+            var peca = _repositorio.ObterTodos();
+
+            if (peca == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(peca);
         }
+
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(Guid id)
+        public IActionResult ObterPorId(int id)
         {
-            return null;
+            var peca = _repositorio.ObterPorId(id);
+
+            if (peca == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(peca);
         }
+
         [HttpPost("{pecaNova}")]
-        public IActionResult Adicionar(Guid pecaNova)
+        public IActionResult Adicionar(Peca pecaNova)
         {
-            return null;
+            var peca = _repositorio;
+            peca.Adicionar(pecaNova);
+            pecaNova.Id = Singleton.ObterProximoId();
         }
+
         [HttpPut("{id, pecaEditada}")] 
         public IActionResult Editar(Guid id, Peca pecaEditada)
 
         {
             return null;
         }
+
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)
         {
