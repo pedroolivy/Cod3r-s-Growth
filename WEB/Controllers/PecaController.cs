@@ -1,6 +1,5 @@
 ﻿using DOMINIO;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace WEB.Controllers
 {
@@ -31,37 +30,42 @@ namespace WEB.Controllers
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
-            var peca = _repositorio.ObterPorId(id);
+            var pecaPorId = _repositorio.ObterPorId(id);
 
-            if (peca == null)
+            if (pecaPorId == null)
             {
                 return NotFound();
             }
-            return Ok(peca);
+
+            return Ok(pecaPorId);
         }
 
         [HttpPost("{pecaNova}")]
-        public IActionResult Adicionar(Peca pecaNova)
+        public IActionResult Adicionar([FromBody]Peca pecaNova)
         {
-            _repositorio.Adicionar(pecaNova);
 
             if (pecaNova == null)
             {
                 return BadRequest();
             }
 
-            return Created($"Peca/{pecaNova}", pecaNova);
+            _repositorio.Adicionar(pecaNova);
+            return CreatedAtAction(nameof(ObterPorId), new {id = pecaNova.Id }, pecaNova);
         }
 
-        [HttpPut("{id, pecaEditada}")] 
-        public IActionResult Editar(int id, [FromBody] Peca pecaEditada)
+        [HttpPut("{id}")] 
+        public IActionResult Editar(int id, [FromBody] Peca PecaSelecionada)
         {
-            _repositorio.Editar(id, pecaEditada);
 
-            if (pecaNova == null)
+            var idDePecaSelecionada = _repositorio.ObterPorId(id);
+
+            if (id != idDePecaSelecionada.Id)
             {
                 return BadRequest();
             }
+
+            _repositorio.Editar(PecaSelecionada);
+            return Ok(PecaSelecionada);
         }
 
         [HttpDelete("{id}")]
