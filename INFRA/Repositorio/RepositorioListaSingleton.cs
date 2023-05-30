@@ -34,9 +34,6 @@ namespace INFRA.Repositorio
             var pecaAtual = ObterPorId(pecaEditada.Id);
             int index = _ListaDePecas.IndexOf(pecaAtual);
             _ListaDePecas[index] = pecaEditada;
-
-            //var pecaAtual = ListaDePecas.FindIndex(x => x.Id == id);
-            //ListaDePecas[index] = pecaEditada;
         }
     }
 }

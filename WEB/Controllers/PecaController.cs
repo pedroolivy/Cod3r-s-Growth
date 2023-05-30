@@ -17,62 +17,98 @@ namespace WEB.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            var listaDePecas = _repositorio.ObterTodos().ToList();
-
-            if (listaDePecas == null)
+            try
             {
-                return NotFound();
-            }
+                var listaDePecas = _repositorio.ObterTodos().ToList();
 
-            return Ok(listaDePecas);
+                if (listaDePecas == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(listaDePecas);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
-            var pecaPorId = _repositorio.ObterPorId(id);
-
-            if (pecaPorId == null)
+            try
             {
-                return NotFound();
-            }
+                var pecaPorId = _repositorio.ObterPorId(id);
 
-            return Ok(pecaPorId);
+                if (pecaPorId == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pecaPorId);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         [HttpPost("{pecaNova}")]
         public IActionResult Adicionar([FromBody]Peca pecaNova)
         {
-
-            if (pecaNova == null)
+            try
             {
-                return BadRequest();
-            }
+                if (pecaNova == null)
+                {
+                    return BadRequest();
+                }
 
-            _repositorio.Adicionar(pecaNova);
-            return CreatedAtAction(nameof(ObterPorId), new {id = pecaNova.Id }, pecaNova);
+                _repositorio.Adicionar(pecaNova);
+                return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         [HttpPut("{id}")] 
-        /*public IActionResult Editar(int id, [FromBody] Peca PecaSelecionada)
+        public IActionResult Editar(int id, [FromBody] Peca pecaEditada)
         {
-
-            var idDePecaSelecionada = _repositorio.ObterPorId(id);
-
-            if (id != idDePecaSelecionada.Id)
+            try
             {
-                return BadRequest();
+                var idDePecaSelecionada = _repositorio.ObterPorId(id);
+
+                if (id != idDePecaSelecionada.Id)
+                {
+                    return BadRequest();
+                }
+                pecaEditada.Id = idDePecaSelecionada.Id;
+
+                _repositorio.Editar(pecaEditada);
+
+                return Ok(pecaEditada);
             }
-
-            _repositorio.Editar(PecaSelecionada.Id);
-            return Ok(PecaSelecionada);
-        }*/
-
-        [HttpDelete("{id}")]
-        public IActionResult Remove(Guid id)
-        {
-            return null;
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Remove(int id)
+        {
+            try
+            {
+                var idDePecaSelecionada = _repositorio.ObterPorId(id);
+                _repositorio.Remover(idDePecaSelecionada.Id);
+                return Ok(idDePecaSelecionada);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
     }
 }
