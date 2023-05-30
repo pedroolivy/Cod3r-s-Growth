@@ -54,7 +54,7 @@ namespace WEB.Controllers
         }
 
         [HttpPut("{id}")] 
-        public IActionResult Editar(int id, [FromBody] Peca PecaSelecionada)
+        /*public IActionResult Editar(int id, [FromBody] Peca PecaSelecionada)
         {
 
             var idDePecaSelecionada = _repositorio.ObterPorId(id);
@@ -64,9 +64,9 @@ namespace WEB.Controllers
                 return BadRequest();
             }
 
-            _repositorio.Editar(PecaSelecionada);
+            _repositorio.Editar(PecaSelecionada.Id);
             return Ok(PecaSelecionada);
-        }
+        }*/
 
         [HttpDelete("{id}")]
         public IActionResult Remove(Guid id)

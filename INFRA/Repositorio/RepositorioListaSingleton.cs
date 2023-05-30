@@ -4,16 +4,16 @@ namespace INFRA.Repositorio
 {
     public class RepositorioListaSingleton : IRepositorio
     {
-        protected List<Peca> ListaDePecas = Singleton.Instancia()._listaPecas;
+        protected List<Peca> _ListaDePecas = Singleton.Instancia()._listaPecas;
 
         public List<Peca> ObterTodos()
         {
-            return ListaDePecas.ToList();
+            return _ListaDePecas.ToList();
         }
 
         public Peca ObterPorId(int id)
         {
-            return ListaDePecas.FirstOrDefault(x => x.Id == id)
+            return _ListaDePecas.FirstOrDefault(x => x.Id == id)
                 ?? throw new Exception($"Peça não encontrada com id [{id}]");
         }
 
@@ -21,18 +21,22 @@ namespace INFRA.Repositorio
         {
             var pecaARemover = ObterPorId(id);
 
-            ListaDePecas.Remove(pecaARemover);
+            _ListaDePecas.Remove(pecaARemover);
         }
 
         public void Adicionar(Peca pecaNova)
         {
-            ListaDePecas.Add(pecaNova);
+            _ListaDePecas.Add(pecaNova);
         }
 
-        public void Editar(int id, Peca pecaEditada)
+        public void Editar(Peca pecaEditada)
         {
-            var index = ListaDePecas.FindIndex(x => x.Id == id);
-            ListaDePecas[index] = pecaEditada;
+            var pecaAtual = ObterPorId(pecaEditada.Id);
+            int index = _ListaDePecas.IndexOf(pecaAtual);
+            _ListaDePecas[index] = pecaEditada;
+
+            //var pecaAtual = ListaDePecas.FindIndex(x => x.Id == id);
+            //ListaDePecas[index] = pecaEditada;
         }
     }
 }

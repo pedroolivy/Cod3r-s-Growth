@@ -102,13 +102,13 @@ namespace INFRA.Repositorio
             conexaoBanco.Close();
         }
 
-        public void Editar(int id, Peca pecaEditada)
+        public void Editar(Peca pecaEditada)
         {
             SqlConnection conexaoBanco = new(connectionString);
 
             conexaoBanco.Open();
 
-            var comando = new SqlCommand($"UPDATE Peca SET Categoria = '{pecaEditada.Categoria}', Nome = '{pecaEditada.Nome}', Descricao = '{pecaEditada.Descricao}', Estoque = {pecaEditada.Estoque}, DataDeFabricacao = '{pecaEditada.DataDeFabricacao}' WHERE Id ={id} ", conexaoBanco);
+            var comando = new SqlCommand($"UPDATE Peca SET Categoria = '{pecaEditada.Categoria}', Nome = '{pecaEditada.Nome}', Descricao = '{pecaEditada.Descricao}', Estoque = {pecaEditada.Estoque}, DataDeFabricacao = '{pecaEditada.DataDeFabricacao}' WHERE Id ={pecaEditada.Id} ", conexaoBanco);
 
             comando.ExecuteNonQuery();
 

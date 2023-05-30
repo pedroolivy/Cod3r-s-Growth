@@ -55,7 +55,7 @@ namespace INFRA.Repositorio
             }
         }
 
-        public void Editar(int id, Peca pecaEditada)
+        public void Editar(Peca pecaEditada)
         {
             using var conexao = ConexaoLinq2Db();
             try
