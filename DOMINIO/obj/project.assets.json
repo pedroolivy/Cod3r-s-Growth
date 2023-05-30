@@ -3654,11 +3654,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
       "projectName": "DOMINIO",
-      "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",

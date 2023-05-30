@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wZOXq5Niy04I6XAxOO1T8ES5LuEk7+jU06GBrInUIVJijozFU2ETLEQodUcvj9y7T3EYcHGNQ+Ib+qDCAQX5Zg==",
+  "dgSpecHash": "g63+BwBtLyDJ/cB1qFKVuvrMKNPTPasHsSLOAoNwVYPu0DmPqBXvpRKaZrlcgn6X+JrOF+rgHKtZfA7cxCqwHg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator\\3.3.2\\fluentmigrator.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.abstractions\\3.3.2\\fluentmigrator.abstractions.3.3.2.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
         "projectName": "CRUD",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\CRUD\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
+              "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
               },
-              "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj"
+              "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj"
               }
             }
           }
@@ -83,14 +83,14 @@
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
         "projectName": "DOMINIO",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -160,14 +160,14 @@
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
         "projectName": "INFRA",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\INFRA\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -184,8 +184,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
+              "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
               }
             }
           }
