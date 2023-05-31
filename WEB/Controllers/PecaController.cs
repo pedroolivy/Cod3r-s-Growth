@@ -68,7 +68,6 @@ namespace WEB.Controllers
 
                 if (!string.IsNullOrEmpty(erros))
                 {
-                    BadRequest(erros);
                     return BadRequest(erros);
                 }
 
@@ -92,12 +91,16 @@ namespace WEB.Controllers
                 {
                     return BadRequest();
                 }
-                pecaEditada.Id = idDePecaSelecionada.Id;
 
+                pecaEditada.Id = idDePecaSelecionada.Id;
                 var erros = Servico.ValidarCampos(pecaEditada);
 
-                _repositorio.Editar(pecaEditada);
+                if (!string.IsNullOrEmpty(erros))
+                {
+                    return BadRequest(erros);
+                }
 
+                _repositorio.Editar(pecaEditada);
                 return Ok(pecaEditada);
             }
             catch (Exception)
