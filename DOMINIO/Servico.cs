@@ -21,6 +21,11 @@
                 return "campo Descrição vazio!";
             }
 
+            else if (peca.DataDeFabricacao > DateTime.Now)
+            {
+                return "Data maior do que a data atual!";
+            }
+
             else if (peca.Estoque < valorMinimoPeca)
             {
                 return "campo Estoque sem valor!";

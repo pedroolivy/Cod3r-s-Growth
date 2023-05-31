@@ -13,8 +13,6 @@ namespace CRUD
             _peca = peca == null 
                 ? new Peca()
                 : PreencherCampos(peca);
-
-            dateTimePicker1.MaxDate = DateTime.Today;
         }
 
         private Peca PreencherCampos(Peca peca)

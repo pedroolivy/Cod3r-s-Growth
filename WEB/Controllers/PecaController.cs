@@ -63,7 +63,7 @@ namespace WEB.Controllers
                 {
                     return BadRequest();
                 }
-
+                Servico.ValidarCampos(pecaNova);
                 _repositorio.Adicionar(pecaNova);
                 return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
             }
@@ -85,6 +85,8 @@ namespace WEB.Controllers
                     return BadRequest();
                 }
                 pecaEditada.Id = idDePecaSelecionada.Id;
+
+                var erros = Servico.ValidarCampos(pecaEditada);
 
                 _repositorio.Editar(pecaEditada);
 
