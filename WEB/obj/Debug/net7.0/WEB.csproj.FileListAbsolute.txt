@@ -87,3 +87,4 @@ C:\Users\Usuario\Desktop\Projetos\Cod3r-s-Growth\WEB\obj\Debug\net7.0\refint\WEB
 C:\Users\Usuario\Desktop\Projetos\Cod3r-s-Growth\WEB\obj\Debug\net7.0\WEB.pdb
 C:\Users\Usuario\Desktop\Projetos\Cod3r-s-Growth\WEB\obj\Debug\net7.0\WEB.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\Projetos\Cod3r-s-Growth\WEB\obj\Debug\net7.0\ref\WEB.dll
+C:\Users\Usuario\Desktop\Projetos\Cod3r-s-Growth\WEB\bin\Debug\net7.0\WEB.dll.config

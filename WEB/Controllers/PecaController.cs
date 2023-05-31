@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WEB.Controllers
 {
     [ApiController]
-    [Route("api/v1.0/peca")]
+    [Route("api/pecas")]
     public class PecaController : ControllerBase
     {
         private readonly IRepositorio _repositorio;
