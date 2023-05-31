@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WEB.Controllers
 {
     [ApiController]
-    [Route("api/v1/peca")]
+    [Route("api/v1.0/peca")]
     public class PecaController : ControllerBase
     {
         private readonly IRepositorio _repositorio;
@@ -63,7 +63,15 @@ namespace WEB.Controllers
                 {
                     return BadRequest();
                 }
-                Servico.ValidarCampos(pecaNova);
+
+                var erros = Servico.ValidarCampos(pecaNova);
+
+                if (!string.IsNullOrEmpty(erros))
+                {
+                    BadRequest(erros);
+                    return BadRequest(erros);
+                }
+
                 _repositorio.Adicionar(pecaNova);
                 return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
             }
