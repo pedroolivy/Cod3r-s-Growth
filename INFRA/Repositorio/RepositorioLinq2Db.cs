@@ -8,7 +8,7 @@ namespace INFRA.Repositorio
 {
     public  class RepositorioLinq2Db : IRepositorio
     {
-        public static DataConnection ConexaoLinq2Db()
+        private static DataConnection ConexaoLinq2Db()
         {
             var DataConnection = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
             return SqlServerTools.CreateDataConnection(DataConnection);

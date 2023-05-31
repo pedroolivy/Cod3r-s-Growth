@@ -4,13 +4,13 @@ namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
-        public Peca _peca = new();
+        public Peca peca = new();
 
         public CadastroDePecas(Peca? peca)
         {
             InitializeComponent();
 
-            _peca = peca == null 
+            this.peca = peca == null 
                 ? new Peca()
                 : PreencherCampos(peca);
         }
@@ -46,7 +46,7 @@ namespace CRUD
                     return;
                 }
 
-                _peca = pecaParaAdicionar;
+                peca = pecaParaAdicionar;
 
                 DialogResult = DialogResult.OK;
 

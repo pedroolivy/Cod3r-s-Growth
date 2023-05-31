@@ -6,11 +6,11 @@ namespace INFRA.Repositorio
 {
     public class RepositorioComBancoSql : IRepositorio
     {
-        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
+        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
 
         public List<Peca> ObterTodos()
         {
-            SqlConnection conexaoBanco = new (connectionString);
+            SqlConnection conexaoBanco = new (_connectionString);
 
             conexaoBanco.Open();
 
@@ -45,7 +45,8 @@ namespace INFRA.Repositorio
         public Peca ObterPorId(int id)
         {
             Peca peca = new();
-            SqlConnection conexaoBanco = new (connectionString);
+
+            SqlConnection conexaoBanco = new (_connectionString);
 
             conexaoBanco.Open();
 
@@ -71,9 +72,35 @@ namespace INFRA.Repositorio
             return peca;
         }
 
+        public void Adicionar(Peca pecaNova)
+        {
+            SqlConnection conexaoBanco = new(_connectionString);
+
+            conexaoBanco.Open();
+
+            var comando = new SqlCommand("INSERT INTO Peca (Categoria, Nome, Descricao, Estoque, DataDeFabricacao) VALUES " + $"('{pecaNova.Categoria}', '{pecaNova.Nome}', '{pecaNova.Descricao}', {pecaNova.Estoque}, '{pecaNova.DataDeFabricacao}');", conexaoBanco);
+
+            comando.ExecuteNonQuery();
+
+            conexaoBanco.Close();
+        }
+
+        public void Editar(Peca pecaEditada)
+        {
+            SqlConnection conexaoBanco = new(_connectionString);
+
+            conexaoBanco.Open();
+
+            var comando = new SqlCommand($"UPDATE Peca SET Categoria = '{pecaEditada.Categoria}', Nome = '{pecaEditada.Nome}', Descricao = '{pecaEditada.Descricao}', Estoque = {pecaEditada.Estoque}, DataDeFabricacao = '{pecaEditada.DataDeFabricacao}' WHERE Id ={pecaEditada.Id} ", conexaoBanco);
+
+            comando.ExecuteNonQuery();
+
+            conexaoBanco.Close();
+        }
+
         public void Remover(int id)
         {
-            SqlConnection conexaoBanco = new(connectionString);
+            SqlConnection conexaoBanco = new(_connectionString);
 
             conexaoBanco.Open();
 
@@ -85,32 +112,6 @@ namespace INFRA.Repositorio
             {
                 comando.ExecuteNonQuery();
             }
-
-            conexaoBanco.Close();
-        }
-
-        public void Adicionar(Peca pecaNova)
-        {
-            SqlConnection conexaoBanco = new(connectionString);
-
-            conexaoBanco.Open();
-
-            var comando = new SqlCommand("INSERT INTO Peca (Categoria, Nome, Descricao, Estoque, DataDeFabricacao) VALUES " + $"('{pecaNova.Categoria}', '{pecaNova.Nome}', '{pecaNova.Descricao}', {pecaNova.Estoque}, '{pecaNova.DataDeFabricacao}');" , conexaoBanco);
-
-            comando.ExecuteNonQuery();
-
-            conexaoBanco.Close();
-        }
-
-        public void Editar(Peca pecaEditada)
-        {
-            SqlConnection conexaoBanco = new(connectionString);
-
-            conexaoBanco.Open();
-
-            var comando = new SqlCommand($"UPDATE Peca SET Categoria = '{pecaEditada.Categoria}', Nome = '{pecaEditada.Nome}', Descricao = '{pecaEditada.Descricao}', Estoque = {pecaEditada.Estoque}, DataDeFabricacao = '{pecaEditada.DataDeFabricacao}' WHERE Id ={pecaEditada.Id} ", conexaoBanco);
-
-            comando.ExecuteNonQuery();
 
             conexaoBanco.Close();
         }
