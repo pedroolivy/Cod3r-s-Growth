@@ -42,7 +42,7 @@ namespace INFRA.Repositorio
             return lista;
         }
 
-        public Peca ObterPorId(int id)
+        public Peca? ObterPorId(int id)
         {
             Peca peca = new();
 

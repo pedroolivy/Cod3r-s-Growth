@@ -25,7 +25,7 @@ namespace CRUD
             try
             {
                 CadastroDePecas cadastroDePecas = new(null);
-                cadastroDePecas.ShowDialog();
+                cadastroDePecas.ShowDialog(this);
 
                 var pecaPreenchida = cadastroDePecas.peca;
                 pecaPreenchida.Id = Singleton.ObterProximoId();
@@ -86,7 +86,7 @@ namespace CRUD
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
                 CadastroDePecas cadastroPeca = new(pecaSelecionada);
-                cadastroPeca.ShowDialog();
+                cadastroPeca.ShowDialog(this);
 
                 var pecaAtualizada = cadastroPeca.peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;

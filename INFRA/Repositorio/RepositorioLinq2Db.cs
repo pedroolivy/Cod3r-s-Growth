@@ -27,14 +27,14 @@ namespace INFRA.Repositorio
             }
         }
 
-        public Peca ObterPorId(int id)
+        public Peca? ObterPorId(int id)
         {
             using var conexao = ConexaoLinq2Db();
             try
             {
                 var listaPecas = conexao.GetTable<Peca>();
-                return listaPecas.FirstOrDefault(x => x.Id == id)
-                    ?? throw new Exception($"Peça não encontrada com id [{id}]");
+                var pecaPeloId = listaPecas.FirstOrDefault(x => x.Id == id);
+                return pecaPeloId;
             }
             catch(Exception ex)
             { 
@@ -74,7 +74,11 @@ namespace INFRA.Repositorio
             try
             {
                 var pecaARemover = ObterPorId(id);
-                conexao.Delete(pecaARemover);
+
+                if (pecaARemover != null)
+                {
+                    conexao.Delete(pecaARemover);
+                }
             }
             catch (Exception ex)
             {

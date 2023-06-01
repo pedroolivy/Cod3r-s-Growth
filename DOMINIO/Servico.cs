@@ -4,7 +4,7 @@
     {
         public static string ValidarCampos(Peca peca)
         {
-            const int valorMinimoPeca = 1;
+            //const int valorMinimoPeca = 1;
 
             if(string.IsNullOrEmpty(peca.Nome))
             {
@@ -26,7 +26,7 @@
                 return "Data maior do que a data atual!";
             }
 
-            else if (peca.Estoque < valorMinimoPeca)
+            else if (peca.Estoque <= 0)
             {
                 return "campo Estoque sem valor!";
             }

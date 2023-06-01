@@ -23,14 +23,14 @@ namespace WEB.Controllers
 
                 if (listaDePecas == null)
                 {
-                    return NotFound();
+                    return NotFound(listaDePecas);
                 }
 
                 return Ok(listaDePecas);
             }
-            catch (Exception)
+            catch (Exception ex )
             {
-                throw new Exception();
+                throw new Exception("Erro ao obter lista de peças", ex);
             }
         }
 
@@ -43,25 +43,25 @@ namespace WEB.Controllers
 
                 if (pecaPorId == null)
                 {
-                    return NotFound();
+                    return NotFound($"Peça não encontrada com Id [{id}]");
                 }
 
                 return Ok(pecaPorId);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception("Erro ao obter peça por esse Id", ex);
             }
         }
 
-        [HttpPost("{pecaNova}")]
+        [HttpPost]
         public IActionResult Adicionar([FromBody]Peca pecaNova)
         {
             try
             {
                 if (pecaNova == null)
                 {
-                    return BadRequest();
+                    return BadRequest("Preencha todos os campos");
                 }
 
                 var erros = Servico.ValidarCampos(pecaNova);
@@ -72,11 +72,12 @@ namespace WEB.Controllers
                 }
 
                 _repositorio.Adicionar(pecaNova);
-                return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
+
+                return Ok(new { id = pecaNova.Id, peca = pecaNova });
             }
-            catch (Exception)
+            catch (Exception ex )
             {
-                throw new Exception();
+                throw new Exception("Erro ao adicionar uma peça", ex);
             }
         }
 
@@ -85,27 +86,22 @@ namespace WEB.Controllers
         {
             try
             {
-                var idDePecaSelecionada = _repositorio.ObterPorId(id);
-
-                if (id != idDePecaSelecionada.Id)
-                {
-                    return BadRequest();
-                }
-
-                pecaEditada.Id = idDePecaSelecionada.Id;
-                var erros = Servico.ValidarCampos(pecaEditada);
-
+                var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
+                var erros = Servico.ValidarCampos(pecaSelecionadaPeloId!);
+                
                 if (!string.IsNullOrEmpty(erros))
                 {
                     return BadRequest(erros);
                 }
 
+                pecaEditada.Id = pecaSelecionadaPeloId.Id;
+
                 _repositorio.Editar(pecaEditada);
                 return Ok(pecaEditada);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception("Erro ao editar a peça", ex);
             }
         }
 
@@ -114,13 +110,20 @@ namespace WEB.Controllers
         {
             try
             {
-                var idDePecaSelecionada = _repositorio.ObterPorId(id);
-                _repositorio.Remover(idDePecaSelecionada.Id);
-                return Ok(idDePecaSelecionada);
+                var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
+                string erro = Servico.ValidarCampos(pecaSelecionadaPeloId!);
+
+                if (pecaSelecionadaPeloId == null || !string.IsNullOrEmpty(erro))
+                {
+                    return NotFound($"Peça não encontrada com id [{id}]");
+                }
+
+                _repositorio.Remover(pecaSelecionadaPeloId.Id);
+                return NoContent();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception("Erro ao deletar a peça", ex);
             }
         }
     }
