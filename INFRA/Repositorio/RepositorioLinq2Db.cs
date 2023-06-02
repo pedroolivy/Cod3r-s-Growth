@@ -6,9 +6,9 @@ using LinqToDB.DataProvider.SqlServer;
 
 namespace INFRA.Repositorio
 {
-    public  class RepositorioLinq2Db : IRepositorio
+    public class RepositorioLinq2Db : IRepositorio
     {
-        public static DataConnection ConexaoLinq2Db()
+        private static DataConnection ConexaoLinq2Db()
         {
             var DataConnection = ConfigurationManager.ConnectionStrings["ConexaoBD"].ConnectionString;
             return SqlServerTools.CreateDataConnection(DataConnection);
@@ -32,12 +32,12 @@ namespace INFRA.Repositorio
             using var conexao = ConexaoLinq2Db();
             try
             {
-                var listaPecas = conexao.GetTable<Peca>();
-                return listaPecas.FirstOrDefault(x => x.Id == id)
-                    ?? throw new Exception($"Peça não encontrada com id [{id}]");
+                return conexao.GetTable<Peca>()
+                    .FirstOrDefault(x => x.Id == id)
+                        ?? throw new Exception($"Erro ao obter a peça com o Id: [{id}]");
             }
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 throw new Exception("MensagensDeTela.ERRO_AO_OBTER_DADOS_POR_ID", ex);
             }
         }
@@ -47,9 +47,9 @@ namespace INFRA.Repositorio
             using var conexao = ConexaoLinq2Db();
             try
             {
-                conexao.Insert(pecaNova);
+                pecaNova.Id = conexao.InsertWithInt32Identity(pecaNova);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("MensagensDeTela.ERRO_AO_ADICIONAR_DADOS", ex);
             }
@@ -62,7 +62,7 @@ namespace INFRA.Repositorio
             {
                 conexao.Update(pecaEditada);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("MensagensDeTela.ERRO_AO_EDITAR_DADOS", ex);
             }
@@ -73,7 +73,9 @@ namespace INFRA.Repositorio
             using var conexao = ConexaoLinq2Db();
             try
             {
-                var pecaARemover = ObterPorId(id);
+                var pecaARemover = ObterPorId(id)
+                    ?? throw new Exception($"Peca não encontrada com id: [{id}]");
+
                 conexao.Delete(pecaARemover);
             }
             catch (Exception ex)

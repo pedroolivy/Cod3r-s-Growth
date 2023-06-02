@@ -4,35 +4,36 @@ namespace INFRA.Repositorio
 {
     public class RepositorioListaSingleton : IRepositorio
     {
-        protected List<Peca> ListaDePecas = Singleton.Instancia()._listaPecas;
+        protected List<Peca> _ListaDePecas = Singleton.Instancia().listaPecas;
 
         public List<Peca> ObterTodos()
         {
-            return ListaDePecas.ToList();
+            return _ListaDePecas.ToList();
         }
 
         public Peca ObterPorId(int id)
         {
-            return ListaDePecas.FirstOrDefault(x => x.Id == id)
+            return _ListaDePecas.FirstOrDefault(x => x.Id == id)
                 ?? throw new Exception($"Peça não encontrada com id [{id}]");
+        }
+
+        public void Adicionar(Peca pecaNova)
+        {
+            _ListaDePecas.Add(pecaNova);
+        }
+
+        public void Editar(int id, Peca pecaEditada)
+        {
+            var pecaAtual = ObterPorId(pecaEditada.Id);
+            int index = _ListaDePecas.IndexOf(pecaAtual);
+            _ListaDePecas[index] = pecaEditada;
         }
 
         public void Remover(int id)
         {
             var pecaARemover = ObterPorId(id);
 
-            ListaDePecas.Remove(pecaARemover);
-        }
-
-        public void Adicionar(Peca pecaNova)
-        {
-            ListaDePecas.Add(pecaNova);
-        }
-
-        public void Editar(int id, Peca pecaEditada)
-        {
-            var index = ListaDePecas.FindIndex(x => x.Id == id);
-            ListaDePecas[index] = pecaEditada;
+            _ListaDePecas.Remove(pecaARemover);
         }
     }
 }

@@ -3,7 +3,7 @@ using FluentMigrator.SqlServer;
 
 namespace INFRA
 {
-    [Migration(20230512094800)]
+    [Migration(20230530110900)]
     public class AdicionarTabelaPecas : Migration
     {
         public override void Up()
