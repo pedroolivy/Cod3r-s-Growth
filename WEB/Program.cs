@@ -1,12 +1,11 @@
 using DOMINIO;
 using INFRA.Repositorio;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<IRepositorio, RepositorioLinq2Db>();
+builder.Services.AddScoped<IRepositorio, RepositorioComBancoSql>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

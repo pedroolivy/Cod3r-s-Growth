@@ -22,7 +22,7 @@ namespace INFRA.Repositorio
             _ListaDePecas.Add(pecaNova);
         }
 
-        public void Editar(Peca pecaEditada)
+        public void Editar(int id, Peca pecaEditada)
         {
             var pecaAtual = ObterPorId(pecaEditada.Id);
             int index = _ListaDePecas.IndexOf(pecaAtual);

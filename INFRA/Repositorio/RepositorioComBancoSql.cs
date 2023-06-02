@@ -10,11 +10,11 @@ namespace INFRA.Repositorio
 
         public List<Peca> ObterTodos()
         {
-            SqlConnection conexaoBanco = new (_connectionString);
+            SqlConnection conexaoBanco = new(_connectionString);
 
             conexaoBanco.Open();
 
-            SqlCommand comandoDeExecucao = new ("SELECT * FROM Peca", conexaoBanco);
+            SqlCommand comandoDeExecucao = new("SELECT * FROM Peca", conexaoBanco);
 
             var lerExecucaoQuery = comandoDeExecucao.ExecuteReader();
 
@@ -42,34 +42,33 @@ namespace INFRA.Repositorio
             return lista;
         }
 
-        public Peca? ObterPorId(int id)
+        public Peca ObterPorId(int id)
         {
             Peca peca = new();
 
-            SqlConnection conexaoBanco = new (_connectionString);
+            SqlConnection conexaoBanco = new(_connectionString);
 
             conexaoBanco.Open();
 
-            SqlCommand comandoDeExecucao = new ($"SELECT * FROM Peca WHERE Id = {id}", conexaoBanco);
+            SqlCommand comandoDeExecucao = new($"SELECT * FROM Peca WHERE Id = {id}", conexaoBanco);
 
             var lerExecucaoQuery = comandoDeExecucao.ExecuteReader();
 
             while (lerExecucaoQuery.Read())
             {
-                peca = new()
-                {
-                    Id = Convert.ToInt32(lerExecucaoQuery[0]),
-                    Categoria = lerExecucaoQuery[1].ToString(),
-                    Nome = lerExecucaoQuery[2].ToString(),
-                    Descricao = lerExecucaoQuery[3].ToString(),
-                    Estoque = Convert.ToInt32(lerExecucaoQuery[4]),
-                    DataDeFabricacao = Convert.ToDateTime(lerExecucaoQuery[5])
-                };
-            }
+                peca.Id = Convert.ToInt32(lerExecucaoQuery[0]);
+                peca.Categoria = lerExecucaoQuery[1].ToString();
+                peca.Nome = lerExecucaoQuery[2].ToString();
+                peca.Descricao = lerExecucaoQuery[3].ToString();
+                peca.Estoque = Convert.ToInt32(lerExecucaoQuery[4]);
+                peca.DataDeFabricacao = Convert.ToDateTime(lerExecucaoQuery[5]);
+            };
 
             conexaoBanco.Close();
 
-            return peca;
+            return peca.Id == 0
+                    ? null
+                    : peca;
         }
 
         public void Adicionar(Peca pecaNova)
@@ -77,15 +76,24 @@ namespace INFRA.Repositorio
             SqlConnection conexaoBanco = new(_connectionString);
 
             conexaoBanco.Open();
-
             var comando = new SqlCommand("INSERT INTO Peca (Categoria, Nome, Descricao, Estoque, DataDeFabricacao) VALUES " + $"('{pecaNova.Categoria}', '{pecaNova.Nome}', '{pecaNova.Descricao}', {pecaNova.Estoque}, '{pecaNova.DataDeFabricacao}');", conexaoBanco);
-
             comando.ExecuteNonQuery();
+
+            pecaNova.Id = ObterUltimoIdCriado(conexaoBanco);
 
             conexaoBanco.Close();
         }
 
-        public void Editar(Peca pecaEditada)
+        private static int ObterUltimoIdCriado(SqlConnection connection)
+        {
+            string query = "SELECT CONVERT(int, SCOPE_IDENTITY())";
+            using (SqlCommand cmd = new(query, connection))
+            {
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        public void Editar(int id, Peca pecaEditada)
         {
             SqlConnection conexaoBanco = new(_connectionString);
 

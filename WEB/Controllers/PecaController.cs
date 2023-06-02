@@ -1,5 +1,6 @@
 ﻿using DOMINIO;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace WEB.Controllers
 {
@@ -19,14 +20,11 @@ namespace WEB.Controllers
         {
             try
             {
-                var listaDePecas = _repositorio.ObterTodos().ToList();
+                var lista = _repositorio.ObterTodos().ToList();
 
-                if (listaDePecas == null)
-                {
-                    return NotFound(listaDePecas);
-                }
-
-                return Ok(listaDePecas);
+                return lista == null
+                    ? NotFound()
+                    : Ok(lista);
             }
             catch (Exception)
             {
@@ -39,40 +37,32 @@ namespace WEB.Controllers
         {
             try
             {
-                var pecaObtidaPeloId = _repositorio.ObterPorId(id);
+                var peca = _repositorio.ObterPorId(id);
 
-                if (pecaObtidaPeloId == null)
-                {
-                    return NotFound($"Peça não encontrada com id [{id}]");
-                }
-
-                return Ok(pecaObtidaPeloId);
+                return peca == null
+                    ? NotFound($"Peça não encontrada com id [{id}]")
+                    : Ok(peca);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.InnerException.Message);
             }
         }
 
         [HttpPost]
-        public IActionResult Adicionar([FromBody] Peca pecaNova)
+        public IActionResult Adicionar([FromBody][Required] Peca pecaNova)
         {
             try
             {
-                if (pecaNova == null)
-                {
-                    return NoContent();
-                }
-
                 var erros = Servico.ValidarCampos(pecaNova);
 
-                if (!string.IsNullOrEmpty(erros))
+                if (erros.Any())
                 {
                     return BadRequest(erros);
                 }
 
                 _repositorio.Adicionar(pecaNova);
-                return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
+                return Ok(new { id = pecaNova.Id, peca = pecaNova });
             }
             catch (Exception)
             {
@@ -100,7 +90,7 @@ namespace WEB.Controllers
                     return Conflict(erros);
                 }
 
-                _repositorio.Editar(pecaEditada);
+                _repositorio.Editar(id, pecaEditada);
                 return Ok(pecaEditada);
             }
             catch (Exception)
@@ -120,14 +110,14 @@ namespace WEB.Controllers
                 {
                     return NotFound($"Peça não encontrada com id [{id}]");
                 }
-    
+
                 _repositorio.Remover(pecaObtidaPeloId.Id);
 
                 return NoContent();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.InnerException.Message);
             }
         }
     }
