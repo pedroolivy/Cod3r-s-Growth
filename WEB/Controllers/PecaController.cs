@@ -28,9 +28,9 @@ namespace WEB.Controllers
 
                 return Ok(listaDePecas);
             }
-            catch (Exception ex )
+            catch (Exception)
             {
-                throw new Exception("Erro ao obter lista de peças", ex);
+                throw new Exception();
             }
         }
 
@@ -39,29 +39,29 @@ namespace WEB.Controllers
         {
             try
             {
-                var pecaPorId = _repositorio.ObterPorId(id);
+                var pecaObtidaPeloId = _repositorio.ObterPorId(id);
 
-                if (pecaPorId == null)
+                if (pecaObtidaPeloId == null)
                 {
-                    return NotFound($"Peça não encontrada com Id [{id}]");
+                    return NotFound($"Peça não encontrada com id [{id}]");
                 }
 
-                return Ok(pecaPorId);
+                return Ok(pecaObtidaPeloId);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Erro ao obter peça por esse Id", ex);
+                throw new Exception();
             }
         }
 
         [HttpPost]
-        public IActionResult Adicionar([FromBody]Peca pecaNova)
+        public IActionResult Adicionar([FromBody] Peca pecaNova)
         {
             try
             {
                 if (pecaNova == null)
                 {
-                    return BadRequest("Preencha todos os campos");
+                    return NoContent();
                 }
 
                 var erros = Servico.ValidarCampos(pecaNova);
@@ -72,36 +72,40 @@ namespace WEB.Controllers
                 }
 
                 _repositorio.Adicionar(pecaNova);
-
-                return Ok(new { id = pecaNova.Id, peca = pecaNova });
+                return CreatedAtAction(nameof(ObterPorId), new { id = pecaNova.Id }, pecaNova);
             }
-            catch (Exception ex )
+            catch (Exception)
             {
-                throw new Exception("Erro ao adicionar uma peça", ex);
+                throw new Exception();
             }
         }
 
-        [HttpPut("{id}")] 
+        [HttpPut("{id}")]
         public IActionResult Editar(int id, [FromBody] Peca pecaEditada)
         {
             try
             {
-                var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
-                var erros = Servico.ValidarCampos(pecaEditada);
-                
-                if (!string.IsNullOrEmpty(erros))
+                var pecaObtidaPeloId = _repositorio.ObterPorId(id);
+
+                if (pecaObtidaPeloId == null)
                 {
-                    return BadRequest(erros);
+                    return NotFound($"Peça não encontrada com id [{id}]");
                 }
 
-                pecaEditada.Id = pecaSelecionadaPeloId!.Id;
+                pecaEditada.Id = pecaObtidaPeloId.Id;
+                var erros = Servico.ValidarCampos(pecaEditada);
+
+                if (!string.IsNullOrEmpty(erros))
+                {
+                    return Conflict(erros);
+                }
 
                 _repositorio.Editar(pecaEditada);
                 return Ok(pecaEditada);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Erro ao editar a peça", ex);
+                throw new Exception();
             }
         }
 
@@ -110,19 +114,20 @@ namespace WEB.Controllers
         {
             try
             {
-                var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
+                var pecaObtidaPeloId = _repositorio.ObterPorId(id);
 
-                if (pecaSelecionadaPeloId == null)
+                if (pecaObtidaPeloId == null)
                 {
                     return NotFound($"Peça não encontrada com id [{id}]");
                 }
+    
+                _repositorio.Remover(pecaObtidaPeloId.Id);
 
-                _repositorio.Remover(pecaSelecionadaPeloId.Id);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Erro ao deletar a peça", ex);
+                throw new Exception();
             }
         }
     }
