@@ -26,6 +26,11 @@
                 return "campo Estoque sem valor!";
             }
 
+            else if (peca.DataDeFabricacao > DateTime.Now)
+            {
+                return "Data maior do que a data atual!";
+            }
+
             return string.Empty;
         }
     }

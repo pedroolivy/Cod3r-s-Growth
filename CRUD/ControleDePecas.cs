@@ -11,8 +11,13 @@ namespace CRUD
             _repositorio = repositorio; 
 
             InitializeComponent();
-
             AtualizarLista();
+        }
+
+        private void AtualizarLista()
+        {
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = _repositorio.ObterTodos();
         }
 
         private void AoClicarAdicionar(object sender, EventArgs e)
@@ -20,9 +25,9 @@ namespace CRUD
             try
             {
                 CadastroDePecas cadastroDePecas = new(null);
-                cadastroDePecas.ShowDialog();
+                cadastroDePecas.ShowDialog(this);
 
-                var pecaPreenchida = cadastroDePecas._peca;
+                var pecaPreenchida = cadastroDePecas.peca;
                 pecaPreenchida.Id = Singleton.ObterProximoId();
 
                 if (cadastroDePecas.DialogResult == DialogResult.OK)
@@ -67,12 +72,6 @@ namespace CRUD
             }
         }
 
-        private void AtualizarLista()
-        {
-            dataGridView2.DataSource = null;
-            dataGridView2.DataSource = _repositorio.ObterTodos();
-        }
-
         private void AoClicarEditar(object sender, EventArgs e)
         {
             try
@@ -87,14 +86,14 @@ namespace CRUD
                 var pecaSelecionada = (Peca)dataGridView2.Rows[linhaSelecionada].DataBoundItem;
 
                 CadastroDePecas cadastroPeca = new(pecaSelecionada);
-                cadastroPeca.ShowDialog();
+                cadastroPeca.ShowDialog(this);
 
-                var pecaAtualizada = cadastroPeca._peca;
+                var pecaAtualizada = cadastroPeca.peca;
                 pecaAtualizada.Id = pecaSelecionada.Id;
 
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
-                    _repositorio.Editar(pecaAtualizada.Id, pecaAtualizada);
+                    _repositorio.Editar(pecaAtualizada);
                 }
 
                 AtualizarLista();
