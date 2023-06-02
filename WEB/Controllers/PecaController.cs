@@ -87,14 +87,14 @@ namespace WEB.Controllers
             try
             {
                 var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
-                var erros = Servico.ValidarCampos(pecaSelecionadaPeloId!);
+                var erros = Servico.ValidarCampos(pecaEditada);
                 
                 if (!string.IsNullOrEmpty(erros))
                 {
                     return BadRequest(erros);
                 }
 
-                pecaEditada.Id = pecaSelecionadaPeloId.Id;
+                pecaEditada.Id = pecaSelecionadaPeloId!.Id;
 
                 _repositorio.Editar(pecaEditada);
                 return Ok(pecaEditada);
@@ -111,9 +111,8 @@ namespace WEB.Controllers
             try
             {
                 var pecaSelecionadaPeloId = _repositorio.ObterPorId(id);
-                string erro = Servico.ValidarCampos(pecaSelecionadaPeloId!);
 
-                if (pecaSelecionadaPeloId == null || !string.IsNullOrEmpty(erro))
+                if (pecaSelecionadaPeloId == null)
                 {
                     return NotFound($"Peça não encontrada com id [{id}]");
                 }
