@@ -93,9 +93,9 @@ namespace WEB.Controllers
                 _repositorio.Editar(id, pecaEditada);
                 return Ok(pecaEditada);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.InnerException.Message);
             }
         }
 
