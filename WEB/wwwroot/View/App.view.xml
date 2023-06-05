@@ -2,7 +2,18 @@
    controllerName="sap.ui.demo.CrudPecas.controller.App"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
+   <Table
+       alternateRowColors="false"
+       autoPopinMode="false"
+       backgroundDesign="Translucent"
+       contextualWidth="Inherit"
+       fixedLayout="true"
+       hiddenInPopin=""
+       popinLayout="Block"
+       showOverlay="false">
+   </Table>
+   <SearchField/>
    <Button
-      text="Say Hello"
+      text="Adicionar!"
       press=".onShowHello"/>
 </mvc:View>

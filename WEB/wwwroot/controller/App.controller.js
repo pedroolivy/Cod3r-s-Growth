@@ -1,10 +1,10 @@
 sap.ui.define([
-   "sap/ui/core/mvc/Controller"
-], function (Controller) {
-    "use strict";
+   "sap/ui/core/mvc/Controller",
+   "sap/"
+], function (Controller, ) {
     return Controller.extend("sap.ui.demo.CrudPecas.controller.App", {
       onShowHello : function () {
-         alert("Hello World");
+         alert("Olá Mundo");
       }
     });
  });
