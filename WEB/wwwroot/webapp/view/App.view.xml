@@ -1,0 +1,19 @@
+<mvc:View
+   controllerName="sap.ui.demo.CrudPecas.controller.App"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true">
+   <Shell>
+      <App class="myAppDemoPeca" id="app">
+         <pages>
+            <Page title="{i18n>TituloDaPagina}">
+                  <Panel 
+                     headerText="{i18n>TituloDoPainel}"
+                     class="sapUiResponsiveMargin"
+                     width="auto">
+                  </Panel>
+            </Page>
+         </pages>
+      </App>
+   </Shell>
+</mvc:View>
