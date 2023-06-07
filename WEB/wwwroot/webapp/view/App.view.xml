@@ -4,16 +4,37 @@
    xmlns:mvc="sap.ui.core.mvc"
    displayBlock="true">
    <Shell>
-      <App class="myAppDemoPeca" id="app">
-         <pages>
-            <Page title="{i18n>TituloDaPagina}">
-                  <Panel 
-                     headerText="{i18n>TituloDoPainel}"
-                     class="sapUiResponsiveMargin"
-                     width="auto">
-                  </Panel>
-            </Page>
-         </pages>
+      <App class="myAppDemoPeca" id="app" width="auto">
+         <Page title="{i18n>TituloDaPagina}">
+                  <Table class="sapUiResponsiveMargin" id="idTabelaDeProdutos" width="auto">
+				         <headerToolbar>
+					         <OverflowToolbar  width="auto">
+						         <ToolbarSpacer/>
+                           <SearchField id="acharPeca">
+                              <layoutData>
+                                 <OverflowToolbarLayoutData maxWidth="200px"/>
+                              </layoutData>
+                           </SearchField>
+					         </OverflowToolbar>
+				         </headerToolbar>
+                     <columns>
+                        <Column width="auto"><Text text="Nome" /></Column>
+                        <Column width="auto"><Text text="Descrição" /></Column>
+                        <Column width="auto"><Text text="Categoria" /></Column>
+                        <Column width="auto"><Text text="Data de Fabricação" /></Column>
+                        <Column width="auto"><Text text="Estoque" /></Column>
+                     </columns>
+                     <items>
+                        <ColumnListItem>
+                           <cells>
+                              <ObjectIdentifier title="{Name}" text="{ProductId}"/>
+                              <Text text="{SupplierName}" />
+                              <Text text="{Width} x {Depth} x {Height} {DimUnit}"/>
+                           </cells>
+                        </ColumnListItem>
+                     </items>
+                  </Table>
+         </Page>
       </App>
    </Shell>
 </mvc:View>
