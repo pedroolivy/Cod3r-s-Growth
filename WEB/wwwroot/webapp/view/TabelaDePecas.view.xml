@@ -1,0 +1,32 @@
+<mvc:View
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+    <Table class="sapUiResponsiveMargin" id="idTabelaDeProdutos" width="auto">
+		<headerToolbar>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <SearchField id="acharPeca">
+                    <layoutData>
+                        <OverflowToolbarLayoutData maxWidth="200px"/>
+                    </layoutData>
+                </SearchField>
+            </OverflowToolbar>
+		</headerToolbar>
+        <columns>
+            <Column width="auto"><Text text="Nome" /></Column>
+            <Column width="auto"><Text text="Descrição" /></Column>
+            <Column width="auto"><Text text="Categoria" /></Column>
+            <Column width="auto"><Text text="Data de Fabricação" /></Column>
+            <Column width="auto"><Text text="Estoque" /></Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier title="{Name}" text="{ProductId}"/>
+                        <Text text="{SupplierName}" />
+                        <Text text="{Width} x {Depth} x {Height} {DimUnit}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</mvc:View>
