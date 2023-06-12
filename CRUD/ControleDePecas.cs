@@ -93,7 +93,7 @@ namespace CRUD
 
                 if (cadastroPeca.DialogResult == DialogResult.OK)
                 {
-                    _repositorio.Editar(pecaAtualizada);
+                    _repositorio.Editar(pecaAtualizada.Id, pecaAtualizada);
                 }
 
                 AtualizarLista();

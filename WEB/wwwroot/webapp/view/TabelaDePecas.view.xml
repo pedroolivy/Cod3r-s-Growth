@@ -4,6 +4,7 @@
     <Table class="sapUiResponsiveMargin" id="idTabelaDeProdutos" width="auto">
 		<headerToolbar>
             <OverflowToolbar>
+                <OverflowToolbarButton width="100px" icon="sap-icon://add-equipment"/>
                 <ToolbarSpacer/>
                 <SearchField id="acharPeca">
                     <layoutData>
@@ -16,7 +17,7 @@
             <Column width="auto"><Text text="Nome" /></Column>
             <Column width="auto"><Text text="Descrição" /></Column>
             <Column width="auto"><Text text="Categoria" /></Column>
-            <Column width="auto"><Text text="Data de Fabricação" /></Column>
+            <Column width="auto"><Text text="DatadeFabricação" /></Column>
             <Column width="auto"><Text text="Estoque" /></Column>
         </columns>
         <items>
