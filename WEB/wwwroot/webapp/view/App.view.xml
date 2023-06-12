@@ -4,12 +4,6 @@
    xmlns:mvc="sap.ui.core.mvc"
    displayBlock="true">
    <Shell>
-      <App class="myAppDemoPeca" id="app" width="auto">
-         <Page title="{i18n>TituloDaPagina}">
-            <content>
-               <mvc:XMLView viewName="sap.ui.demo.CrudPecas.view.TabelaDePecas"/>
-            </content>
-         </Page>
-      </App>
+      <App id="app"/>
    </Shell>
 </mvc:View>

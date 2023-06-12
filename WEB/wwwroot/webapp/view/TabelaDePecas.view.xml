@@ -1,6 +1,7 @@
 <mvc:View
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
+    controllerName="sap.ui.demo.CrudPecas.controller.TabelaDePecas"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
     <Table class="sapUiResponsiveMargin" id="idTabelaDeProdutos" width="auto">
 		<headerToolbar>
             <OverflowToolbar>
@@ -15,7 +16,7 @@
 		</headerToolbar>
         <columns>
             <Column width="auto"><Text text="Nome" /></Column>
-            <Column width="auto"><Text text="Descrição" /></Column>
+            <Column width="auto"><Text text="Descricao" /></Column>
             <Column width="auto"><Text text="Categoria" /></Column>
             <Column width="auto"><Text text="DatadeFabricação" /></Column>
             <Column width="auto"><Text text="Estoque" /></Column>
@@ -24,8 +25,11 @@
             <ColumnListItem>
                 <cells>
                     <ObjectIdentifier title="{Name}" text="{ProductId}"/>
-                        <Text text="{SupplierName}" />
-                        <Text text="{Width} x {Depth} x {Height} {DimUnit}"/>
+                        <Text text="{Nome}" />
+                        <Text text="{Descricao}"/>
+                        <Text text="{Categoria}"/>
+                        <Text text="{DataDeFabricacao}"/>
+                        <Text text="{Estoque}"/>
                 </cells>
             </ColumnListItem>
         </items>

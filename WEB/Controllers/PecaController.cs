@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WEB.Controllers
 {
     [ApiController]
-    [Route("api/pecas")]
+    [Route("api/[controller]")]
     public class PecaController : ControllerBase
     {
         private readonly IRepositorio _repositorio;
