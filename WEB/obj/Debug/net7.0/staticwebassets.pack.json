@@ -5,12 +5,12 @@
       "PackagePath": "staticwebassets\\Component.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\View\\App.view.xml",
-      "PackagePath": "staticwebassets\\View\\App.view.xml"
-    },
-    {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\App.controller.js",
       "PackagePath": "staticwebassets\\controller\\App.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\ListaDePecas.controller.js",
+      "PackagePath": "staticwebassets\\controller\\ListaDePecas.controller.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\i18n\\i18n.properties",
@@ -23,6 +23,14 @@
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\manifest.json",
       "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\App.view.xml",
+      "PackagePath": "staticwebassets\\view\\App.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\ListaDePecas.view.xml",
+      "PackagePath": "staticwebassets\\view\\ListaDePecas.view.xml"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WEB.Microsoft.AspNetCore.StaticWebAssets.props",
