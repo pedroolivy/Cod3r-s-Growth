@@ -2,7 +2,8 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
-	"use strict";
+
+	const modeloPeca = "pecas";
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
 
@@ -15,10 +16,8 @@ sap.ui.define([
 			fetch('https://localhost:7028/api/pecas')
             .then(response => response.json())
             .then(json => {
-                console.log(json)
                 var oModel = new JSONModel(json);
-                this.getView().setModel(oModel, "pecas");
-            })
-		}
+                this.getView().setModel(oModel, modeloPeca);
+        })}
 	});
 });
