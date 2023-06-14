@@ -30,7 +30,7 @@
                     <Column width="12em"><Text text="{i18n>ColunaEstoque}" /></Column>
                 </columns>
                 <items>
-                    <ColumnListItem>
+                    <ColumnListItem type="Navigation" press="onPress">
                         <cells>
                             <Text text="{pecas>nome}" />
                             <Text text="{pecas>descricao}" />
@@ -45,8 +45,7 @@
                                             pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
                                         }
                                     }
-                                }"
-                            />
+                                }" />
                             <Text text="{pecas>estoque}" />
                         </cells>
                     </ColumnListItem>

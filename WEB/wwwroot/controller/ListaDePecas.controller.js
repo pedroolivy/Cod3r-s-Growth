@@ -6,7 +6,6 @@ sap.ui.define([
 	const modeloPeca = "pecas";
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
-
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("Peca").attachPatternMatched(this._aoCoincidirRota, this);

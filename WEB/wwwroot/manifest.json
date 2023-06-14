@@ -75,7 +75,9 @@
 				"viewType": "XML",
 				"path": "PedroAutoPecas.view",
 				"controlId": "app",
-				"controlAggregation": "pages"
+				"controlAggregation": "pages",
+				"transition": "slide",
+            	"async": true
 			},
 			"routes": [
 				{
