@@ -10,7 +10,6 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("Peca").attachPatternMatched(this._aoCoincidirRota, this);
 		},
-
 		_aoCoincidirRota: function () {
 			fetch('https://localhost:7028/api/pecas')
             .then(response => response.json())
@@ -19,9 +18,10 @@ sap.ui.define([
                 this.getView().setModel(oModel, modeloPeca);
         	})
 		},
-		onPress: function () {
+		onPress: function (oEvent) {
+			let id = oEvent.getSource().getBindingContext("pecas").getObject().id
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("Detalhe");
+			oRouter.navTo("Detalhe", {id});
 		}
 	});
 });

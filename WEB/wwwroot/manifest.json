@@ -86,7 +86,7 @@
 					"target": "listaDePecas"
 				},
 				{
-					"pattern": "Detalhe",
+					"pattern": "Detalhe/{id}",
 					"name": "Detalhe",
 					"target": "Detalhe"
 				}
