@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WEB.Controllers
 {
     [ApiController]
-    [Route("api/pecas")]
+    [Route("api/[controller]")]
     public class PecaController : ControllerBase
     {
         private readonly IRepositorio _repositorio;
@@ -93,9 +93,9 @@ namespace WEB.Controllers
                 _repositorio.Editar(id, pecaEditada);
                 return Ok(pecaEditada);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.InnerException.Message);
             }
         }
 
