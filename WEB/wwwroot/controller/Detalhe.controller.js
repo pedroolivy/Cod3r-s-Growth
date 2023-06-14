@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/routing/History"
+], function (Controller, JSONModel, History) {
 
 	const detalheDaPeca = "Detalhe";
 
@@ -18,6 +19,17 @@ sap.ui.define([
                 var oModel = new JSONModel(json);
                 this.getView().setModel(oModel, detalheDaPeca);
         	})
-        }
+        },
+		onNavBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = this.getOwnerComponent().getRouter();
+				oRouter.navTo("Peca", {}, true);
+			}
+		}
 	});
 });

@@ -2,5 +2,8 @@
     controllerName="PedroAutoPecas.controller.Detalhe"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
-    
+    <Page
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+    </Page>
 </mvc:View>
