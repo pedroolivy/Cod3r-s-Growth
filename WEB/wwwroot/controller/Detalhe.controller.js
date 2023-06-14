@@ -3,25 +3,21 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
 
-	const modeloPeca = "pecas";
+	const detalheDaPeca = "Detalhe";
 
-	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
+	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
+
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("Peca").attachPatternMatched(this._aoCoincidirRota, this);
+			oRouter.getRoute("Detalhe").attachPatternMatched(this._aoCoincidirRota, this);
 		},
-
 		_aoCoincidirRota: function () {
 			fetch('https://localhost:7028/api/pecas')
             .then(response => response.json())
             .then(json => {
                 var oModel = new JSONModel(json);
-                this.getView().setModel(oModel, modeloPeca);
+                this.getView().setModel(oModel, detalheDaPeca);
         	})
-		},
-		onPress: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("Detalhe");
-		}
+        }
 	});
 });
