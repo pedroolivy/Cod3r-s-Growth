@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\controller\\App.controller.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Detalhe.controller.js",
+      "PackagePath": "staticwebassets\\controller\\Detalhe.controller.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\ListaDePecas.controller.js",
       "PackagePath": "staticwebassets\\controller\\ListaDePecas.controller.js"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\App.view.xml",
       "PackagePath": "staticwebassets\\view\\App.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Detalhe.view.xml",
+      "PackagePath": "staticwebassets\\view\\Detalhe.view.xml"
     },
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\ListaDePecas.view.xml",

@@ -5,6 +5,7 @@ sap.ui.define([
 ], function (Controller, JSONModel, History) {
 
 	const detalheDaPeca = "Detalhe";
+	const api = "https://localhost:7028/api/Peca";
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
 
@@ -13,7 +14,7 @@ sap.ui.define([
 			oRouter.getRoute("Detalhe").attachPatternMatched(this._aoCoincidirRota, this);
 		},
 		_aoCoincidirRota: function () {
-			fetch('https://localhost:7028/api/pecas')
+			fetch(api)
             .then(response => response.json())
             .then(json => {
                 var oModel = new JSONModel(json);

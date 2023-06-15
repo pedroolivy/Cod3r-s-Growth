@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VNrfbQCHgu03rYz4NmlgaZvmCfLxHWShpx6M11HBqZg=",
+  "Hash": "yiGrk6cRcibCceiulqarKm8+u6xtNyGisnwt+usCOQQ=",
   "Source": "WEB",
   "BasePath": "_content/WEB",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Detalhe.controller.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "controller/Detalhe.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Detalhe.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\ListaDePecas.controller.js",
@@ -134,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Detalhe.view.xml",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "view/Detalhe.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\Detalhe.view.xml"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\ListaDePecas.view.xml",
