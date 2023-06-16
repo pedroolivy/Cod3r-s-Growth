@@ -4,23 +4,22 @@
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
-    <Page
-        showNavButton="true"
-        navButtonPress=".onNavBack">
-        <Text text="{pecas>nome}" />
-        <Text text="{pecas>descricao}" />
-        <Text text="{pecas>categoria}" />
+    <Page  showNavButton="true" navButtonPress=".onNavBack">
+
+        <Text text="{Detalhe>/nome}" />
+        <Text text="{Detalhe>/descricao}" />
+        <Text text="{Detalhe>/categoria}" />
         <Text
-        text="{
-            path: 'pecas>dataDeFabricacao',
-            type: 'sap.ui.model.type.Date',
-            formatOptions: {
+            text="{
+                path: 'Detalhe>/dataDeFabricacao',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
                 style: 'short',
-                source: {
-                    pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+                    source: {
+                        pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+                    }
                 }
-            }
-        }" />
-        <Text text="{pecas>estoque}" />
+            }" />
+
     </Page>
 </mvc:View>

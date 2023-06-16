@@ -5,7 +5,7 @@
 	displayBlock="true">
 	<Shell>
 		<Page title="{i18n>TituloAutopecas}">
-			<App class="myAppDemoWT" id="app"/>
+			<App id="app"/>
 		</Page>
 	</Shell>
 </mvc:View>
