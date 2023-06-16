@@ -7,15 +7,16 @@
     <Page
         showHeader="false"
         enableScrolling="true"
-        showNavButton="false" >
+        showNavButton="false">
         <content>
-            <Table
+            <Table 
                 id="idProductsTable"
-                items="{pecas>/}">
+                items="{pecas>/}">               
                 <headerToolbar>
-                    <OverflowToolbar id="otbSubheader">
-                        <OverflowToolbarButton tooltip="Adicionar" text="Add" icon="sap-icon://add-equipment" type="Accept"/>
+                    <OverflowToolbar  id="otbSubheader">
+                        <Title text="{i18n>TituloDaLista}"/>
                         <ToolbarSpacer/>
+                         <OverflowToolbarButton tooltip="Adicionar" text="Add" icon="sap-icon://add-equipment" type="Accept" />
                         <SearchField ariaLabelledBy="text1" id="maxPrice" liveChange="onFilter">
                             <layoutData><OverflowToolbarLayoutData maxWidth="300px" shrinkable="true" priority="NeverOverflow"/></layoutData>
                         </SearchField>

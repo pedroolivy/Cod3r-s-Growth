@@ -4,10 +4,23 @@
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
-    <Page  showNavButton="true" navButtonPress=".onNavBack">
-        <Text text="{Detalhe>/nome}" />
+    <Page title="{i18n>TituloDeDetalhe}" showNavButton="true" navButtonPress=".onNavBack">
+
+        <Toolbar>
+            <ToolbarSpacer/>
+            <Button text="Editar" type="Transparent"/>
+            <Button text="Remover" type="Transparent"/>
+        </Toolbar>
+        
+        <Title text="{Detalhe>/nome}" />
+        <ToolbarSpacer/>
+        <ToolbarSpacer/>
         <Text text="{Detalhe>/descricao}" />
+        <ToolbarSpacer/>
+        <ToolbarSpacer/>
         <Text text="{Detalhe>/categoria}" />
+        <ToolbarSpacer/>
+        <ToolbarSpacer/>
         <Text
             text="{
                 path: 'Detalhe>/dataDeFabricacao',
@@ -19,5 +32,7 @@
                     }
                 }
             }" />
+            <ToolbarSpacer/>
+            <ToolbarSpacer/>
     </Page>
 </mvc:View>
