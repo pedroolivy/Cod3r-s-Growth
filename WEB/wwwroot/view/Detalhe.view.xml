@@ -5,7 +5,6 @@
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
     <Page  showNavButton="true" navButtonPress=".onNavBack">
-
         <Text text="{Detalhe>/nome}" />
         <Text text="{Detalhe>/descricao}" />
         <Text text="{Detalhe>/categoria}" />
@@ -20,6 +19,5 @@
                     }
                 }
             }" />
-
     </Page>
 </mvc:View>
