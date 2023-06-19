@@ -70,13 +70,13 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "Peca",
+					"name": "peca",
 					"target": "listaDePecas"
 				},
 				{
-					"pattern": "Detalhe/{id}",
-					"name": "Detalhe",
-					"target": "Detalhe"
+					"pattern": "detalhe/{id}",
+					"name": "detalhe",
+					"target": "detalhe"
 				}
 			],
 			"targets": {
@@ -84,8 +84,8 @@
 					"id": "listaDePecasId",
 					"name": "ListaDePecas"
 				},
-				"Detalhe": {
-					"id": "DetalheId",
+				"detalhe": {
+					"id": "detalheId",
 					"name": "Detalhe"
 				}
 			}

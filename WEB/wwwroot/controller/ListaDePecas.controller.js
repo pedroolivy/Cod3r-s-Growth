@@ -3,28 +3,30 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
 
-	const modeloPeca = "pecas";
+	const rotaPeca = "peca";
 	const api = "https://localhost:7028/api/Peca";
+	const modeloPeca = "peca";
+	const rotaDetalhe = "detalhe";
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("Peca").attachPatternMatched(this._aoCoincidirRota, this);
+			oRouter.getRoute(rotaPeca).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function () {
 			fetch(api)
-				.then(resp => resp.json())
-				.then(data => {
-					let oModel = new JSONModel(data);
-					this.getView().setModel(oModel, modeloPeca)
-				})
+			.then(resp => resp.json())
+			.then(data => {
+				let oModel = new JSONModel(data);
+				this.getView().setModel(oModel, modeloPeca)
+			})
 		},
 
-		onPress: function (oEvent) {
-			let id = oEvent.getSource().getBindingContext("pecas").getObject().id
+		aoClicar: function (oEvent) {
+			let id = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("Detalhe", {id});
+			oRouter.navTo(rotaDetalhe, {id});
 		}
 	});
 });

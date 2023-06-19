@@ -3,28 +3,30 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
 
-	const detalheDaPeca = "Detalhe";
+	const rotaDetalhe = "detalhe";
 	const api = "https://localhost:7028/api/Peca";
+	const modeloPeca = "peca";
+	const rotaListaDePecas = "peca";
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
-
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute(detalheDaPeca).attachPatternMatched(this._aoCoincidirRota, this);
+			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
+
 		_aoCoincidirRota: function (oEvent) {
-			var teste = oEvent.getParameter("arguments").id
-			fetch(`${api}/${teste}`)
-            .then(response => response.json())
-            .then(json => {
-                var oModel = new JSONModel(json);
-                this.getView().setModel(oModel, detalheDaPeca);
+			var idPeca = oEvent.getParameter("arguments").id
+			fetch(`${api}/${idPeca}`)
+            	.then(response => response.json())
+            	.then(json => {
+                	var oModel = new JSONModel(json);
+                	this.getView().setModel(oModel, modeloPeca);
         	})
-			
         },
-		onNavBack: function () {
+
+		aoClicarVoltar: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("Peca", {}, true);
+			oRouter.navTo(rotaListaDePecas, {}, true);
 		}
 	});
 });
