@@ -11,21 +11,21 @@
         title="Cadastro" 
         titleAlignment="Center">
         <headerContent>
-            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept"/>
-            <Button text="{i18n>botaoCancelar}" icon="sap-icon://decline" width="auto" type="Reject"/>
+            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept" press="aoClicarSalvar"/>
+            <Button text="{i18n>botaoCancelar}" icon="sap-icon://decline" width="auto" type="Reject" press="aoClicarCancelar"/>
         </headerContent>
         <VBox class="sapUiSmallMargin">
             <l:VerticalLayout class="sapUiContentPadding" width="50%">
-                <Label text="Nome" labelFor="input-a" />
-                <Input id="input-a" />
-                <Label text="Descrição" labelFor="input-b" />
-                <Input id="input-b" />
-                <Label text="Categoria" labelFor="input-c" />
-                <Input id="input-c" />
-                <Label text="Data de Fabricação" labelFor="input-d" />
-                <Input id="input-d" />
-                <Label text="Estoque" labelFor="input-f" />
-                <Input id="input-f" />
+                <Label text="Nome" />
+                <Input id="inputNome" value="{pecas>/nome}"/>
+                <Label text="Descrição" />
+                <Input id="input-descricao" />
+                <Label text="Categoria" />
+                <Input id="input-categoria" />
+                <Label text="Data de Fabricação"/>
+                <Input id="input-dataDeFabricacao" />
+                <Label text="Estoque" />
+                <Input id="input-estoque" />
             </l:VerticalLayout>
         </VBox>
     </Page>

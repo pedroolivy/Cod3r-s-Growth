@@ -1,27 +1,52 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel"
+], function (Controller, JSONModel) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
+    const api = "https://localhost:7028/api/Peca";
+    const modeloPeca = "pecas";
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
-		/*_aoCoincidirRota: function (oEvent) {
-			var idPeca = oEvent.getParameter("arguments").id
-			fetch(`${api}/${idPeca}`)
-            	.then(response => response.json())
-            	.then(json => {
-                	var oModel = new JSONModel(json);
-                	this.getView().setModel(oModel, modeloPeca);
-        	})
-        },*/
+		_aoCoincidirRota: function () {
+            let peca = {
+                nome: "",
+                descricao: "",
+                categoria: "",
+                dataDeFabricacao: "",
+                estoque: ""
+            }
+            this.getView().setModel(new JSONModel(peca), modeloPeca);
+        },
+
+        aoClicarSalvar: function () {
+            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
+            this.aoSalvar(criacaoPeca);
+        },
+
+        aoSalvar: function (abacate) {
+            console.log(abacate)
+			fetch(api, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(abacate)
+            }).then(response => response.json())
+        },
 
 		aoClicarVoltar: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rotaListaDePecas, {}, true);
+		},
+
+        aoClicarCancelar: function () {
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rotaListaDePecas, {}, true);
 		}
 	});
