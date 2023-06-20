@@ -28,158 +28,146 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.categoria = new System.Windows.Forms.Label();
-            this.nome = new System.Windows.Forms.Label();
-            this.descricao = new System.Windows.Forms.Label();
-            this.dataFabricacao = new System.Windows.Forms.Label();
-            this.estoque = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.SuspendLayout();
+            button1 = new Button();
+            button2 = new Button();
+            categoria = new Label();
+            nome = new Label();
+            descricao = new Label();
+            dataFabricacao = new Label();
+            estoque = new Label();
+            textBox1 = new TextBox();
+            textBox6 = new TextBox();
+            textBox2 = new TextBox();
+            dateTimePicker1 = new DateTimePicker();
+            inputEstoque = new TextBox();
+            SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(173, 289);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 26);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Salvar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.AoClicarEmSalvar);
+            button1.Location = new Point(173, 289);
+            button1.Name = "button1";
+            button1.Size = new Size(87, 26);
+            button1.TabIndex = 0;
+            button1.Text = "Salvar";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += AoClicarEmSalvar;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(266, 289);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 26);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.AoClicarCancelar);
+            button2.Location = new Point(266, 289);
+            button2.Name = "button2";
+            button2.Size = new Size(87, 26);
+            button2.TabIndex = 1;
+            button2.Text = "Cancelar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += AoClicarCancelar;
             // 
             // categoria
             // 
-            this.categoria.AutoSize = true;
-            this.categoria.Location = new System.Drawing.Point(25, 35);
-            this.categoria.Name = "categoria";
-            this.categoria.Size = new System.Drawing.Size(58, 15);
-            this.categoria.TabIndex = 2;
-            this.categoria.Text = "Categoria";
+            categoria.AutoSize = true;
+            categoria.Location = new Point(25, 35);
+            categoria.Name = "categoria";
+            categoria.Size = new Size(58, 15);
+            categoria.TabIndex = 2;
+            categoria.Text = "Categoria";
             // 
             // nome
             // 
-            this.nome.AutoSize = true;
-            this.nome.Location = new System.Drawing.Point(25, 77);
-            this.nome.Name = "nome";
-            this.nome.Size = new System.Drawing.Size(40, 15);
-            this.nome.TabIndex = 3;
-            this.nome.Text = "Nome";
+            nome.AutoSize = true;
+            nome.Location = new Point(25, 77);
+            nome.Name = "nome";
+            nome.Size = new Size(40, 15);
+            nome.TabIndex = 3;
+            nome.Text = "Nome";
             // 
             // descricao
             // 
-            this.descricao.AutoSize = true;
-            this.descricao.Location = new System.Drawing.Point(25, 119);
-            this.descricao.Name = "descricao";
-            this.descricao.Size = new System.Drawing.Size(58, 15);
-            this.descricao.TabIndex = 4;
-            this.descricao.Text = "Descrição";
+            descricao.AutoSize = true;
+            descricao.Location = new Point(25, 119);
+            descricao.Name = "descricao";
+            descricao.Size = new Size(58, 15);
+            descricao.TabIndex = 4;
+            descricao.Text = "Descrição";
             // 
             // dataFabricacao
             // 
-            this.dataFabricacao.AutoSize = true;
-            this.dataFabricacao.Location = new System.Drawing.Point(203, 35);
-            this.dataFabricacao.Name = "dataFabricacao";
-            this.dataFabricacao.Size = new System.Drawing.Size(107, 15);
-            this.dataFabricacao.TabIndex = 5;
-            this.dataFabricacao.Text = "Data de Fabricação";
+            dataFabricacao.AutoSize = true;
+            dataFabricacao.Location = new Point(203, 35);
+            dataFabricacao.Name = "dataFabricacao";
+            dataFabricacao.Size = new Size(107, 15);
+            dataFabricacao.TabIndex = 5;
+            dataFabricacao.Text = "Data de Fabricação";
             // 
             // estoque
             // 
-            this.estoque.AutoSize = true;
-            this.estoque.Location = new System.Drawing.Point(203, 77);
-            this.estoque.Name = "estoque";
-            this.estoque.Size = new System.Drawing.Size(49, 15);
-            this.estoque.TabIndex = 6;
-            this.estoque.Text = "Estoque";
+            estoque.AutoSize = true;
+            estoque.Location = new Point(203, 77);
+            estoque.Name = "estoque";
+            estoque.Size = new Size(49, 15);
+            estoque.TabIndex = 6;
+            estoque.Text = "Estoque";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 137);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 69);
-            this.textBox1.TabIndex = 7;
+            textBox1.Location = new Point(25, 137);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(150, 69);
+            textBox1.TabIndex = 7;
             // 
             // textBox6
             // 
-            this.textBox6.HideSelection = false;
-            this.textBox6.Location = new System.Drawing.Point(25, 53);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(150, 21);
-            this.textBox6.TabIndex = 12;
+            textBox6.HideSelection = false;
+            textBox6.Location = new Point(25, 53);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(150, 21);
+            textBox6.TabIndex = 12;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(25, 95);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 21);
-            this.textBox2.TabIndex = 13;
+            textBox2.Location = new Point(25, 95);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(150, 21);
+            textBox2.TabIndex = 13;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(203, 51);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 23);
-            this.dateTimePicker1.TabIndex = 16;
+            dateTimePicker1.Location = new Point(203, 51);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(150, 23);
+            dateTimePicker1.TabIndex = 16;
             // 
-            // numericUpDown1
+            // inputEstoque
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Location = new System.Drawing.Point(203, 93);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(150, 23);
-            this.numericUpDown1.TabIndex = 17;
+            inputEstoque.Location = new Point(203, 95);
+            inputEstoque.Name = "inputEstoque";
+            inputEstoque.Size = new Size(150, 23);
+            inputEstoque.TabIndex = 18;
+            inputEstoque.KeyPress += PermitirApenasNumeros;
             // 
             // CadastroDePecas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 327);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.estoque);
-            this.Controls.Add(this.dataFabricacao);
-            this.Controls.Add(this.descricao);
-            this.Controls.Add(this.nome);
-            this.Controls.Add(this.categoria);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Name = "CadastroDePecas";
-            this.Text = "Cadastro de Peças";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(365, 327);
+            Controls.Add(inputEstoque);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(textBox2);
+            Controls.Add(textBox6);
+            Controls.Add(textBox1);
+            Controls.Add(estoque);
+            Controls.Add(dataFabricacao);
+            Controls.Add(descricao);
+            Controls.Add(nome);
+            Controls.Add(categoria);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Name = "CadastroDePecas";
+            Text = "Cadastro de Peças";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -195,6 +183,6 @@
         private TextBox textBox6;
         private TextBox textBox2;
         private DateTimePicker dateTimePicker1;
-        private NumericUpDown numericUpDown1;
+        private TextBox inputEstoque;
     }
 }

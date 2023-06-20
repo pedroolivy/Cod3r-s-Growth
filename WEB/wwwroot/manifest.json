@@ -14,15 +14,6 @@
 		"description": "appDescription",
 		"applicationVersion": {
 			"version": "1.0.0"
-		},
-		"dataSources": {
-			"invoiceRemote": {
-				"uri": "https://services.odata.org/V2/Northwind/Northwind.svc/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0"
-				}
-			}
 		}
 	},
 	"sap.ui": {
@@ -56,9 +47,6 @@
 					],
 					"fallbackLocale": ""
 				}
-			},
-			"invoice": {
-				"dataSource": "invoiceRemote"
 			}
 		},
 		"resources": {
@@ -75,18 +63,20 @@
 				"viewType": "XML",
 				"path": "PedroAutoPecas.view",
 				"controlId": "app",
-				"controlAggregation": "pages"
+				"controlAggregation": "pages",
+				"transition": "slide",
+            	"async": true				
 			},
 			"routes": [
 				{
 					"pattern": "",
-					"name": "Peca",
+					"name": "listaDePecas",
 					"target": "listaDePecas"
 				},
 				{
-					"pattern": "detail/{invoicePath}",
-					"name": "detail",
-					"target": "detail"
+					"pattern": "detalhe/{id}",
+					"name": "detalhe",
+					"target": "detalhe"
 				}
 			],
 			"targets": {
@@ -94,9 +84,9 @@
 					"id": "listaDePecasId",
 					"name": "ListaDePecas"
 				},
-				"detail": {
-					"id": "detail",
-					"name": "Detail"
+				"detalhe": {
+					"id": "detalhe",
+					"name": "Detalhe"
 				}
 			}
 		}

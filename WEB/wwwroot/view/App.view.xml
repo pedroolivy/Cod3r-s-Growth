@@ -4,8 +4,6 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true">
 	<Shell>
-		<Page title="{i18n>TituloAutopecas}">
-			<App class="myAppDemoWT" id="app"/>
-		</Page>
+		<App id="app"/>
 	</Shell>
 </mvc:View>

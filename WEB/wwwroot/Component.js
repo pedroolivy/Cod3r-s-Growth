@@ -3,10 +3,7 @@ sap.ui.define([
 ], function (UIComponent) {
 	return UIComponent.extend("PedroAutoPecas.Component", {
 		
-		metadata: {
-			interfaces: ["sap.ui.core.IAsyncContentCreation"],
-			manifest: "json"
-		},
+
 
 		init: function () {
 			UIComponent.prototype.init.apply(this, arguments);

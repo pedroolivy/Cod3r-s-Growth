@@ -1,0 +1,55 @@
+<mvc:View
+    controllerName="PedroAutoPecas.controller.Detalhe"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+    <Page title="{i18n>TituloDeDetalhe}" showNavButton="true" navButtonPress=".aoClicarVoltar">
+        <headerContent>
+            <Button text="{i18n>BotaoEditar}" icon="sap-icon://edit" width="auto" type="Accept"/>
+            <Button text="{i18n>BotaoRemover}" icon="sap-icon://delete" width="auto" type="Reject"/>
+        </headerContent>
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                title="Peça"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                <f:content>
+                    <Label text="Nome" />
+                    <Text text="{peca>/nome}" />
+                    <Label text="Descrição" />
+                    <Text text="{peca>/descricao}" />
+                    <Label text="Categoria" />
+                    <Text text="{peca>/categoria}" />
+                    <Label text="Data de Fabricação" />
+                    <Text text="{
+                        path: 'peca>/dataDeFabricacao',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: {
+                        style: 'short',
+                            source: {
+                                pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+                            }
+                        }
+                    }" />
+                    <Label text="Estoque" />
+                    <Text text="{peca>/estoque}" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+    </Page>
+</mvc:View>
