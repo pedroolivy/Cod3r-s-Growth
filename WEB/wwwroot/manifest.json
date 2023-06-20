@@ -70,7 +70,7 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "peca",
+					"name": "listaDePecas",
 					"target": "listaDePecas"
 				},
 				{
@@ -85,7 +85,7 @@
 					"name": "ListaDePecas"
 				},
 				"detalhe": {
-					"id": "detalheId",
+					"id": "detalhe",
 					"name": "Detalhe"
 				}
 			}
