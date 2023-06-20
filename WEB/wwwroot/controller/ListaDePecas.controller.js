@@ -13,7 +13,7 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaPeca).attachPatternMatched(this._aoCoincidirRota, this);
 		},
-		
+
 		_aoCoincidirRota: function () {
 			fetch(api)
 			.then(resp => resp.json())
@@ -22,7 +22,7 @@ sap.ui.define([
 				this.getView().setModel(oModel, modeloPeca)
 			})
 		},
-		
+
 		aoClicarNaLinha: function (oEvent) {
 			let id = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
 			var oRouter = this.getOwnerComponent().getRouter();
