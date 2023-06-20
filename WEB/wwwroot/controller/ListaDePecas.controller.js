@@ -5,6 +5,7 @@ sap.ui.define([
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
+	const rotaCadastro = "cadastro"
 	const rotaDetalhe = "detalhe";
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
@@ -20,6 +21,11 @@ sap.ui.define([
 				let oModel = new JSONModel(data);
 				this.getView().setModel(oModel, modeloPeca)
 			})
+		},
+
+		aoClicarAdicionar: function () {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rotaCadastro);
 		},
 
 		aoClicarNaLinha: function (oEvent) {

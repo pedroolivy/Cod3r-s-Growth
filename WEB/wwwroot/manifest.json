@@ -74,6 +74,11 @@
 					"target": "listaDePecas"
 				},
 				{
+					"pattern": "cadastro",
+					"name": "cadastro",
+					"target": "cadastro"		
+				},
+				{
 					"pattern": "detalhe/{id}",
 					"name": "detalhe",
 					"target": "detalhe"
@@ -81,8 +86,12 @@
 			],
 			"targets": {
 				"listaDePecas": {
-					"id": "listaDePecasId",
+					"id": "listaDePecas",
 					"name": "ListaDePecas"
+				},
+				"cadastro": {
+					"id": "cadastro",
+					"name": "Cadastro"	
 				},
 				"detalhe": {
 					"id": "detalhe",

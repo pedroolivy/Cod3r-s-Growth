@@ -1,0 +1,25 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout">
+    <Page 
+        showHeader="true" 
+        enableScrolling="true" 
+        showNavButton="true"
+        navButtonPress=".aoClicarVoltar" 
+        title="Cadastro" 
+        titleAlignment="Center">
+        <headerContent>
+            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept"/>
+            <Button text="{i18n>botaoCancelar}" icon="sap-icon://decline" width="auto" type="Reject"/>
+        </headerContent>
+	    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <Label text="Label A (required)" labelFor="input-a" />
+            <Input id="input-a" required="true" />
+            <Label text="Label B (bold)" labelFor="input-b" design="Bold" />
+            <Input id="input-b" />
+            <Label text="Label C (normal)" labelFor="input-c" />
+            <Input id="input-c" />
+	    </l:VerticalLayout>
+    </Page>
+</mvc:View>
