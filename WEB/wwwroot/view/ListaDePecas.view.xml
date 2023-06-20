@@ -34,7 +34,7 @@
                         <cells>
                             <Text text="{pecas>nome}" />
                             <Text text="{pecas>descricao}" />
-                            <Text text="{peca>categoria}" />
+                            <Text text="{pecas>categoria}" />
                             <Text
                                 text="{
                                     path: 'pecas>dataDeFabricacao',
