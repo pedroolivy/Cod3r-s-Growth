@@ -2,8 +2,7 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
-
-	const rotaPeca = "listaDePecas";
+	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
 	const rotaDetalhe = "detalhe";
@@ -11,7 +10,7 @@ sap.ui.define([
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute(rotaPeca).attachPatternMatched(this._aoCoincidirRota, this);
+			oRouter.getRoute(rotaListaPecas).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function () {

@@ -4,14 +4,9 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
-    <Page
-        showHeader="false"
-        enableScrolling="true"
-        showNavButton="false">
+    <Page showHeader="false" enableScrolling="true" showNavButton="false">
         <content>
-            <Table 
-                id="idProductsTable"
-                items="{pecas>/}">               
+            <Table id="idProductsTable" items="{pecas>/}">               
                 <headerToolbar>
                     <OverflowToolbar  id="otbSubheader">
                         <Title text="{i18n>TituloDaLista}"/>

@@ -29,10 +29,11 @@ namespace CRUD
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
+            const string valorPadraoEstoque = "0";
             try
             {
                 if (string.IsNullOrEmpty(inputEstoque.Text))
-                    inputEstoque.Text = "0";
+                    inputEstoque.Text = valorPadraoEstoque;
 
                 var pecaParaAdicionar = new Peca()
                 {

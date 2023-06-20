@@ -2,7 +2,6 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
-
 	const rotaDetalhe = "detalhe";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";

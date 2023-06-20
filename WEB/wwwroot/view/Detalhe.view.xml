@@ -1,5 +1,4 @@
 <mvc:View
-    height="100%"
     controllerName="PedroAutoPecas.controller.Detalhe"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
@@ -11,7 +10,7 @@
             <Button text="{i18n>BotaoEditar}" icon="sap-icon://edit" width="auto" type="Accept"/>
             <Button text="{i18n>BotaoRemover}" icon="sap-icon://delete" width="auto" type="Reject"/>
         </headerContent>
-        <VBox class="sapUiSmallMargin" >
+        <VBox class="sapUiSmallMargin">
             <f:SimpleForm id="SimpleFormDisplay354"
                 editable="false"
                 layout="ResponsiveGridLayout"
@@ -28,7 +27,7 @@
                 columnsXL="1"
                 columnsL="1"
                 columnsM="1"
-                singleContainerFullSize="false" >
+                singleContainerFullSize="false">
                 <f:content>
                     <Label text="Nome" />
                     <Text text="{peca>/nome}" />
