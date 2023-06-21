@@ -19,13 +19,13 @@
                 <Label text="Nome" />
                 <Input id="inputNome" value="{pecas>/nome}"/>
                 <Label text="Descrição" />
-                <Input id="input-descricao" />
+                <Input id="inputDescricao" value="{pecas>/descricao}"/>
                 <Label text="Categoria" />
-                <Input id="input-categoria" />
+                <Input id="inputCategoria" value="{pecas>/categoria}"/>
                 <Label text="Data de Fabricação"/>
-                <Input id="input-dataDeFabricacao" />
+                <Input id="inputDataDeFabricacao" value="{pecas>/dataDeFabricacao}"/>
                 <Label text="Estoque" />
-                <Input id="input-estoque" />
+                <Input id="inputEstoque" value="{pecas>/estoque}"/>
             </l:VerticalLayout>
         </VBox>
     </Page>
