@@ -6,13 +6,13 @@
 	xmlns="sap.m">
     <Page showHeader="true" enableScrolling="true" showNavButton="false" title="Auto Peças" titleAlignment="Center">
         <content>
-            <Table id="idProductsTable" items="{pecas>/}">               
+            <Table id="pecasDaTabela" items="{pecas>/}">               
                 <headerToolbar>
                     <OverflowToolbar  id="otbSubheader">
                         <Title text="{i18n>TituloDaLista}"/>
                         <ToolbarSpacer/>
                         <OverflowToolbarButton press="aoClicarAdicionar" tooltip="Adicionar" text="Add" icon="sap-icon://add-equipment" type="Accept" />
-                        <SearchField ariaLabelledBy="text1" id="maxPrice" liveChange="onFilter">
+                        <SearchField search="aoProcurarPeca">
                             <layoutData><OverflowToolbarLayoutData maxWidth="300px" shrinkable="true" priority="NeverOverflow"/></layoutData>
                         </SearchField>
                     </OverflowToolbar>

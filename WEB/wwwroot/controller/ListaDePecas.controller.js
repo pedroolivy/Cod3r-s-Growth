@@ -1,7 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Controller, JSONModel, Filter, FilterOperator) {
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
@@ -21,6 +23,17 @@ sap.ui.define([
 				let oModel = new JSONModel(data);
 				this.getView().setModel(oModel, modeloPeca)
 			})
+		},
+
+		aoProcurarPeca : function (oEvent) {
+			var aFilter = [];
+			var sQuery = oEvent.getParameter("query");
+			if (sQuery) {
+				aFilter.push(new Filter("nome", FilterOperator.Contains, sQuery));
+			}
+			var oList = this.byId("pecasDaTabela");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
 		},
 
 		aoClicarAdicionar: function () {

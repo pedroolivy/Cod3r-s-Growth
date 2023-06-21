@@ -11,7 +11,7 @@
         title="Cadastro" 
         titleAlignment="Center">
         <headerContent>
-            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept" press="aoClicarSalvar"/>
+            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept" press=".aoClicarSalvar"/>
             <Button text="{i18n>botaoCancelar}" icon="sap-icon://decline" width="auto" type="Reject" press="aoClicarCancelar"/>
         </headerContent>
         <VBox class="sapUiSmallMargin">

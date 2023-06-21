@@ -14,7 +14,7 @@ sap.ui.define([
 		},
         
 		_aoCoincidirRota: function () {
-            let peca = {
+            var peca = {
                 nome: "",
                 descricao: "",
                 categoria: "",
@@ -24,23 +24,34 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
-        aoClicarSalvar: function () {
-            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
-            this.aoSalvar(criacaoPeca);
-            this.aoClicarVoltar();
-        },
-
-        aoSalvar: function (oEvent) {
-            console.log(oEvent);
+        _salvarPeca: function (peca) {
+            const rotaDetalhe = "detalhe";
 			fetch(api, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(oEvent)
-            }).then(response => response.json())
+                body: JSON.stringify(peca)
+            })
+            .then(response => response.json())
+            .then(data => {
+                this._navegar(rotaDetalhe, data.id)
+            })
         },
 
+        aoClicarSalvar: function () {
+            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
+            const retorno = this._salvarPeca(criacaoPeca);
+        }, 
+
+        _navegar: function(rota, id){
+            let oRouter = this.getOwnerComponent().getRouter();
+
+            id
+                ? oRouter.navTo(rota, { id: id })
+                : oRouter.navTo(rota);
+        },
+        
 		aoClicarVoltar: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rotaListaDePecas, {}, true);
