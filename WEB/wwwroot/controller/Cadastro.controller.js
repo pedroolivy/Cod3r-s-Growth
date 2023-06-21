@@ -12,7 +12,7 @@ sap.ui.define([
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
-
+        
 		_aoCoincidirRota: function () {
             let peca = {
                 nome: "",
@@ -27,16 +27,17 @@ sap.ui.define([
         aoClicarSalvar: function () {
             let criacaoPeca = this.getView().getModel(modeloPeca).getData();
             this.aoSalvar(criacaoPeca);
+            this.aoClicarVoltar();
         },
 
-        aoSalvar: function (abacate) {
-            console.log(abacate)
+        aoSalvar: function (oEvent) {
+            console.log(oEvent);
 			fetch(api, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(abacate)
+                body: JSON.stringify(oEvent)
             }).then(response => response.json())
         },
 
