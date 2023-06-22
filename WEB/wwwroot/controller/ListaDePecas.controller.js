@@ -25,7 +25,7 @@ sap.ui.define([
 			})
 		},
 
-		aoProcurarPeca : function (oEvent) {
+		aoClicarProcurarPeca : function (oEvent) {
 			let aFilter = [];
 			let sQuery = oEvent.getParameter("query");
 			if (sQuery) {
