@@ -25,11 +25,11 @@ sap.ui.define([
 			})
 		},
 
-		aoClicarProcurarPeca : function (oEvent) {
+		aoClicarProcurarPeca : function (peca) {
 			let aFilter = [];
-			let sQuery = oEvent.getParameter("query");
-			if (sQuery) {
-				aFilter.push(new Filter("nome", FilterOperator.Contains, sQuery));
+			let nomePeca = peca.getParameter("query");
+			if (nomePeca) {
+				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
 			}
 			let oList = this.byId("pecasDaTabela");
 			let oBinding = oList.getBinding("items");

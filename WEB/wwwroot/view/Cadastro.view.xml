@@ -8,7 +8,7 @@
         enableScrolling="true" 
         showNavButton="true"
         navButtonPress=".aoClicarVoltar" 
-        title="Cadastro" 
+        title="{i18n>TituloCadastro}" 
         titleAlignment="Center">
         <headerContent>
             <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept" press=".aoClicarSalvar"/>
@@ -16,16 +16,16 @@
         </headerContent>
         <VBox class="sapUiSmallMargin">
             <l:VerticalLayout class="sapUiContentPadding" width="50%">
-                <Label text="Nome" />
-                <Input id="inputNome" value="{pecas>/nome}"/>
-                <Label text="Descrição" />
-                <Input id="inputDescricao" value="{pecas>/descricao}"/>
-                <Label text="Categoria" />
-                <Input id="inputCategoria" value="{pecas>/categoria}"/>
-                <Label text="Data de Fabricação"/>
-                <Input id="inputDataDeFabricacao" value="{pecas>/dataDeFabricacao}"/>
-                <Label text="Estoque" />
-                <Input id="inputEstoque" value="{pecas>/estoque}"/>
+                <Label text="{i18n>CampoNome}" />
+                <Input value="{pecas>/nome}"/>
+                <Label text="{i18n>CampoDescricao}" />
+                <Input value="{pecas>/descricao}"/>
+                <Label text="{i18n>CampoCategoria}" />
+                <Input value="{pecas>/categoria}"/>
+                <Label text="{i18n>CampoDataDeFabricacao}"/>
+                <Input value="{pecas>/dataDeFabricacao}"/>
+                <Label text="{i18n>CampoEstoque}" />
+                <Input value="{pecas>/estoque}"/>
             </l:VerticalLayout>
         </VBox>
     </Page>

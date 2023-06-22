@@ -13,8 +13,8 @@ sap.ui.define([
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
-		_aoCoincidirRota: function (oEvent) {
-			let idPeca = oEvent.getParameter("arguments").id
+		_aoCoincidirRota: function (peca) {
+			let idPeca = peca.getParameter("arguments").id
 			fetch(`${api}/${idPeca}`)
             	.then(response => response.json())
             	.then(json => {
