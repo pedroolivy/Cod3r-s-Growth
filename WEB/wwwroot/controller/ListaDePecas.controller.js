@@ -33,6 +33,15 @@ sap.ui.define([
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rota, {id});
 		},
+		
+		aoClicarAdicionar: function () {
+			this._aoNavegar(rotaCadastro);
+		},
+
+		aoClicarNaLinha: function (oEvent) {
+			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
+			this._aoNavegar(rotaDetalhe, idPeca);
+		},
 
 		aoClicarProcurarPeca : function (peca) {
 			let aFilter = [];
@@ -43,15 +52,6 @@ sap.ui.define([
 			let oList = this.byId("pecasDaTabela");
 			let oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
-		},
-
-		aoClicarAdicionar: function () {
-			this._aoNavegar(rotaCadastro);
-		},
-
-		aoClicarNaLinha: function (oEvent) {
-			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			this._aoNavegar(rotaDetalhe, idPeca);
 		}
 	});
 });
