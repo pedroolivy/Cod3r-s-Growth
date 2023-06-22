@@ -9,12 +9,12 @@ sap.ui.define([
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-			var idPeca = oEvent.getParameter("arguments").id
+			let idPeca = oEvent.getParameter("arguments").id
 			fetch(`${api}/${idPeca}`)
             	.then(response => response.json())
             	.then(json => {
@@ -24,7 +24,7 @@ sap.ui.define([
         },
 
 		aoClicarVoltar: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rotaListaDePecas, {}, true);
 		}
 	});

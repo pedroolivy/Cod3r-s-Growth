@@ -12,7 +12,7 @@ sap.ui.define([
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaListaPecas).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
@@ -26,24 +26,24 @@ sap.ui.define([
 		},
 
 		aoProcurarPeca : function (oEvent) {
-			var aFilter = [];
-			var sQuery = oEvent.getParameter("query");
+			let aFilter = [];
+			let sQuery = oEvent.getParameter("query");
 			if (sQuery) {
 				aFilter.push(new Filter("nome", FilterOperator.Contains, sQuery));
 			}
-			var oList = this.byId("pecasDaTabela");
-			var oBinding = oList.getBinding("items");
+			let oList = this.byId("pecasDaTabela");
+			let oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
 		},
 
 		aoClicarAdicionar: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rotaCadastro);
 		},
 
 		aoClicarNaLinha: function (oEvent) {
 			let id = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rotaDetalhe, {id});
 		}
 	});

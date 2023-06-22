@@ -4,6 +4,7 @@ sap.ui.define([
 ], function (Controller, JSONModel) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
+    const rotaDetalhe = "detalhe";
     const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
 
@@ -14,7 +15,7 @@ sap.ui.define([
 		},
         
 		_aoCoincidirRota: function () {
-            var peca = {
+            let peca = {
                 nome: "",
                 descricao: "",
                 categoria: "",
@@ -25,7 +26,6 @@ sap.ui.define([
         },
 
         _salvarPeca: function (peca) {
-            const rotaDetalhe = "detalhe";
 			fetch(api, {
                 method: "POST",
                 headers: {
@@ -34,15 +34,8 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(data => {
-                this._navegar(rotaDetalhe, data.id)
-            })
+            .then(data => {this._navegar(rotaDetalhe, data.id)})
         },
-
-        aoClicarSalvar: function () {
-            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
-            const retorno = this._salvarPeca(criacaoPeca);
-        }, 
 
         _navegar: function(rota, id){
             let oRouter = this.getOwnerComponent().getRouter();
@@ -51,6 +44,11 @@ sap.ui.define([
                 ? oRouter.navTo(rota, { id: id })
                 : oRouter.navTo(rota);
         },
+
+        aoClicarSalvar: function () {
+            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
+            const retorno = this._salvarPeca(criacaoPeca);
+        }, 
         
 		aoClicarVoltar: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
