@@ -17,12 +17,21 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function () {
+			this._carregaPecas();
+		},
+
+		_carregaPecas: function(){
 			fetch(api)
 			.then(resp => resp.json())
 			.then(data => {
 				let oModel = new JSONModel(data);
 				this.getView().setModel(oModel, modeloPeca)
 			})
+		},
+
+		_aoNavegar: function(rota, id){
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rota, {id});
 		},
 
 		aoClicarProcurarPeca : function (peca) {
@@ -37,14 +46,12 @@ sap.ui.define([
 		},
 
 		aoClicarAdicionar: function () {
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaCadastro);
+			this._aoNavegar(rotaCadastro);
 		},
 
 		aoClicarNaLinha: function (oEvent) {
-			let id = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaDetalhe, {id});
+			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
+			this._aoNavegar(rotaDetalhe, idPeca);
 		}
 	});
 });

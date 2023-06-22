@@ -13,19 +13,27 @@ sap.ui.define([
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
-		_aoCoincidirRota: function (peca) {
-			let idPeca = peca.getParameter("arguments").id
-			fetch(`${api}/${idPeca}`)
-            	.then(response => response.json())
-            	.then(json => {
-                	var oModel = new JSONModel(json);
-                	this.getView().setModel(oModel, modeloPeca);
-        	})
+		_aoCoincidirRota: function (oEvent) {
+			let idPeca = oEvent.getParameter("arguments").id;
+			this._carregarPeca(idPeca);
         },
+		
+		_carregarPeca: function(idPeca){
+			fetch(`${api}/${idPeca}`)
+				.then(response => response.json())
+				.then(json => {
+					var oModel = new JSONModel(json);
+					this.getView().setModel(oModel, modeloPeca);
+			})
+		},
+		
+		_aoNavegar: function(rota){
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rota);
+		},
 
 		aoClicarVoltar: function () {
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaListaDePecas, {}, true);
+			this._aoNavegar(rotaListaDePecas);
 		}
 	});
 });

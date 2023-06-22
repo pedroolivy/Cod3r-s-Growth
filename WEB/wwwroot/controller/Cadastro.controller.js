@@ -15,13 +15,16 @@ sap.ui.define([
 		},
         
 		_aoCoincidirRota: function () {
+            const stringVazia = "";
+
             let peca = {
-                nome: "",
-                descricao: "",
-                categoria: "",
-                dataDeFabricacao: "",
-                estoque: ""
+                nome: stringVazia,
+                descricao: stringVazia,
+                categoria: stringVazia,
+                dataDeFabricacao: stringVazia,
+                estoque: stringVazia
             }
+
             this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
@@ -34,30 +37,25 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(data => {this._navegar(rotaDetalhe, data.id)})
+            .then(data => this._navegar(rotaDetalhe, data.id))
         },
 
         _navegar: function(rota, id){
             let oRouter = this.getOwnerComponent().getRouter();
-
-            id
-                ? oRouter.navTo(rota, { id: id })
-                : oRouter.navTo(rota);
+            oRouter.navTo(rota, {id});
         },
 
         aoClicarSalvar: function () {
-            let criacaoPeca = this.getView().getModel(modeloPeca).getData();
-            const retorno = this._salvarPeca(criacaoPeca);
+            let peca = this.getView().getModel(modeloPeca).getData();
+            this._salvarPeca(peca);
         }, 
         
 		aoClicarVoltar: function () {
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaListaDePecas, {}, true);
+            this._navegar(rotaListaDePecas);
 		},
 
         aoClicarCancelar: function () {
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaListaDePecas, {}, true);
+			this._navegar(rotaListaDePecas);
 		}
 	});
 });

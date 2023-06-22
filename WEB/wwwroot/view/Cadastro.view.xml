@@ -23,7 +23,7 @@
                 <Label text="{i18n>CampoCategoria}" />
                 <Input value="{pecas>/categoria}"/>
                 <Label text="{i18n>CampoDataDeFabricacao}"/>
-                <DatePicker value="{pecas>/dataDeFabricacao}" valueFormat="yyyy-MM-ddTHH:mm:ss"/>
+                <DatePicker placeholder="Dia/Mês/Ano" value="{pecas>/dataDeFabricacao}" valueFormat="yyyy-MM-ddTHH:mm:ss"/>
                 <Label text="{i18n>CampoEstoque}" />
                 <Input value="{pecas>/estoque}"/>
             </l:VerticalLayout>
