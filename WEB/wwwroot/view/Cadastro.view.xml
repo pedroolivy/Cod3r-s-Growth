@@ -17,15 +17,31 @@
         <VBox class="sapUiSmallMargin">
             <l:VerticalLayout class="sapUiContentPadding" width="50%">
                 <Label text="{i18n>CampoNome}" />
-                <Input value="{pecas>/nome}"/>
+                <Input 
+                    value="{pecas>/nome}" 
+                    placeholder="Nome de Peça"
+                    valueStateText="Campo nome não pode estar vazio!"/>
                 <Label text="{i18n>CampoDescricao}" />
-                <Input value="{pecas>/descricao}"/>
+                <Input 
+                    value="{pecas>/descricao}" 
+                    placeholder="Tipo de Peça"
+                    valueStateText="Campo descrição não pode estar vazio!"/>
                 <Label text="{i18n>CampoCategoria}" />
-                <Input value="{pecas>/categoria}"/>
+                <Input 
+                    value="{pecas>/categoria}" 
+                    placeholder="Categoria de Peça"
+                    valueStateText="Campo categoria não pode estar vazio!"/>
                 <Label text="{i18n>CampoDataDeFabricacao}"/>
-                <DatePicker placeholder="Dia/Mês/Ano" value="{pecas>/dataDeFabricacao}" valueFormat="yyyy-MM-ddTHH:mm:ss"/>
+                <DatePicker 
+                    value="{pecas>/dataDeFabricacao}" 
+                    valueFormat="yyyy-MM-ddTHH:mm:ss" 
+                    placeholder="Dia/Mês/Ano"
+                    valueStateText="Preencha campo data de fabricação corretamente!"/>
                 <Label text="{i18n>CampoEstoque}" />
-                <Input value="{pecas>/estoque}"/>
+                <Input 
+                    value="{pecas>/estoque}" 
+                    placeholder="Quantidade de Peça"
+                    valueStateText="Campo estoque sem valor!"/>
             </l:VerticalLayout>
         </VBox>
     </Page>

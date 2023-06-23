@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "../abobrinha/Chuchuzinho"
+], function (Controller, JSONModel, Chuchuzinho) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -13,7 +14,7 @@ sap.ui.define([
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
-        
+
 		_aoCoincidirRota: function () {
             const stringVazia = "";
 
@@ -47,9 +48,11 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
+            Chuchuzinho.abacate();
+            console.log(Chuchuzinho.abacate());
             this._salvarPeca(peca);
         }, 
-        
+
 		aoClicarVoltar: function () {
             this._navegar(rotaListaDePecas);
 		},
