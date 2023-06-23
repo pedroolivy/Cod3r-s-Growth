@@ -9,23 +9,31 @@ sap.ui.define([
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
+			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-			var idPeca = oEvent.getParameter("arguments").id
-			fetch(`${api}/${idPeca}`)
-            	.then(response => response.json())
-            	.then(json => {
-                	var oModel = new JSONModel(json);
-                	this.getView().setModel(oModel, modeloPeca);
-        	})
+			let idPeca = oEvent.getParameter("arguments").id;
+			this._carregarPeca(idPeca);
         },
+		
+		_carregarPeca: function(idPeca){
+			fetch(`${api}/${idPeca}`)
+				.then(response => response.json())
+				.then(json => {
+					var oModel = new JSONModel(json);
+					this.getView().setModel(oModel, modeloPeca);
+			})
+		},
+		
+		_navegar: function(rota){
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rota);
+		},
 
 		aoClicarVoltar: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rotaListaDePecas, {}, true);
+			this._navegar(rotaListaDePecas);
 		}
 	});
 });

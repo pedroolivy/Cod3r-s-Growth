@@ -5,7 +5,7 @@
 	xmlns="sap.m"
     xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form">
-    <Page title="{i18n>TituloDeDetalhe}" showNavButton="true" navButtonPress=".aoClicarVoltar">
+    <Page title="{i18n>TituloDeDetalhe}" showNavButton="true" navButtonPress=".aoClicarVoltar" titleAlignment="Center">
         <headerContent>
             <Button text="{i18n>BotaoEditar}" icon="sap-icon://edit" width="auto" type="Accept"/>
             <Button text="{i18n>BotaoRemover}" icon="sap-icon://delete" width="auto" type="Reject"/>
@@ -29,13 +29,13 @@
                 columnsM="1"
                 singleContainerFullSize="false">
                 <f:content>
-                    <Label text="Nome" />
+                    <Label text="{i18n>CampoNome}" />
                     <Text text="{peca>/nome}" />
-                    <Label text="Descrição" />
+                    <Label text="{i18n>CampoDescricao}" />
                     <Text text="{peca>/descricao}" />
-                    <Label text="Categoria" />
+                    <Label text="{i18n>CampoCategoria}" />
                     <Text text="{peca>/categoria}" />
-                    <Label text="Data de Fabricação" />
+                    <Label text="{i18n>CampoDataDeFabricacao}" />
                     <Text text="{
                         path: 'peca>/dataDeFabricacao',
                         type: 'sap.ui.model.type.Date',
@@ -46,7 +46,7 @@
                             }
                         }
                     }" />
-                    <Label text="Estoque" />
+                    <Label text="{i18n>CampoEstoque}" />
                     <Text text="{peca>/estoque}" />
                 </f:content>
             </f:SimpleForm>
