@@ -1,0 +1,32 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+    controllerName="PedroAutoPecas.controller.Cadastro">
+    <Page 
+        showHeader="true" 
+        enableScrolling="true" 
+        showNavButton="true"
+        navButtonPress=".aoClicarVoltar" 
+        title="{i18n>TituloCadastro}" 
+        titleAlignment="Center">
+        <headerContent>
+            <Button text="{i18n>botaoSalvar}" icon="sap-icon://add" width="auto" type="Accept" press=".aoClicarSalvar"/>
+            <Button text="{i18n>botaoCancelar}" icon="sap-icon://decline" width="auto" type="Reject" press="aoClicarCancelar"/>
+        </headerContent>
+        <VBox class="sapUiSmallMargin">
+            <l:VerticalLayout class="sapUiContentPadding" width="50%">
+                <Label text="{i18n>CampoNome}" />
+                <Input value="{pecas>/nome}"/>
+                <Label text="{i18n>CampoDescricao}" />
+                <Input value="{pecas>/descricao}"/>
+                <Label text="{i18n>CampoCategoria}" />
+                <Input value="{pecas>/categoria}"/>
+                <Label text="{i18n>CampoDataDeFabricacao}"/>
+                <DatePicker placeholder="Dia/Mês/Ano" value="{pecas>/dataDeFabricacao}" valueFormat="yyyy-MM-ddTHH:mm:ss"/>
+                <Label text="{i18n>CampoEstoque}" />
+                <Input value="{pecas>/estoque}"/>
+            </l:VerticalLayout>
+        </VBox>
+    </Page>
+</mvc:View>

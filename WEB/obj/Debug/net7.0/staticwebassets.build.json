@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yiGrk6cRcibCceiulqarKm8+u6xtNyGisnwt+usCOQQ=",
+  "Hash": "lujw05d1yFVqkjfpz44YPeHDQvUAihG4EJuTEJRxB/A=",
   "Source": "WEB",
   "BasePath": "_content/WEB",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Cadastro.controller.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "controller/Cadastro.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\Cadastro.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Detalhe.controller.js",
@@ -151,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Cadastro.view.xml",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "view/Cadastro.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\Cadastro.view.xml"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Detalhe.view.xml",

@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\controller\\App.controller.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Cadastro.controller.js",
+      "PackagePath": "staticwebassets\\controller\\Cadastro.controller.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Detalhe.controller.js",
       "PackagePath": "staticwebassets\\controller\\Detalhe.controller.js"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\App.view.xml",
       "PackagePath": "staticwebassets\\view\\App.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Cadastro.view.xml",
+      "PackagePath": "staticwebassets\\view\\Cadastro.view.xml"
     },
     {
       "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Detalhe.view.xml",
