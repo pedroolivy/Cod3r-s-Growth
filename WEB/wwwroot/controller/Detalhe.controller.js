@@ -27,13 +27,13 @@ sap.ui.define([
 			})
 		},
 		
-		_aoNavegar: function(rota){
+		_navegar: function(rota){
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rota);
 		},
 
 		aoClicarVoltar: function () {
-			this._aoNavegar(rotaListaDePecas);
+			this._navegar(rotaListaDePecas);
 		}
 	});
 });

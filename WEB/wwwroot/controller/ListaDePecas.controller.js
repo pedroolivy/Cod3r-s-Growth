@@ -29,18 +29,18 @@ sap.ui.define([
 			})
 		},
 
-		_aoNavegar: function(rota, id){
+		_navegar: function(rota, id){
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rota, {id});
 		},
 		
 		aoClicarAdicionar: function () {
-			this._aoNavegar(rotaCadastro);
+			this._navegar(rotaCadastro);
 		},
 
 		aoClicarNaLinha: function (oEvent) {
 			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			this._aoNavegar(rotaDetalhe, idPeca);
+			this._navegar(rotaDetalhe, idPeca);
 		},
 
 		aoClicarProcurarPeca : function (peca) {
