@@ -5,8 +5,9 @@
         public static string ValidarCampos(Peca peca)
         {
             const int valorMinimoPeca = 1;
+            var dataMinimaValidaSql = new DateTime(1754, 07, 02, 22, 59, 59);
 
-            if(string.IsNullOrEmpty(peca.Nome))
+            if (string.IsNullOrEmpty(peca.Nome))
             {
                 return "campo Nome vazio!";
             }
@@ -28,7 +29,12 @@
 
             else if (peca.DataDeFabricacao > DateTime.Now)
             {
-                return "Data maior do que a data atual!";
+                return "Data maior que data atual!";
+            }
+
+            else if (peca.DataDeFabricacao < dataMinimaValidaSql )
+            {
+                return "Data ultrapassada!";
             }
 
             return string.Empty;
