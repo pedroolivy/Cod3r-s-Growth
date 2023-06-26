@@ -18,30 +18,30 @@
             <l:VerticalLayout class="sapUiContentPadding" width="50%">
                 <Label text="{i18n>CampoNome}" />
                 <Input 
+                    id="nome"
                     value="{pecas>/nome}" 
-                    placeholder="Nome de Peça"
-                    valueStateText="Campo nome não pode estar vazio!"/>
+                    placeholder="Nome de Peça"/>
                 <Label text="{i18n>CampoDescricao}" />
-                <Input 
+                <Input
+                    id="descricao" 
                     value="{pecas>/descricao}" 
-                    placeholder="Tipo de Peça"
-                    valueStateText="Campo descrição não pode estar vazio!"/>
+                    placeholder="Tipo de Peça"/>
                 <Label text="{i18n>CampoCategoria}" />
-                <Input 
+                <Input
+                    id="categoria" 
                     value="{pecas>/categoria}" 
-                    placeholder="Categoria de Peça"
-                    valueStateText="Campo categoria não pode estar vazio!"/>
+                    placeholder="Categoria de Peça"/>
                 <Label text="{i18n>CampoDataDeFabricacao}"/>
-                <DatePicker 
+                <DatePicker
+                    id="data" 
                     value="{pecas>/dataDeFabricacao}" 
                     valueFormat="yyyy-MM-ddTHH:mm:ss" 
-                    placeholder="Dia/Mês/Ano"
-                    valueStateText="Preencha campo data de fabricação corretamente!"/>
+                    placeholder="Dia/Mês/Ano"/>
                 <Label text="{i18n>CampoEstoque}" />
-                <Input 
+                <Input
+                    id="estoque" 
                     value="{pecas>/estoque}" 
-                    placeholder="Quantidade de Peça"
-                    valueStateText="Campo estoque sem valor!"/>
+                    placeholder="Quantidade de Peça"/>
             </l:VerticalLayout>
         </VBox>
     </Page>

@@ -1,8 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "../abobrinha/Chuchuzinho"
-], function (Controller, JSONModel, Chuchuzinho) {
+    "../services/Validacao"
+], function (Controller, JSONModel, Validacao) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -48,8 +48,16 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
-            Chuchuzinho.abacate();
-            console.log(Chuchuzinho.abacate());
+            let inputNome= this.getView().byId("nome");
+            let inputDescricao= this.getView().byId("descricao");
+            let inputCategoria= this.getView().byId("categoria");
+            let inputData= this.getView().byId("data");
+            let inputEstoque= this.getView().byId("estoque");
+            Validacao.validaNome(inputNome);
+            Validacao.validaDescricao(inputDescricao);
+            Validacao.validaCategoria(inputCategoria);
+            Validacao.validaData(inputData);
+            Validacao.validaEstoque(inputEstoque);
             this._salvarPeca(peca);
         }, 
 
