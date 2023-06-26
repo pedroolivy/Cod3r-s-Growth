@@ -47,18 +47,21 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
+            debugger
             let peca = this.getView().getModel(modeloPeca).getData();
             let inputNome= this.getView().byId("nome");
             let inputDescricao= this.getView().byId("descricao");
             let inputCategoria= this.getView().byId("categoria");
             let inputData= this.getView().byId("data");
             let inputEstoque= this.getView().byId("estoque");
-            Validacao.validaNome(inputNome);
-            Validacao.validaDescricao(inputDescricao);
-            Validacao.validaCategoria(inputCategoria);
-            Validacao.validaData(inputData);
-            Validacao.validaEstoque(inputEstoque);
-            this._salvarPeca(peca);
+            let valNom = Validacao.validaNome(inputNome);
+            let valDes = Validacao.validaDescricao(inputDescricao);
+            let valCat = Validacao.validaCategoria(inputCategoria);
+            let valDat = Validacao.validaData(inputData);
+            let valEst = Validacao.validaEstoque(inputEstoque);
+            if(valNom != "" && valDes != "" && valCat != "" && valDat != "" && valEst != ""){
+                this._salvarPeca(peca);
+            }
         },
 
         aoMudarCampoEstoque: function(){

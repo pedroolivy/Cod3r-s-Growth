@@ -1,6 +1,7 @@
 sap.ui.define([
 
 ], function () {
+  debugger
     return {
       validaNome: function (inputNome) {
         let valorDoCampoNome = inputNome.getValue();
@@ -36,9 +37,9 @@ sap.ui.define([
         let valorDoCampo = inputEstoque.getValue();
         if (valorDoCampo < 1) {
           inputEstoque.setValueState(sap.ui.core.ValueState.Error);
-          return inputEstoque.setValueStateText("O valor não pode ser menor que 0");
+          inputEstoque.setValueStateText("O valor não pode ser menor que 0");
         }
-        return inputEstoque.setValue(valorDoCampo.replaceAll(/[^\d]/g, ""));
+        inputEstoque.setValue(valorDoCampo.replaceAll(/[^\d]/g, ""));
       },
     };  
   });
