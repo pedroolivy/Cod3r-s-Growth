@@ -59,7 +59,11 @@ sap.ui.define([
             Validacao.validaData(inputData);
             Validacao.validaEstoque(inputEstoque);
             this._salvarPeca(peca);
-        }, 
+        },
+
+        aoMudarCampoEstoque: function(){
+            Validacao.validaEstoque(this.getView().byId("estoque"));
+        },
 
 		aoClicarVoltar: function () {
             this._navegar(rotaListaDePecas);

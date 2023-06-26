@@ -8,6 +8,7 @@ sap.ui.define([
           inputNome.setValueState(sap.ui.core.ValueState.Error);
           inputNome.setValueStateText("Por favor preencha o campo do nome");
         }
+
       },
 
       validaDescricao: function (inputDescricao) {
@@ -33,14 +34,12 @@ sap.ui.define([
 
       validaEstoque: function (inputEstoque) {
         let valorDoCampo = inputEstoque.getValue();
-        if(valorDoCampo == ""){
+        if (valorDoCampo < 1) {
           inputEstoque.setValueState(sap.ui.core.ValueState.Error);
-          inputEstoque.setValueStateText("Por favor preencha o campo estoque");
+          return inputEstoque.setValueStateText("O valor não pode ser menor que 0");
         }
-      }
-
-      
-
-    };
+        return inputEstoque.setValue(valorDoCampo.replaceAll(/[^\d]/g, ""));
+      },
+    };  
   });
   

@@ -41,7 +41,8 @@
                 <Input
                     id="estoque" 
                     value="{pecas>/estoque}" 
-                    placeholder="Quantidade de Peça"/>
+                    placeholder="Quantidade de Peça"
+                    liveChange="aoMudarCampoEstoque"/>
             </l:VerticalLayout>
         </VBox>
     </Page>
