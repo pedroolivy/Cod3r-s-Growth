@@ -44,8 +44,17 @@ sap.ui.define([
       },
 
       validaData: function (inputData) {
-        let valorCampo = inputData.getValue();
-        return true;
+        let valorCampo = inputData.getFullYear();
+        console.log(valorCampo)
+        if(!valorCampo || valorCampo >= Date.now()){
+          inputData.setValueState(sap.ui.core.ValueState.Error);
+          inputData.setValueStateText("Por favor preencha o campo Data");
+          return false;
+        } 
+        else{
+          inputData.setValueState(sap.ui.core.ValueState.None);
+          return true;
+        }
       },
 
       validaEstoque: function (inputEstoque) {
