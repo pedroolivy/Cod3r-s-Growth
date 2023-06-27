@@ -30,7 +30,8 @@
                 <Input
                     id="categoria" 
                     value="{pecas>/categoria}" 
-                    placeholder="Categoria de Peça"/>
+                    placeholder="Categoria de Peça"
+                    liveChange="aoMudarCampoCategoria"/>
                 <Label text="{i18n>CampoDataDeFabricacao}"/>
                 <DatePicker
                     id="data" 

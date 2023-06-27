@@ -47,7 +47,6 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
-            debugger
             let peca = this.getView().getModel(modeloPeca).getData();
             let inputNome= this.getView().byId("nome");
             let inputDescricao= this.getView().byId("descricao");
@@ -59,12 +58,16 @@ sap.ui.define([
             let valCat = Validacao.validaCategoria(inputCategoria);
             let valDat = Validacao.validaData(inputData);
             let valEst = Validacao.validaEstoque(inputEstoque);
-            if(valNom != "" && valDes != "" && valCat != "" && valDat != "" && valEst != ""){
+            if(valNom && valDes && valCat && valDat && valEst){
                 this._salvarPeca(peca);
             }
         },
 
-        aoMudarCampoEstoque: function(){
+        aoMudarCampoCategoria: function() {
+            Validacao.validaCategoria(this.getView().byId("categoria"));
+        },
+
+        aoMudarCampoEstoque: function() {
             Validacao.validaEstoque(this.getView().byId("estoque"));
         },
 
