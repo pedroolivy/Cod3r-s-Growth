@@ -53,12 +53,12 @@ sap.ui.define([
             let inputCategoria= this.getView().byId("categoria");
             let inputData= this.getView().byId("data");
             let inputEstoque= this.getView().byId("estoque");
-            let valNom = Validacao.validaNome(inputNome);
-            let valDes = Validacao.validaDescricao(inputDescricao);
-            let valCat = Validacao.validaCategoria(inputCategoria);
-            let valDat = Validacao.validaData(inputData);
-            let valEst = Validacao.validaEstoque(inputEstoque);
-            if(valNom && valDes && valCat && valDat && valEst){
+            let valorNome = Validacao.validaNome(inputNome);
+            let valorDescricao = Validacao.validaDescricao(inputDescricao);
+            let valorCategoria = Validacao.validaCategoria(inputCategoria);
+            let valorData = Validacao.validaData(inputData);
+            let valorEstoque = Validacao.validaEstoque(inputEstoque);
+            if(valorNome && valorDescricao && valorCategoria && valorData && valorEstoque){
                 this._salvarPeca(peca);
             }
         },

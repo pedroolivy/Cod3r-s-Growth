@@ -30,7 +30,6 @@ sap.ui.define([
       },
 
       validaCategoria: function (inputCategoria){
-        debugger
         let valorDoCampo = inputCategoria.getValue();
         inputCategoria.setValue(valorDoCampo.replaceAll(/[^\D]/g, ""));
         if(!valorDoCampo){
@@ -50,13 +49,12 @@ sap.ui.define([
       },
 
       validaEstoque: function (inputEstoque) {
-        debugger
         let ValorMinimo = 1;
         let valorDoCampo = inputEstoque.getValue();
         inputEstoque.setValue(valorDoCampo.replaceAll(/[^\d]/g, ""));
         if (!valorDoCampo || valorDoCampo < ValorMinimo) {
           inputEstoque.setValueState(sap.ui.core.ValueState.Error);
-          inputEstoque.setValueStateText("Estoque tem de ser maior que 0");
+          inputEstoque.setValueStateText("Por favor preencha o campo Estoque");
           return false;
         }
         else{
