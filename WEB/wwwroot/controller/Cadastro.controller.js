@@ -26,6 +26,13 @@ sap.ui.define([
                 estoque: stringVazia
             }
 
+            //Coloca um data maxima ao executar Cadastro(Data atual no caso)
+            let dataMaxima = new Date();
+            this.byId("data").setMaxDate(dataMaxima);
+            //Coloca um data maxima ao executar Cadastro(Data atual no caso)
+            let dataMinima = new Date("1755-01-01T12:00:00.000Z");
+            this.byId("data").setMinDate(dataMinima);
+
             this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 

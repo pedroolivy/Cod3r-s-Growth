@@ -28,7 +28,6 @@
                     placeholder="Tipo de Peça"/>
                 <Label text="{i18n>CampoCategoria}" />
                 <Input
-                    type="Text"
                     id="categoria" 
                     value="{pecas>/categoria}" 
                     placeholder="Categoria de Peça"
@@ -37,11 +36,11 @@
                 <DatePicker
                     id="data" 
                     value="{pecas>/dataDeFabricacao}" 
-                    valueFormat="yyyy-MM-ddTHH:mm:ss" 
+                    valueFormat="yyyy-MM-ddTHH:mm:ss"
+                    displayFormat="dd/MM/yyyy"
                     placeholder="Dia/Mês/Ano"/>
                 <Label text="{i18n>CampoEstoque}" />
                 <Input
-                    type="Number"
                     id="estoque" 
                     value="{pecas>/estoque}" 
                     placeholder="Quantidade de Peça"
