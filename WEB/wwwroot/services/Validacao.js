@@ -46,7 +46,6 @@ sap.ui.define([
       },
 
       validaData: function (inputData) {
-        debugger;
         let valorCampo = inputData.getValue();
 
         const dataValida = inputData.isValidValue();
@@ -59,7 +58,7 @@ sap.ui.define([
         
         if(!dataValida){
           inputData.setValueState(sap.ui.core.ValueState.Error);
-          inputData.setValueStateText("Data ultrapassa data atual !");
+          inputData.setValueStateText("Data incorreta !");
           return false;
         }
 

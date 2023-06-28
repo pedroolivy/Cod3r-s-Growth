@@ -25,15 +25,17 @@ sap.ui.define([
                 dataDeFabricacao: stringVazia,
                 estoque: stringVazia
             }
+            
+            this. _comparaData();
+            this.getView().setModel(new JSONModel(peca), modeloPeca);
+        },
 
-            //Coloca um data maxima ao executar Cadastro(Data atual no caso)
+        _comparaData:  function(){
             let dataMaxima = new Date();
             this.byId("data").setMaxDate(dataMaxima);
-            //Coloca um data maxima ao executar Cadastro(Data atual no caso)
+
             let dataMinima = new Date("1755-01-01T12:00:00.000Z");
             this.byId("data").setMinDate(dataMinima);
-
-            this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
         _salvarPeca: function (peca) {
