@@ -3,21 +3,10 @@ sap.ui.define([
 ], function () {
     return {
       validaNome: function (inputNome) {
-        let valorDoCampoNome = inputNome.getValue();
-        
-        if (!valorDoCampoNome){  
-          inputNome.setValueState(sap.ui.core.ValueState.Error);
-          inputNome.setValueStateText("Por favor preencha o campo do nome");
-          return false;
-        }
-        else{     
-          inputNome.setValueState(sap.ui.core.ValueState.None);   
-          return true;
-        }
+        return !!inputNome;
       },
 
       validaDescricao: function (inputDescricao) {
-        let valorDoCampo = inputDescricao.getValue();
 
         if(!valorDoCampo) {
           inputDescricao.setValueState(sap.ui.core.ValueState.Error);
@@ -31,8 +20,8 @@ sap.ui.define([
       },
 
       validaCategoria: function (inputCategoria){
-        let valorDoCampo = inputCategoria.getValue();
-        inputCategoria.setValue(valorDoCampo.replaceAll(/[^\D]/g, "").substring(0, 19));
+        const regexLetras = /[\d]/g;
+        inputCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
 
         if(!valorDoCampo){
           inputCategoria.setValueState(sap.ui.core.ValueState.Error);
@@ -46,8 +35,6 @@ sap.ui.define([
       },
 
       validaData: function (inputData) {
-        let valorCampo = inputData.getValue();
-
         const dataValida = inputData.isValidValue();
 
         if(!valorCampo){
@@ -69,7 +56,6 @@ sap.ui.define([
       validaEstoque: function (inputEstoque) {
         let ValorMinimo = 1;
         let valorMaximo = 10000;
-        let valorDoCampo = inputEstoque.getValue();
         inputEstoque.setValue(valorDoCampo.replaceAll(/[^\d]/g, ""));
 
         if (!valorDoCampo || valorDoCampo < ValorMinimo || valorDoCampo > valorMaximo) {
@@ -81,6 +67,14 @@ sap.ui.define([
           inputEstoque.setValueState(sap.ui.core.ValueState.None);
           return true;
         }
+      },
+
+      ehCamposValidos: function (peca){
+        return (this.validaNome(peca.nome) 
+        && this.validaDescricao(peca.descricao)
+        && this.validaCategoria(peca.categoria)
+        && this.validaData(peca.data)
+        && this.validaEstoque(peca.estoque));
       }
     };  
   });

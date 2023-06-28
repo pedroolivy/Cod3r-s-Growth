@@ -16,6 +16,8 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function () {
+            this._atualizaPagina();
+            
             const stringVazia = "";
 
             let peca = {
@@ -25,9 +27,18 @@ sap.ui.define([
                 dataDeFabricacao: stringVazia,
                 estoque: stringVazia
             }
-            
-            this. _comparaData();
+
+            this._comparaData();
+
             this.getView().setModel(new JSONModel(peca), modeloPeca);
+        },
+
+        _atualizaPagina: function(){
+            this.byId("nome").setValueState("None");
+            this.byId("descricao").setValueState("None");
+            this.byId("categoria").setValueState("None");
+            this.byId("data").setValueState("None");
+            this.byId("estoque").setValueState("None");
         },
 
         _comparaData:  function(){
@@ -57,19 +68,35 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
-            let inputNome= this.getView().byId("nome");
-            let inputDescricao= this.getView().byId("descricao");
-            let inputCategoria= this.getView().byId("categoria");
-            let inputData= this.getView().byId("data");
-            let inputEstoque= this.getView().byId("estoque");
-            let valorNome = Validacao.validaNome(inputNome);
-            let valorDescricao = Validacao.validaDescricao(inputDescricao);
-            let valorCategoria = Validacao.validaCategoria(inputCategoria);
-            let valorData = Validacao.validaData(inputData);
-            let valorEstoque = Validacao.validaEstoque(inputEstoque);
-            if(valorNome && valorDescricao && valorCategoria && valorData && valorEstoque){
+            //validar campos 
+            this.validarCampos(peca);
+            //definir erros
+
+            //salvar peça
+            if(Validacao.ehCamposValidos(peca)){
                 this._salvarPeca(peca);
             }
+        },
+
+        validarCampos(peca){
+            const idCampoNome = "nome";
+            if(Validacao.validaNome(peca.nome)){
+                this.resetarInput(idCampoNome);
+            }else{
+                const mensagemErro = "Por favor preencha o campo do nome";
+                this.definirInputErro(idCampoNome, mensagemErro)
+            }
+        },
+
+        resetarInput: function(idCampo){
+            let input = this.getView().byId(idCampo);
+            input.setValueState(sap.ui.core.ValueState.None);
+        },
+
+        definirInputErro: function(idCampo, mensagemErro){
+            let input = this.getView().byId(idCampo);
+            input.setValueState(sap.ui.core.ValueState.Error);
+            input.setValueStateText(mensagemErro);
         },
 
         aoMudarCampoCategoria: function() {
