@@ -17,20 +17,8 @@ sap.ui.define([
 
 		_aoCoincidirRota: function () {
             this._atualizaPagina();
-            
-            const stringVazia = "";
-
-            let peca = {
-                nome: stringVazia,
-                descricao: stringVazia,
-                categoria: stringVazia,
-                dataDeFabricacao: stringVazia,
-                estoque: stringVazia
-            }
-
+            this._iniciaCamposPeca();
             this._comparaData();
-
-            this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
         _atualizaPagina: function(){
@@ -41,11 +29,22 @@ sap.ui.define([
             this.byId("estoque").setValueState("None");
         },
 
+        _iniciaCamposPeca: function () {
+            const stringVazia = "";
+            let peca = {
+                nome: stringVazia,
+                descricao: stringVazia,
+                categoria: stringVazia,
+                dataDeFabricacao: stringVazia,
+                estoque: stringVazia
+            }
+            this.getView().setModel(new JSONModel(peca), modeloPeca);
+        },
+
         _comparaData:  function(){
             let dataMaxima = new Date();
+            const dataMinima = new Date("1755-01-01T12:00:00.000Z");
             this.byId("data").setMaxDate(dataMaxima);
-
-            let dataMinima = new Date("1755-01-01T12:00:00.000Z");
             this.byId("data").setMinDate(dataMinima);
         },
 
@@ -61,33 +60,86 @@ sap.ui.define([
             .then(data => this._navegar(rotaDetalhe, data.id))
         },
 
-        _navegar: function(rota, id){
-            let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo(rota, {id});
-        },
-
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
-            //validar campos 
             this.validarCampos(peca);
-            //definir erros
-
-            //salvar peça
             if(Validacao.ehCamposValidos(peca)){
                 this._salvarPeca(peca);
             }
-        },
+        }, 
 
-        validarCampos(peca){
+        validarCampos: function(peca){
+            debugger
             const idCampoNome = "nome";
+            const idCampoDescricao = "descricao";
+            const idCampoCategoria = "categoria";
+            const idCampoData = "data";
+            const idCampoEstoque = "estoque";
+
             if(Validacao.validaNome(peca.nome)){
                 this.resetarInput(idCampoNome);
-            }else{
+            } else{
                 const mensagemErro = "Por favor preencha o campo do nome";
                 this.definirInputErro(idCampoNome, mensagemErro)
             }
+            if(Validacao.validaDescricao(peca.descricao)){
+                this.resetarInput(idCampoDescricao);
+            } else{
+                const mensagemErro = "Por favor preencha o campo do nome";
+                this.definirInputErro(idCampoDescricao, mensagemErro)
+            }
+            if(Validacao.validaCategoria(peca.categoria)){
+                this.resetarInput(idCampoCategoria);
+            } else{
+                const mensagemErro = "Por favor preencha o campo categoria";
+                this.definirInputErro(idCampoCategoria, mensagemErro)
+            }
+            if(Validacao.validaEstoque(peca.estoque)){
+                debugger
+                this.resetarInput(idCampoEstoque);
+            } else{
+                debugger
+                const mensagemErro = "Por favor preencha o campo do nome";
+                this.definirInputErro(idCampoEstoque, mensagemErro)
+            }
+            if(Validacao.validaData(peca.dataDeFabricacao)){
+                this.resetarInput(idCampoData);
+            } else{
+                const mensagemErro = "Por favor preencha o campo do nome";
+                this.definirInputErro(idCampoData, mensagemErro)
+            }
+            
+            
         },
 
+        formatarCategoria: function(campoCategoria){
+            const regexLetras = /[^\D]/g;
+            let valorDoCampo = campoCategoria.getValue();
+            campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
+        },
+
+        formatarEstoque: function(campoEstoque){
+            const regexLetras = /[^\d]/g;
+            let valorDoCampo = campoEstoque.getValue();
+            campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
+        },
+
+        aoMudarCampoCategoria: function() {
+            let campoCategoria = this.getView().byId("categoria");
+            this.formatarCategoria(campoCategoria);
+            debugger
+            Validacao.validaCategoria(campoCategoria);
+        },
+
+        aoMudarCampoEstoque: function() {
+            let campoEstoque = this.getView().byId("estoque");
+            this.formatarEstoque(campoEstoque);
+            debugger
+            console.log(campoEstoque)
+            console.log(campoEstoque.getValue())
+            Validacao.validaEstoque(campoEstoque.getValue());
+        },
+        
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);
             input.setValueState(sap.ui.core.ValueState.None);
@@ -95,24 +147,22 @@ sap.ui.define([
 
         definirInputErro: function(idCampo, mensagemErro){
             let input = this.getView().byId(idCampo);
+            
             input.setValueState(sap.ui.core.ValueState.Error);
             input.setValueStateText(mensagemErro);
         },
-
-        aoMudarCampoCategoria: function() {
-            Validacao.validaCategoria(this.getView().byId("categoria"));
-        },
-
-        aoMudarCampoEstoque: function() {
-            Validacao.validaEstoque(this.getView().byId("estoque"));
-        },
-
+        
 		aoClicarVoltar: function () {
             this._navegar(rotaListaDePecas);
 		},
 
         aoClicarCancelar: function () {
 			this._navegar(rotaListaDePecas);
-		}
+		},
+
+        _navegar: function(rota, id){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo(rota, {id});
+        }
 	});
 });
