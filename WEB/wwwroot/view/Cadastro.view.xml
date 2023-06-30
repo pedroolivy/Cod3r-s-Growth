@@ -38,8 +38,7 @@
                     value="{pecas>/dataDeFabricacao}" 
                     valueFormat="yyyy-MM-ddTHH:mm:ss"
                     displayFormat="dd/MM/yyyy"
-                    placeholder="Dia/Mês/Ano"
-                    liveChange="aoMudarCampoData"/>
+                    placeholder="Dia/Mês/Ano"/>
                 <Label text="{i18n>CampoEstoque}" required="true"/>
                 <Input
                     id="estoque" 

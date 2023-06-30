@@ -64,7 +64,7 @@ sap.ui.define([
             let peca = this.getView().getModel(modeloPeca).getData();
 
             this.validarCampos(peca);
-
+            debugger
             if(Validacao.ehCamposValidos(peca)){
                 this._salvarPeca(peca);
             }
@@ -75,7 +75,7 @@ sap.ui.define([
             const idCampoDescricao = "descricao";
             const idCampoCategoria = "categoria";
             const idCampoData = "data";
-            const rotaData = this.getView().byId("data")
+            const rotaData = this.getView().byId("data");
             const idCampoEstoque = "estoque";
 
 
@@ -97,18 +97,17 @@ sap.ui.define([
                 const mensagemErro = "Por favor preencha o campo categoria";
                 this.definirInputErro(idCampoCategoria, mensagemErro)
             }
-            if(Validacao.validaEstoque(peca.estoque)){
-                this.resetarInput(idCampoEstoque);
-            } else{
-                const mensagemErro = "Por favor preencha o campo do estoque corretamente";
-                this.definirInputErro(idCampoEstoque, mensagemErro)
-            }
-            debugger
             if(Validacao.validaData(peca.dataDeFabricacao, rotaData)){
                 this.resetarInput(idCampoData);
             } else{
                 const mensagemErro = "Por favor preencha o campo do data corretamente";
                 this.definirInputErro(idCampoData, mensagemErro)
+            }
+            if(Validacao.validaEstoque(peca.estoque)){
+                this.resetarInput(idCampoEstoque);
+            } else{
+                const mensagemErro = "Por favor preencha o campo do estoque corretamente";
+                this.definirInputErro(idCampoEstoque, mensagemErro)
             }
         },
 
