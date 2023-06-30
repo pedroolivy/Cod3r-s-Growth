@@ -16,12 +16,12 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function () {
-            this._atualizaPagina();
-            this._iniciaCamposPeca();
-            this.comparaData();
+            this.setarValorPadraoInputs();
+            this.setarModeloPeca();
+            this.valorIntervaloData();
         },
 
-        _atualizaPagina: function(){
+        setarValorPadraoInputs: function(){
             this.byId("nome").setValueState("None");
             this.byId("descricao").setValueState("None");
             this.byId("categoria").setValueState("None");
@@ -29,7 +29,7 @@ sap.ui.define([
             this.byId("estoque").setValueState("None");
         },
 
-        _iniciaCamposPeca: function () {
+        setarModeloPeca: function () {
             const stringVazia = "";
             let peca = {
                 nome: stringVazia,
@@ -41,7 +41,7 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
-        comparaData:  function(){
+        valorIntervaloData:  function(){
             let dataMaxima = new Date();
             const dataMinima = new Date("1755-01-01T12:00:00.000Z");
             this.byId("data").setMaxDate(dataMaxima);
