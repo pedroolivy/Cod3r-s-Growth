@@ -12,34 +12,41 @@ sap.ui.define([
       },
 
       validaCategoria: function (inputCategoria){
-        debugger
         return !!inputCategoria;
       },
 
-      validaData: function (inputData) {
-        const dataValida = inputData.isValidValue();
+      validaData: function (inputData, roraData) {
+        debugger
 
-        if(!valorCampo){
-          inputData.setValueState(sap.ui.core.ValueState.Error);
-          inputData.setValueStateText("Por favor preencha o campo data corretamente");
-          return false;
+        const dataValida = roraData.isValidValue();
+        console.log(dataValida)
+        if(!inputData){
+          console.log(!!inputData)
+          return !!inputData;
         } 
-        
-        if(!dataValida){
-          inputData.setValueState(sap.ui.core.ValueState.Error);
-          inputData.setValueStateText("Data incorreta !");
-          return false;
-        }
 
-        inputData.setValueState(sap.ui.core.ValueState.None);
+        if(!dataValida){
+          console.log(dataValida)
+          return dataValida;
+        }
         return true;
       },
 
       validaEstoque: function (inputEstoque) {
-        return !!inputEstoque
+        debugger
+        let valorinputEstoque = parseInt(inputEstoque);
+        const valorMinimo =  1;
+        const valorMaximo = 10000;
+        if(valorinputEstoque >= valorMinimo && valorinputEstoque <= valorMaximo){
+          return !!inputEstoque;
+        } else{
+          return false;
+        }
+          
       },
 
       ehCamposValidos: function (peca){
+        console.log(peca)
         return (this.validaNome(peca.nome) 
         && this.validaDescricao(peca.descricao)
         && this.validaCategoria(peca.categoria)
