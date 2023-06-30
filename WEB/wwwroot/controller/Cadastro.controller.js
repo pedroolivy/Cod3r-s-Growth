@@ -62,10 +62,11 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
+            const rotaData = this.getView().byId("data");
 
             this.validarCampos(peca);
-            debugger
-            if(Validacao.ehCamposValidos(peca)){
+            
+            if(Validacao.ehCamposValidos(peca, rotaData)){
                 this._salvarPeca(peca);
             }
         }, 
