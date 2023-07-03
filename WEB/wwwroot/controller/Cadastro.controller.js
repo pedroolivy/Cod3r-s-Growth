@@ -18,7 +18,7 @@ sap.ui.define([
 		_aoCoincidirRota: function () {
             this.setarValorPadraoInputs();
             this.setarModeloPeca();
-            this.valorIntervaloData();
+            this.setarIntervaloData();
         },
 
         setarValorPadraoInputs: function(){
@@ -41,7 +41,7 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(peca), modeloPeca);
         },
 
-        valorIntervaloData:  function(){
+        setarIntervaloData:  function(){
             let dataMaxima = new Date();
             const dataMinima = new Date("1755-01-01T12:00:00.000Z");
             this.byId("data").setMaxDate(dataMaxima);
@@ -62,11 +62,11 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             let peca = this.getView().getModel(modeloPeca).getData();
-            const rotaData = this.getView().byId("data");
-
+            const elementoData = this.getView().byId("data");
+            
             this.validarCampos(peca);
             
-            if(Validacao.ehCamposValidos(peca, rotaData)){
+            if(Validacao.ehCamposValidos(peca, elementoData)){
                 this._salvarPeca(peca);
             }
         }, 
@@ -76,7 +76,7 @@ sap.ui.define([
             const idCampoDescricao = "descricao";
             const idCampoCategoria = "categoria";
             const idCampoData = "data";
-            const rotaData = this.getView().byId("data");
+            const elementoData = this.getView().byId("data");
             const idCampoEstoque = "estoque";
 
 
@@ -98,7 +98,7 @@ sap.ui.define([
                 const mensagemErro = "Por favor preencha o campo categoria";
                 this.definirInputErro(idCampoCategoria, mensagemErro)
             }
-            if(Validacao.validaData(peca.dataDeFabricacao, rotaData)){
+            if(Validacao.validaData(peca.dataDeFabricacao, elementoData)){
                 this.resetarInput(idCampoData);
             } else{
                 const mensagemErro = "Por favor preencha o campo do data corretamente";

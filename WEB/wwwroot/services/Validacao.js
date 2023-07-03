@@ -14,10 +14,8 @@ sap.ui.define([
         return !!inputCategoria;
       },
 
-      validaData: function (inputData, rotaData) {
-        debugger
-        const dataValida = rotaData.isValidValue();
-        console.log(rotaData.isValidValue())
+      validaData: function (inputData, elementoData) {
+        const dataValida = elementoData.isValidValue();
         if(!inputData){
           return !!inputData;
         } 
@@ -39,12 +37,11 @@ sap.ui.define([
         }
       },
 
-      ehCamposValidos: function (peca, rotaData){
-        debugger;
+      ehCamposValidos: function (peca, elementoData){
         return (this.validaNome(peca.nome) 
         && this.validaDescricao(peca.descricao)
         && this.validaCategoria(peca.categoria)
-        && this.validaData(peca.dataDeFabricacao, rotaData)
+        && this.validaData(peca.dataDeFabricacao, elementoData)
         && this.validaEstoque(peca.estoque));
       }
     };  
