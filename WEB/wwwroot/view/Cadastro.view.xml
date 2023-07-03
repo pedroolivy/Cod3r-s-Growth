@@ -34,7 +34,7 @@
                     liveChange="aoMudarCampoCategoria"/>
                 <Label text="{i18n>CampoDataDeFabricacao}" required="true"/>
                 <DatePicker
-                    id="data" 
+                    id="dataDeFabricacao" 
                     value="{pecas>/dataDeFabricacao}" 
                     valueFormat="yyyy-MM-ddTHH:mm:ss"
                     displayFormat="dd/MM/yyyy"

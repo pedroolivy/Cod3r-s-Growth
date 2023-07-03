@@ -14,15 +14,9 @@ sap.ui.define([
         return !!inputCategoria;
       },
 
-      validaData: function (inputData, elementoData) {
-        const dataValida = elementoData.isValidValue();
-        if(!inputData){
-          return !!inputData;
-        } 
-        if(!dataValida){
-          return dataValida;
-        }
-        return true;
+      validaData: function (elementoData) {
+        const valorCampo = elementoData.getValue()
+        return (this.existeValor(valorCampo) && elementoData.isValidValue());
       },
 
       validaEstoque: function (inputEstoque) {
@@ -37,11 +31,15 @@ sap.ui.define([
         }
       },
 
+      existeValor(valor){
+        return !!valor;
+      },
+
       ehCamposValidos: function (peca, elementoData){
         return (this.validaNome(peca.nome) 
         && this.validaDescricao(peca.descricao)
         && this.validaCategoria(peca.categoria)
-        && this.validaData(peca.dataDeFabricacao, elementoData)
+        && this.validaData(elementoData)
         && this.validaEstoque(peca.estoque));
       }
     };  
