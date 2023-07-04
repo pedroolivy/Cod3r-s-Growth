@@ -15,7 +15,9 @@ sap.ui.define([
 
 		_aoCoincidirRota: function (oEvent) {
 			let idPeca = oEvent.getParameter("arguments").id;
-			this._carregarPeca(idPeca);
+			
+			if(idPeca)
+				this._carregarPeca(idPeca);
         },
 		
 		_carregarPeca: function(idPeca){

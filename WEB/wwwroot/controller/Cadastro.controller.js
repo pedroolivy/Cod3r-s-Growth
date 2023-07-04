@@ -10,7 +10,7 @@ sap.ui.define([
     const modeloPeca = "pecas";
     const idDataFabricacao = "dataDeFabricacao";
     const idEstoque = "estoque";
-    const idCategoria = "categoria"
+    const idCategoria = "categoria";
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
@@ -48,6 +48,7 @@ sap.ui.define([
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
+
             Object.keys(peca).forEach(prop => {
                 this.byId(prop).setValueState("None");
             })
@@ -57,10 +58,10 @@ sap.ui.define([
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
-            const campoData = this.getView().byId(idDataFabricacao);
-
+                
             this.validarCampos(peca);
-            
+                
+            const campoData = this.getView().byId(idDataFabricacao);
             if(Validacao.ehCamposValidos(peca, campoData)){
                 this._salvarPeca(peca);
             }
@@ -69,21 +70,20 @@ sap.ui.define([
         validarCampos: function(peca){
             Object.keys(peca).forEach(prop => {
                 const inputData = this.getView().byId(idDataFabricacao);
+                let ehValido = false;
 
                 if(prop == idDataFabricacao){
-                    Validacao.validaData(inputData)
-                        ? this.resetarInput(prop) 
-                        : this.definirInputErro(prop);
+                    ehValido = Validacao.validaData(inputData)
                 }
                 else if(prop == idEstoque){
-                    Validacao.validaEstoque(peca[prop])
-                        ? this.resetarInput(prop) 
-                        : this.definirInputErro(prop);
+                    ehValido = Validacao.validaEstoque(peca[prop])
                 }else {
-                    Validacao.existeValor(peca[prop])
-                        ?this.resetarInput(prop) 
-                        :this.definirInputErro(prop);
+                    ehValido = Validacao.existeValor(peca[prop])
                 }
+
+                ehValido
+                    ? this.resetarInput(prop) 
+                    : this.definirInputErro(prop);
             });
         },
 

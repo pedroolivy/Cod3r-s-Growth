@@ -15,7 +15,7 @@ sap.ui.define([
         let valorinputEstoque = parseInt(inputEstoque);
         const valorMinimo =  1;
         const valorMaximo = 10000;
-        return (this.existeValor(inputEstoque) && valorinputEstoque >= valorMinimo && valorinputEstoque <= valorMaximo)
+        return (this.existeValor(inputEstoque) && ((valorinputEstoque >= valorMinimo) && (valorinputEstoque <= valorMaximo)))
       },
       
       ehCamposValidos: function (peca, elementoData){
