@@ -77,15 +77,15 @@ sap.ui.define([
         validarCampos: function(peca){
             Object.keys(peca).forEach(prop => {
                 const inputData = this.getView().byId("dataDeFabricacao");
-                /*if(prop == "estoque"){
-                    if(Validacao.validaEstoque(peca.estoque)){
+                if(prop == "dataDeFabricacao"){
+                    if(Validacao.validaData(inputData)){
                         this.resetarInput(prop);
                     } else{
                         this.definirInputErro(prop)
                     }
-                }*/
-                if(prop == "dataDeFabricacao"){
-                    if(Validacao.validaData(inputData)){
+                }
+                else if(prop == "estoque"){
+                    if(Validacao.validaEstoque(peca[prop])){
                         this.resetarInput(prop);
                     } else{
                         this.definirInputErro(prop)
@@ -99,32 +99,27 @@ sap.ui.define([
             });
         },
 
-        definirErro(){
-            const mensagemErro = "Por favor preencha o campo do nome";
-            this.definirInputErro(idCampoNome, mensagemErro)
-        },
-
         formatarCategoria: function(campoCategoria){
             const regexLetras = /[^\D]/g;
             let valorDoCampo = campoCategoria.getValue();
             campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
         },
 
-        /*formatarEstoque: function(campoEstoque){
+        formatarEstoque: function(campoEstoque){
             const regexLetras = /[^\d]/g;
             let valorDoCampo = campoEstoque.getValue();
             campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
-        },*/
+        },
 
         aoMudarCampoCategoria: function() {
             let campoCategoria = this.getView().byId("categoria");
             this.formatarCategoria(campoCategoria);
         },
 
-       /* aoMudarCampoEstoque: function() {
+        aoMudarCampoEstoque: function() {
             let campoEstoque = this.getView().byId("estoque");
             this.formatarEstoque(campoEstoque);
-        },*/
+        },
         
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);

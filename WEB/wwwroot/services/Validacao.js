@@ -3,7 +3,6 @@ sap.ui.define([
 ], function () {
     return {
       existeValor(valor){
-        debugger
         return !!valor;
       },
 
@@ -12,13 +11,12 @@ sap.ui.define([
         return (this.existeValor(valorCampo) && elementoData.isValidValue());
       },
 
-      /*validaEstoque: function (inputEstoque) {
-        debugger
+      validaEstoque: function (inputEstoque) {
         let valorinputEstoque = parseInt(inputEstoque);
         const valorMinimo =  1;
         const valorMaximo = 10000;
         return (this.existeValor(inputEstoque) && valorinputEstoque >= valorMinimo && valorinputEstoque <= valorMaximo)
-      },*/
+      },
       
       ehCamposValidos: function (peca, elementoData){
         return (this.existeValor(peca) 
