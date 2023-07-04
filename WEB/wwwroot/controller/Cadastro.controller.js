@@ -79,11 +79,10 @@ sap.ui.define([
                     Validacao.validaEstoque(peca[prop])
                         ? this.resetarInput(prop) 
                         : this.definirInputErro(prop);
-                }
-                else if(Validacao.existeValor(peca[prop])){
-                    this.resetarInput(prop);
-                } else{
-                    this.definirInputErro(prop)
+                }else {
+                    Validacao.existeValor(peca[prop])
+                        ?this.resetarInput(prop) 
+                        :this.definirInputErro(prop);
                 }
             });
         },
