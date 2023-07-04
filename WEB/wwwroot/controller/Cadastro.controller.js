@@ -65,10 +65,8 @@ sap.ui.define([
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
-            
             const idCampoData = "dataDeFabricacao";
             const campoData = this.getView().byId(idCampoData);
-            
             this.validarCampos(peca);
             
             if(Validacao.ehCamposValidos(peca, campoData)){
@@ -79,12 +77,18 @@ sap.ui.define([
         validarCampos: function(peca){
             Object.keys(peca).forEach(prop => {
                 const inputData = this.getView().byId("dataDeFabricacao");
-                console.log(inputData);
-                if(prop == "dataDeFabricacao"){
-                    if(!Validacao.validaData(inputData)){
-                        this.definirInputErro(prop)
-                    } else{
+                /*if(prop == "estoque"){
+                    if(Validacao.validaEstoque(peca.estoque)){
                         this.resetarInput(prop);
+                    } else{
+                        this.definirInputErro(prop)
+                    }
+                }*/
+                if(prop == "dataDeFabricacao"){
+                    if(Validacao.validaData(inputData)){
+                        this.resetarInput(prop);
+                    } else{
+                        this.definirInputErro(prop)
                     }
                 }
                 else if(Validacao.existeValor(peca[prop])){
@@ -106,23 +110,21 @@ sap.ui.define([
             campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
         },
 
-        formatarEstoque: function(campoEstoque){
+        /*formatarEstoque: function(campoEstoque){
             const regexLetras = /[^\d]/g;
             let valorDoCampo = campoEstoque.getValue();
             campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
-        },
+        },*/
 
         aoMudarCampoCategoria: function() {
             let campoCategoria = this.getView().byId("categoria");
             this.formatarCategoria(campoCategoria);
-            Validacao.validaCategoria(campoCategoria);
         },
 
-        aoMudarCampoEstoque: function() {
+       /* aoMudarCampoEstoque: function() {
             let campoEstoque = this.getView().byId("estoque");
             this.formatarEstoque(campoEstoque);
-            Validacao.validaEstoque(campoEstoque.getValue());
-        },
+        },*/
         
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);

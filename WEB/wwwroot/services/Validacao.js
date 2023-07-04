@@ -2,16 +2,9 @@ sap.ui.define([
 
 ], function () {
     return {
-      validaNome: function (inputNome) {
-        return !!inputNome;
-      },
-
-      validaDescricao: function (inputDescricao) {
-        return !!inputDescricao;  
-      },
-
-      validaCategoria: function (inputCategoria){
-        return !!inputCategoria;
+      existeValor(valor){
+        debugger
+        return !!valor;
       },
 
       validaData: function (elementoData) {
@@ -19,26 +12,16 @@ sap.ui.define([
         return (this.existeValor(valorCampo) && elementoData.isValidValue());
       },
 
-      validaEstoque: function (inputEstoque) {
+      /*validaEstoque: function (inputEstoque) {
+        debugger
         let valorinputEstoque = parseInt(inputEstoque);
         const valorMinimo =  1;
         const valorMaximo = 10000;
-
-        if(valorinputEstoque >= valorMinimo && valorinputEstoque <= valorMaximo){
-          return !!inputEstoque;
-        } else{
-          return false;
-        }
-      },
-
-      existeValor(valor){
-        return !!valor;
-      },
-
+        return (this.existeValor(inputEstoque) && valorinputEstoque >= valorMinimo && valorinputEstoque <= valorMaximo)
+      },*/
+      
       ehCamposValidos: function (peca, elementoData){
-        return (this.validaNome(peca.nome) 
-        && this.validaDescricao(peca.descricao)
-        && this.validaCategoria(peca.categoria)
+        return (this.existeValor(peca) 
         && this.validaData(elementoData)
         && this.validaEstoque(peca.estoque));
       }
