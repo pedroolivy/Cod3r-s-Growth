@@ -16,16 +16,35 @@
         </headerContent>
         <VBox class="sapUiSmallMargin">
             <l:VerticalLayout class="sapUiContentPadding" width="50%">
-                <Label text="{i18n>CampoNome}" />
-                <Input value="{pecas>/nome}"/>
-                <Label text="{i18n>CampoDescricao}" />
-                <Input value="{pecas>/descricao}"/>
-                <Label text="{i18n>CampoCategoria}" />
-                <Input value="{pecas>/categoria}"/>
-                <Label text="{i18n>CampoDataDeFabricacao}"/>
-                <DatePicker placeholder="Dia/Mês/Ano" value="{pecas>/dataDeFabricacao}" valueFormat="yyyy-MM-ddTHH:mm:ss"/>
-                <Label text="{i18n>CampoEstoque}" />
-                <Input value="{pecas>/estoque}"/>
+                <Label text="{i18n>CampoNome}" required="true" />
+                <Input 
+                    id="nome"
+                    value="{pecas>/nome}" 
+                    placeholder="Nome de Peça"/>
+                <Label text="{i18n>CampoDescricao}" required="true"/>
+                <Input
+                    id="descricao" 
+                    value="{pecas>/descricao}" 
+                    placeholder="Tipo de Peça"/>
+                <Label text="{i18n>CampoCategoria}" required="true"/>
+                <Input
+                    id="categoria" 
+                    value="{pecas>/categoria}" 
+                    placeholder="Categoria de Peça"
+                    liveChange="aoMudarCampoCategoria"/>
+                <Label text="{i18n>CampoDataDeFabricacao}" required="true"/>
+                <DatePicker
+                    id="dataDeFabricacao" 
+                    value="{pecas>/dataDeFabricacao}" 
+                    valueFormat="yyyy-MM-ddTHH:mm:ss"
+                    displayFormat="dd/MM/yyyy"
+                    placeholder="Dia/Mês/Ano"/>
+                <Label text="{i18n>CampoEstoque}" required="true"/>
+                <Input
+                    id="estoque" 
+                    value="{pecas>/estoque}" 
+                    placeholder="Quantidade de Peça"
+                    liveChange="aoMudarCampoEstoque"/>
             </l:VerticalLayout>
         </VBox>
     </Page>

@@ -1,22 +1,31 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "../services/Validacao"
+], function (Controller, JSONModel, Validacao) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
     const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
+    const idDataFabricacao = "dataDeFabricacao";
+    const idEstoque = "estoque";
+    const idCategoria = "categoria";
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
-        
-		_aoCoincidirRota: function () {
-            const stringVazia = "";
 
+		_aoCoincidirRota: function () {
+            this.setarModeloPeca();
+            this.setarIntervaloData();
+            this.setarValorPadraoInputs();
+        },
+
+        setarModeloPeca: function () {
+            const stringVazia = "";
             let peca = {
                 nome: stringVazia,
                 descricao: stringVazia,
@@ -24,8 +33,58 @@ sap.ui.define([
                 dataDeFabricacao: stringVazia,
                 estoque: stringVazia
             }
-
             this.getView().setModel(new JSONModel(peca), modeloPeca);
+        },
+
+        setarIntervaloData:  function(){
+            const dataMinimaValida = "1755-01-01T12:00:00.000Z"; 
+            const dataMaxima = new Date();
+            const dataMinima = new Date(dataMinimaValida);
+            this.byId(idDataFabricacao).setMaxDate(dataMaxima);
+            this.byId(idDataFabricacao).setMinDate(dataMinima);
+        },
+
+        setarValorPadraoInputs: function(){
+            const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+
+            Object.keys(peca).forEach(prop => {
+                this.byId(prop).setValueState("None");
+            })
+        },
+
+        aoClicarSalvar: function () {
+            const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+                
+            this.validarCampos(peca);
+                
+            const campoData = this.getView().byId(idDataFabricacao);
+            if(Validacao.ehCamposValidos(peca, campoData)){
+                this._salvarPeca(peca);
+            }
+        }, 
+
+        validarCampos: function(peca){
+            Object.keys(peca).forEach(prop => {
+                const inputData = this.getView().byId(idDataFabricacao);
+                let ehValido = false;
+
+                if(prop == idDataFabricacao){
+                    ehValido = Validacao.validaData(inputData)
+                }
+                else if(prop == idEstoque){
+                    ehValido = Validacao.validaEstoque(peca[prop])
+                }else {
+                    ehValido = Validacao.existeValor(peca[prop])
+                }
+
+                ehValido
+                    ? this.resetarInput(prop) 
+                    : this.definirInputErro(prop);
+            });
         },
 
         _salvarPeca: function (peca) {
@@ -37,18 +96,42 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(data => this._navegar(rotaDetalhe, data.id))
+            .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
         },
 
-        _navegar: function(rota, id){
-            let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo(rota, {id});
+        formatarCategoria: function(campoCategoria){
+            const regexLetras = /[^\D]/g;
+            let valorDoCampo = campoCategoria.getValue();
+            campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
         },
 
-        aoClicarSalvar: function () {
-            let peca = this.getView().getModel(modeloPeca).getData();
-            this._salvarPeca(peca);
-        }, 
+        formatarEstoque: function(campoEstoque){
+            const regexLetras = /[^\d]/g;
+            let valorDoCampo = campoEstoque.getValue();
+            campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
+        },
+
+        aoMudarCampoCategoria: function() {
+            let campoCategoria = this.getView().byId(idCategoria);
+            this.formatarCategoria(campoCategoria);
+        },
+
+        aoMudarCampoEstoque: function() {
+            let campoEstoque = this.getView().byId(idEstoque);
+            this.formatarEstoque(campoEstoque);
+        },
+        
+        resetarInput: function(idCampo){
+            let input = this.getView().byId(idCampo);
+            input.setValueState(sap.ui.core.ValueState.None);
+        },
+
+        definirInputErro: function(idCampo){
+            const mensagemErro = `Por favor preecha o campo`;
+            let input = this.getView().byId(idCampo);
+            input.setValueState(sap.ui.core.ValueState.Error);
+            input.setValueStateText(mensagemErro);
+        },
         
 		aoClicarVoltar: function () {
             this._navegar(rotaListaDePecas);
@@ -56,6 +139,11 @@ sap.ui.define([
 
         aoClicarCancelar: function () {
 			this._navegar(rotaListaDePecas);
-		}
+		},
+
+        _navegar: function(rota, id){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo(rota, {id});
+        }
 	});
 });
