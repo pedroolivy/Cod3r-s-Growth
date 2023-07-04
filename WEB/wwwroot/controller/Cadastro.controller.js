@@ -8,6 +8,9 @@ sap.ui.define([
     const rotaDetalhe = "detalhe";
     const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
+    const idDataFabricacao = "dataDeFabricacao";
+    const idEstoque = "estoque";
+    const idCategoria = "categoria"
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
@@ -19,13 +22,6 @@ sap.ui.define([
             this.setarModeloPeca();
             this.setarIntervaloData();
             this.setarValorPadraoInputs();
-        },
-
-        setarValorPadraoInputs: function(){
-            let peca = this.getView().getModel(modeloPeca).getData();
-            Object.keys(peca).forEach(prop => {
-                this.byId(prop).setValueState("None");
-            })
         },
 
         setarModeloPeca: function () {
@@ -41,12 +37,55 @@ sap.ui.define([
         },
 
         setarIntervaloData:  function(){
-            const idDataFabricacao = "dataDeFabricacao"; 
             const dataMinimaValida = "1755-01-01T12:00:00.000Z"; 
             const dataMaxima = new Date();
             const dataMinima = new Date(dataMinimaValida);
             this.byId(idDataFabricacao).setMaxDate(dataMaxima);
             this.byId(idDataFabricacao).setMinDate(dataMinima);
+        },
+
+        setarValorPadraoInputs: function(){
+            const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+            Object.keys(peca).forEach(prop => {
+                this.byId(prop).setValueState("None");
+            })
+        },
+
+        aoClicarSalvar: function () {
+            const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+            const campoData = this.getView().byId(idDataFabricacao);
+
+            this.validarCampos(peca);
+            
+            if(Validacao.ehCamposValidos(peca, campoData)){
+                this._salvarPeca(peca);
+            }
+        }, 
+
+        validarCampos: function(peca){
+            Object.keys(peca).forEach(prop => {
+                const inputData = this.getView().byId(idDataFabricacao);
+
+                if(prop == idDataFabricacao){
+                    Validacao.validaData(inputData)
+                        ? this.resetarInput(prop) 
+                        : this.definirInputErro(prop);
+                }
+                else if(prop == idEstoque){
+                    Validacao.validaEstoque(peca[prop])
+                        ? this.resetarInput(prop) 
+                        : this.definirInputErro(prop);
+                }
+                else if(Validacao.existeValor(peca[prop])){
+                    this.resetarInput(prop);
+                } else{
+                    this.definirInputErro(prop)
+                }
+            });
         },
 
         _salvarPeca: function (peca) {
@@ -59,44 +98,6 @@ sap.ui.define([
             })
             .then(response => response.json())
             .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
-        },
-
-        aoClicarSalvar: function () {
-            const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-            const idCampoData = "dataDeFabricacao";
-            const campoData = this.getView().byId(idCampoData);
-            this.validarCampos(peca);
-            
-            if(Validacao.ehCamposValidos(peca, campoData)){
-                this._salvarPeca(peca);
-            }
-        }, 
-
-        validarCampos: function(peca){
-            Object.keys(peca).forEach(prop => {
-                const inputData = this.getView().byId("dataDeFabricacao");
-                if(prop == "dataDeFabricacao"){
-                    if(Validacao.validaData(inputData)){
-                        this.resetarInput(prop);
-                    } else{
-                        this.definirInputErro(prop)
-                    }
-                }
-                else if(prop == "estoque"){
-                    if(Validacao.validaEstoque(peca[prop])){
-                        this.resetarInput(prop);
-                    } else{
-                        this.definirInputErro(prop)
-                    }
-                }
-                else if(Validacao.existeValor(peca[prop])){
-                    this.resetarInput(prop);
-                } else{
-                    this.definirInputErro(prop)
-                }
-            });
         },
 
         formatarCategoria: function(campoCategoria){
@@ -112,12 +113,12 @@ sap.ui.define([
         },
 
         aoMudarCampoCategoria: function() {
-            let campoCategoria = this.getView().byId("categoria");
+            let campoCategoria = this.getView().byId(idCategoria);
             this.formatarCategoria(campoCategoria);
         },
 
         aoMudarCampoEstoque: function() {
-            let campoEstoque = this.getView().byId("estoque");
+            let campoEstoque = this.getView().byId(idEstoque);
             this.formatarEstoque(campoEstoque);
         },
         
