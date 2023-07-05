@@ -6,6 +6,7 @@ sap.ui.define([
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
+	const rotaEdicao = "edicao";
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
@@ -15,7 +16,6 @@ sap.ui.define([
 
 		_aoCoincidirRota: function (oEvent) {
 			let idPeca = oEvent.getParameter("arguments").id;
-			
 			if(idPeca)
 				this._carregarPeca(idPeca);
         },
@@ -29,13 +29,19 @@ sap.ui.define([
 			})
 		},
 		
-		_navegar: function(rota){
+		_navegar: function(rota, id){
 			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rota);
+			oRouter.navTo(rota, {id});
 		},
 
 		aoClicarVoltar: function () {
 			this._navegar(rotaListaDePecas);
+		},
+
+		aoClicarEditar:  function () {
+			let idPeca = this.getView().getModel(modeloPeca).getData().id
+			console.log(idPeca);
+			this._navegar(rotaEdicao, idPeca);
 		}
 	});
 });

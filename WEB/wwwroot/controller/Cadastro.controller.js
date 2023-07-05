@@ -6,6 +6,7 @@ sap.ui.define([
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
+    const rotaEdicao = "edicao";
     const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
     const idDataFabricacao = "dataDeFabricacao";
@@ -16,13 +17,32 @@ sap.ui.define([
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
+            oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
-		_aoCoincidirRota: function () {
-            this.setarModeloPeca();
-            this.setarIntervaloData();
-            this.setarValorPadraoInputs();
+		_aoCoincidirRota: function (oEvent) {
+            let idPeca = oEvent.getParameter("arguments").id;
+
+            if(idPeca){
+                this._carregarPeca(idPeca);
+                this.setarIntervaloData();
+                this.byId("titulo").setTitle("Edição");
+            } else{
+                this.setarModeloPeca();
+                this.setarIntervaloData();
+                this.setarValorPadraoInputs();
+                this.byId("titulo").setTitle("Cadastro");
+            }          
         },
+        
+        _carregarPeca: function(idPeca){
+			fetch(`${api}/${idPeca}`)
+				.then(response => response.json())
+				.then(json => {
+					var oModel = new JSONModel(json);
+					this.getView().setModel(oModel, modeloPeca);
+			})
+		},
 
         setarModeloPeca: function () {
             const stringVazia = "";
@@ -62,6 +82,7 @@ sap.ui.define([
             this.validarCampos(peca);
                 
             const campoData = this.getView().byId(idDataFabricacao);
+            
             if(Validacao.ehCamposValidos(peca, campoData)){
                 this._salvarPeca(peca);
             }
