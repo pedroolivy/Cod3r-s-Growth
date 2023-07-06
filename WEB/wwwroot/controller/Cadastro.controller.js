@@ -16,22 +16,20 @@ sap.ui.define([
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
-            oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function (oEvent) {
             let idPeca = oEvent.getParameter("arguments").id;
+            this.setarValorPadraoInputs();
+            this.setarIntervaloData();
             
             if(idPeca){
                 this._carregarPeca(idPeca);
-                this.setarIntervaloData();
-                this.setarValorPadraoInputs();
                 this.byId("titulo").setTitle("Edição");
             } else{
                 this.setarModeloPeca();
-                this.setarIntervaloData();
-                this.setarValorPadraoInputs();
                 this.byId("titulo").setTitle("Cadastro");
             }          
         },
