@@ -93,12 +93,16 @@ sap.ui.define([
         }, 
 
         validarCampos: function(peca){
+            debugger
             Object.keys(peca).forEach(prop => {
+                debugger
                 if(prop == "id"){
                     return undefined;
                 }
+
                 const inputData = this.getView().byId(idDataFabricacao);
                 let ehValido = false;
+
                 if(prop == idDataFabricacao){
                     ehValido = Validacao.validaData(inputData)
                 }
@@ -107,13 +111,14 @@ sap.ui.define([
                 }else {
                     ehValido = Validacao.existeValor(peca[prop])
                 }
+                console.log(ehValido);
                 ehValido
                     ? this.resetarInput(prop) 
                     : this.definirInputErro(prop);
             });
         },
 
-        _salvarPeca: function (peca) {[]
+        _salvarPeca: function (peca) {
 			fetch(api, {
                 method: "POST",
                 headers: {
@@ -126,6 +131,7 @@ sap.ui.define([
         },
 
         _editarPeca: function (peca) {
+            debugger
 			fetch(`${api}/${peca.id}`, {
                 method: "PUT",
                 headers: {
