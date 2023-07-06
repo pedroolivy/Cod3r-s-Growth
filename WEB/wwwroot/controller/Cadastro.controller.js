@@ -21,7 +21,6 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-            debugger
             let idPeca = oEvent.getParameter("arguments").id;
             
             if(idPeca){
@@ -67,19 +66,16 @@ sap.ui.define([
         },
 
         setarValorPadraoInputs: function(){
-            debugger
-            const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-            debugger
-            Object.keys(peca).forEach(prop => {
-                console.log(prop)
-                this.byId(prop).setValueState("None");
+            let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
+
+            campos.forEach(res =>{
+                campodefinido = this.getView().byId(res)
+                campodefinido.setValueState("None")
+                campodefinido.setValue("")
             })
         },
 
         aoClicarSalvar: function () {
-            debugger
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
