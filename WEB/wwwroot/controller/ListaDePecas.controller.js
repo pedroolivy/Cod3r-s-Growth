@@ -45,7 +45,7 @@ sap.ui.define([
 
 		aoClicarProcurarPeca : function (peca) {
 			let aFilter = [];
-			let nomePeca = peca.getParameter("query");
+			let nomePeca = peca.getParameter("newValue");
 			if (nomePeca) {
 				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
 			}
