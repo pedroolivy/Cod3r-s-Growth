@@ -21,11 +21,13 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
+            debugger
             let idPeca = oEvent.getParameter("arguments").id;
-
+            
             if(idPeca){
                 this._carregarPeca(idPeca);
                 this.setarIntervaloData();
+                this.setarValorPadraoInputs();
                 this.byId("titulo").setTitle("Edição");
             } else{
                 this.setarModeloPeca();
@@ -65,34 +67,44 @@ sap.ui.define([
         },
 
         setarValorPadraoInputs: function(){
+            debugger
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
-
+            debugger
             Object.keys(peca).forEach(prop => {
+                console.log(prop)
                 this.byId(prop).setValueState("None");
             })
         },
 
         aoClicarSalvar: function () {
+            debugger
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
                 
             this.validarCampos(peca);
-                
+            
             const campoData = this.getView().byId(idDataFabricacao);
             
             if(Validacao.ehCamposValidos(peca, campoData)){
-                this._salvarPeca(peca);
+                if(peca.id){
+                    this._editarPeca(peca);
+                }
+                else{
+                    this._salvarPeca(peca);
+                }
             }
         }, 
 
         validarCampos: function(peca){
             Object.keys(peca).forEach(prop => {
+                if(prop == "id"){
+                    return undefined;
+                }
                 const inputData = this.getView().byId(idDataFabricacao);
                 let ehValido = false;
-
                 if(prop == idDataFabricacao){
                     ehValido = Validacao.validaData(inputData)
                 }
@@ -101,16 +113,27 @@ sap.ui.define([
                 }else {
                     ehValido = Validacao.existeValor(peca[prop])
                 }
-
                 ehValido
                     ? this.resetarInput(prop) 
                     : this.definirInputErro(prop);
             });
         },
 
-        _salvarPeca: function (peca) {
+        _salvarPeca: function (peca) {[]
 			fetch(api, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(peca)
+            })
+            .then(response => response.json())
+            .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
+        },
+
+        _editarPeca: function (peca) {
+			fetch(`${api}/${peca.id}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },

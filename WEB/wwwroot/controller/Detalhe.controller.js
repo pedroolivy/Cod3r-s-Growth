@@ -40,7 +40,6 @@ sap.ui.define([
 
 		aoClicarEditar:  function () {
 			let idPeca = this.getView().getModel(modeloPeca).getData().id
-			console.log(idPeca);
 			this._navegar(rotaEdicao, idPeca);
 		}
 	});
