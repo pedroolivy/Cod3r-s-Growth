@@ -77,6 +77,7 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
+            debugger
             const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
@@ -96,8 +97,10 @@ sap.ui.define([
             const propId = "id";
             
             Object.keys(peca).forEach(prop => {
+                debugger
+
                 if(prop == propId){
-                    return;
+                    return undefined;
                 }
 
                 const inputData = this.getView().byId(idDataFabricacao);

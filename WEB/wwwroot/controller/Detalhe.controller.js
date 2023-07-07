@@ -28,19 +28,36 @@ sap.ui.define([
 					this.getView().setModel(oModel, modeloPeca);
 			})
 		},
-		
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rota, {id});
+
+		_removePeca: function(peca){
+			fetch(`${api}/${peca.id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(peca)
+			})
+			.then(response => response.json())
+			.then(this._navegar(rotaListaDePecas))
+		},
+
+		aoClicarRemover: function(){
+			const peca = this.getView().getModel(modeloPeca).getData();
+			this._removePeca(peca);
+		},
+
+		aoClicarEditar:  function () {
+			let idPeca = this.getView().getModel(modeloPeca).getData().id
+			this._navegar(rotaEdicao, idPeca);
 		},
 
 		aoClicarVoltar: function () {
 			this._navegar(rotaListaDePecas);
 		},
 
-		aoClicarEditar:  function () {
-			let idPeca = this.getView().getModel(modeloPeca).getData().id
-			this._navegar(rotaEdicao, idPeca);
+		_navegar: function(rota, id){
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rota, {id});
 		}
 	});
 });
