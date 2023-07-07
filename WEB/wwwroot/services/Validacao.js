@@ -19,7 +19,6 @@ sap.ui.define([
       },
       
       ehCamposValidos: function (peca, elementoData){
-        debugger
         return (this.existeValor(peca.nome, peca.categoria, peca.descricao) 
         && this.validaData(elementoData)
         && this.validaEstoque(peca.estoque)); 

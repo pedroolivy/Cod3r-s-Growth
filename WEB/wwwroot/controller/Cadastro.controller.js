@@ -22,6 +22,7 @@ sap.ui.define([
 
 		_aoCoincidirRota: function (oEvent) {
             let idPeca = oEvent.getParameter("arguments").id;
+
             this.setarValorPadraoInputs();
             this.setarIntervaloData();
             
@@ -64,12 +65,14 @@ sap.ui.define([
         },
 
         setarValorPadraoInputs: function(){
+            const valorPadrao = "None";
+            const  string_vazia = "";
             let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
-
+            
             campos.forEach(res =>{
                 campodefinido = this.getView().byId(res)
-                campodefinido.setValueState("None")
-                campodefinido.setValue("")
+                campodefinido.setValueState(valorPadrao)
+                campodefinido.setValue(string_vazia)
             })
         },
 
@@ -83,21 +86,18 @@ sap.ui.define([
             const campoData = this.getView().byId(idDataFabricacao);
             
             if(Validacao.ehCamposValidos(peca, campoData)){
-                if(peca.id){
-                    this._editarPeca(peca);
-                }
-                else{
-                    this._salvarPeca(peca);
-                }
+                peca.id
+                    ?this._editarPeca(peca)
+                    :this._salvarPeca(peca);
             }
         }, 
 
         validarCampos: function(peca){
-            debugger
+            const propId = "id";
+            
             Object.keys(peca).forEach(prop => {
-                debugger
-                if(prop == "id"){
-                    return undefined;
+                if(prop == propId){
+                    return;
                 }
 
                 const inputData = this.getView().byId(idDataFabricacao);
@@ -111,7 +111,6 @@ sap.ui.define([
                 }else {
                     ehValido = Validacao.existeValor(peca[prop])
                 }
-                console.log(ehValido);
                 ehValido
                     ? this.resetarInput(prop) 
                     : this.definirInputErro(prop);
@@ -127,11 +126,10 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
+            .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
         },
 
         _editarPeca: function (peca) {
-            debugger
 			fetch(`${api}/${peca.id}`, {
                 method: "PUT",
                 headers: {
@@ -140,7 +138,7 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
+            .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
 
         formatarCategoria: function(campoCategoria){
