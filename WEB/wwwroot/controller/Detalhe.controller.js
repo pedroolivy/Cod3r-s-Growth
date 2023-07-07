@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
+], function (Controller, JSONModel, MessageBox) {
 	const rotaDetalhe = "detalhe";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";
@@ -43,7 +44,34 @@ sap.ui.define([
 
 		aoClicarRemover: function(){
 			const peca = this.getView().getModel(modeloPeca).getData();
-			this._removePeca(peca);
+
+			MessageBox.confirm("Deseja mesmo remover essa peça ?", {
+                emphasizedAction: MessageBox.Action.YES,
+                initialFocus: MessageBox.Action.NO,
+                icon: MessageBox.Icon.WARNING,
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: (acao) => {
+                    if (acao === MessageBox.Action.YES) {
+                        this._removePeca(peca)
+                        .then(res => {
+                            if (res.status == 200) {
+                                MessageBox.success("Peça removido com sucesso !", {
+                                    emphasizedAction: MessageBox.Action.OK,
+                                    actions: [MessageBox.Action.OK], onClose : (acao) => {
+                                        if (acao == MessageBox.Action.OK) {
+                                            this.aoClicarEmVoltar();
+                                        }
+                                    }
+                            	});
+                        	}else {
+								MessageBox.error("Erro ao remover a peça.", {
+								emphasizedAction: MessageBox.Action.CLOSE
+								});
+							}
+                        });
+                    }
+                }
+            });
 		},
 
 		aoClicarEditar:  function () {

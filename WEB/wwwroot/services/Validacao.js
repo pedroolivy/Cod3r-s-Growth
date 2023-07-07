@@ -31,7 +31,6 @@ sap.ui.define([
       },
       
       ehCamposValidos: function (peca, elementoData){
-        debugger
         return (this.validaNome(peca.nome)
         && this.validaCategoria(peca.categoria)
         && this.validaDescricao(peca.descricao) 
