@@ -75,6 +75,11 @@
 					"pattern": "detalhe/{id}",
 					"name": "detalhe",
 					"target": "detalhe"
+				},
+				{
+					"pattern": "edicao/{id}",
+					"name": "edicao",
+					"target": "edicao"
 				}
 			],
 			"targets": {
@@ -89,6 +94,10 @@
 				"detalhe": {
 					"id": "detalhe",
 					"name": "Detalhe"
+				},
+				"edicao": {
+					"id": "edicao",
+					"name": "Cadastro"
 				}
 			}
 		}

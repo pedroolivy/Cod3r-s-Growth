@@ -19,9 +19,9 @@ sap.ui.define([
       },
       
       ehCamposValidos: function (peca, elementoData){
-        return (this.existeValor(peca) 
+        return (this.existeValor(peca.nome, peca.categoria, peca.descricao) 
         && this.validaData(elementoData)
-        && this.validaEstoque(peca.estoque));
+        && this.validaEstoque(peca.estoque)); 
       }
     };  
   });

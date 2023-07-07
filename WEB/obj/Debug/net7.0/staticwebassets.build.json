@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X8dYTY6z5aNvSVN0boq7vEk4vcfLepcFjVdQw7zIzYo=",
+  "Hash": "l0byvGU6HXCljtsq8ijaxPJchBLvIVvx6X6FLyGpOcg=",
   "Source": "WEB",
   "BasePath": "_content/WEB",
   "Mode": "Default",
@@ -16,23 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\abobrinha\\Chuchuzinho.js",
-      "SourceId": "WEB",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
-      "BasePath": "_content/WEB",
-      "RelativePath": "abobrinha/Chuchuzinho.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\abobrinha\\Chuchuzinho.js"
-    },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\Component.js",
       "SourceId": "WEB",
@@ -168,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\Validacao.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "services/Validacao.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\services\\Validacao.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\App.view.xml",

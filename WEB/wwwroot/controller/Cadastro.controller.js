@@ -6,6 +6,7 @@ sap.ui.define([
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
+    const rotaEdicao = "edicao";
     const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
     const idDataFabricacao = "dataDeFabricacao";
@@ -15,14 +16,33 @@ sap.ui.define([
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
-		_aoCoincidirRota: function () {
-            this.setarModeloPeca();
-            this.setarIntervaloData();
+		_aoCoincidirRota: function (oEvent) {
+            let idPeca = oEvent.getParameter("arguments").id;
+
             this.setarValorPadraoInputs();
+            this.setarIntervaloData();
+            
+            if(idPeca){
+                this._carregarPeca(idPeca);
+                this.byId("titulo").setTitle("Edição");
+            } else{
+                this.setarModeloPeca();
+                this.byId("titulo").setTitle("Cadastro");
+            }          
         },
+        
+        _carregarPeca: function(idPeca){
+			fetch(`${api}/${idPeca}`)
+				.then(response => response.json())
+				.then(json => {
+					var oModel = new JSONModel(json);
+					this.getView().setModel(oModel, modeloPeca);
+			})
+		},
 
         setarModeloPeca: function () {
             const stringVazia = "";
@@ -45,12 +65,14 @@ sap.ui.define([
         },
 
         setarValorPadraoInputs: function(){
-            const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-
-            Object.keys(peca).forEach(prop => {
-                this.byId(prop).setValueState("None");
+            const valorPadrao = "None";
+            const  string_vazia = "";
+            let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
+            
+            campos.forEach(res =>{
+                campodefinido = this.getView().byId(res)
+                campodefinido.setValueState(valorPadrao)
+                campodefinido.setValue(string_vazia)
             })
         },
 
@@ -60,15 +82,24 @@ sap.ui.define([
                 .getData();
                 
             this.validarCampos(peca);
-                
+            
             const campoData = this.getView().byId(idDataFabricacao);
+            
             if(Validacao.ehCamposValidos(peca, campoData)){
-                this._salvarPeca(peca);
+                peca.id
+                    ?this._editarPeca(peca)
+                    :this._salvarPeca(peca);
             }
         }, 
 
         validarCampos: function(peca){
+            const propId = "id";
+            
             Object.keys(peca).forEach(prop => {
+                if(prop == propId){
+                    return;
+                }
+
                 const inputData = this.getView().byId(idDataFabricacao);
                 let ehValido = false;
 
@@ -80,7 +111,6 @@ sap.ui.define([
                 }else {
                     ehValido = Validacao.existeValor(peca[prop])
                 }
-
                 ehValido
                     ? this.resetarInput(prop) 
                     : this.definirInputErro(prop);
@@ -96,7 +126,19 @@ sap.ui.define([
                 body: JSON.stringify(peca)
             })
             .then(response => response.json())
-            .then(dataDeFabricacao => this._navegar(rotaDetalhe, dataDeFabricacao.id))
+            .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
+        },
+
+        _editarPeca: function (peca) {
+			fetch(`${api}/${peca.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(peca)
+            })
+            .then(response => response.json())
+            .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
 
         formatarCategoria: function(campoCategoria){
