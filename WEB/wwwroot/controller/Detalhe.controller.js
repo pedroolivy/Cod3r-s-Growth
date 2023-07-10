@@ -16,7 +16,7 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-			let idPeca = oEvent.getParameter("arguments").id;
+			const idPeca = oEvent.getParameter("arguments").id;
 
 			if(idPeca)
 				this._carregarPeca(idPeca);
@@ -32,7 +32,7 @@ sap.ui.define([
 		},
 
 		aoClicarRemover: function(){
-			let msgAviso = "Deseja mesmo remover essa peça ?";
+			const msgAviso = "Deseja mesmo remover essa peça ?";
 
 			MessageBox.confirm(msgAviso, {
                 emphasizedAction: MessageBox.Action.YES,
@@ -41,25 +41,25 @@ sap.ui.define([
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: (acao) => {
                     if (acao === MessageBox.Action.YES) 
-                        this._removePeca()
+                        this._removePeca();
                 }
             });
 		},
 
 		_removePeca: function(){
-			let msgSuceso = "Peça removido com sucesso !";
-			let msgErro = "Erro ao remover a peça.";
-			let pecaId = this.obtemIdPeca();
+			const msgSuceso = "Peça removido com sucesso !";
+			const msgErro = "Erro ao remover a peça.";
+			const pecaId = this.obterIdPeca();
 
 			fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(pecaId)
 			})
 			.then(res => {
-				if (res.status == 204) {
+				const statusNoContent = 204;
+				if (res.status == statusNoContent) {
 					MessageBox.success(msgSuceso, {
 						emphasizedAction: MessageBox.Action.OK,
 						actions: [MessageBox.Action.OK], onClose : (acao) => {
@@ -69,14 +69,14 @@ sap.ui.define([
 					});
 				}else {
 					MessageBox.error(msgErro, {
-					emphasizedAction: MessageBox.Action.CLOSE
+						emphasizedAction: MessageBox.Action.CLOSE
 					});
 				}
 			})
 		},
 
 		aoClicarEditar:  function () {
-			let idPeca = this.obtemIdPeca();
+			const idPeca = this.obterIdPeca();
 
 			this._navegar(rotaEdicao, idPeca);
 		},
@@ -91,7 +91,7 @@ sap.ui.define([
 			oRouter.navTo(rota, {id});
 		},
 
-		obtemIdPeca: function() {
+		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
 		},
 	});
