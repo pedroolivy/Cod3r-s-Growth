@@ -30,9 +30,24 @@ sap.ui.define([
 			})
 		},
 
-		_removePeca: function(){
-			let pecaId = this.getView().getModel(modeloPeca).getData().id;
+		aoClicarRemover: function(){
+			MessageBox.confirm("Deseja mesmo remover essa peça ?", {
+                emphasizedAction: MessageBox.Action.YES,
+                initialFocus: MessageBox.Action.NO,
+                icon: MessageBox.Icon.WARNING,
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: (acao) => {
+                    if (acao === MessageBox.Action.YES) {
+                        this._removePeca()
+                    }
+                }
+            });
+		},
 
+		_removePeca: function(){
+			debugger
+			let pecaId = this.obtemIdPeca();
+			console.log(pecaId);
 			fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {
@@ -58,22 +73,8 @@ sap.ui.define([
 			})
 		},
 
-		aoClicarRemover: function(){
-			MessageBox.confirm("Deseja mesmo remover essa peça ?", {
-                emphasizedAction: MessageBox.Action.YES,
-                initialFocus: MessageBox.Action.NO,
-                icon: MessageBox.Icon.WARNING,
-                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                onClose: (acao) => {
-                    if (acao === MessageBox.Action.YES) {
-                        this._removePeca()
-                    }
-                }
-            });
-		},
-
 		aoClicarEditar:  function () {
-			let idPeca = this.getView().getModel(modeloPeca).getData().id
+			let idPeca = this.obtemIdPeca();
 			this._navegar(rotaEdicao, idPeca);
 		},
 
@@ -84,6 +85,10 @@ sap.ui.define([
 		_navegar: function(rota, id){
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo(rota, {id});
-		}
+		},
+
+		obtemIdPeca: function() {
+			return this.getView().getModel(modeloPeca).getData().id
+		},
 	});
 });
