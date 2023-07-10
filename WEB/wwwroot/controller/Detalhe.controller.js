@@ -17,6 +17,7 @@ sap.ui.define([
 
 		_aoCoincidirRota: function (oEvent) {
 			let idPeca = oEvent.getParameter("arguments").id;
+
 			if(idPeca)
 				this._carregarPeca(idPeca);
         },
@@ -31,7 +32,9 @@ sap.ui.define([
 		},
 
 		aoClicarRemover: function(){
-			MessageBox.confirm("Deseja mesmo remover essa peça ?", {
+			let msgAviso = "Deseja mesmo remover essa peça ?";
+
+			MessageBox.confirm(msgAviso, {
                 emphasizedAction: MessageBox.Action.YES,
                 initialFocus: MessageBox.Action.NO,
                 icon: MessageBox.Icon.WARNING,
@@ -45,9 +48,10 @@ sap.ui.define([
 		},
 
 		_removePeca: function(){
-			debugger
+			let msgSuceso = "Peça removido com sucesso !";
+			let msgErro = "Erro ao remover a peça.";
 			let pecaId = this.obtemIdPeca();
-			console.log(pecaId);
+
 			fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {
@@ -57,7 +61,7 @@ sap.ui.define([
 			})
 			.then(res => {
 				if (res.status == 204) {
-					MessageBox.success("Peça removido com sucesso !", {
+					MessageBox.success(msgSuceso, {
 						emphasizedAction: MessageBox.Action.OK,
 						actions: [MessageBox.Action.OK], onClose : (acao) => {
 							if (acao == MessageBox.Action.OK) {
@@ -66,7 +70,7 @@ sap.ui.define([
 						}
 					});
 				}else {
-					MessageBox.error("Erro ao remover a peça.", {
+					MessageBox.error(msgErro, {
 					emphasizedAction: MessageBox.Action.CLOSE
 					});
 				}
@@ -75,6 +79,7 @@ sap.ui.define([
 
 		aoClicarEditar:  function () {
 			let idPeca = this.obtemIdPeca();
+
 			this._navegar(rotaEdicao, idPeca);
 		},
 
@@ -84,6 +89,7 @@ sap.ui.define([
 
 		_navegar: function(rota, id){
 			let oRouter = this.getOwnerComponent().getRouter();
+			
 			oRouter.navTo(rota, {id});
 		},
 
