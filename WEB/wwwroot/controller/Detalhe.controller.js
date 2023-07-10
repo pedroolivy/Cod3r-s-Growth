@@ -30,21 +30,35 @@ sap.ui.define([
 			})
 		},
 
-		_removePeca: function(peca){
-			fetch(`${api}/${peca.id}`, {
+		_removePeca: function(){
+			let pecaId = this.getView().getModel(modeloPeca).getData().id;
+
+			fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(peca)
+				body: JSON.stringify(pecaId)
 			})
-			.then(response => response.json())
-			.then(this._navegar(rotaListaDePecas))
+			.then(res => {
+				if (res.status == 204) {
+					MessageBox.success("Peça removido com sucesso !", {
+						emphasizedAction: MessageBox.Action.OK,
+						actions: [MessageBox.Action.OK], onClose : (acao) => {
+							if (acao == MessageBox.Action.OK) {
+								this._navegar(rotaListaDePecas);
+							}
+						}
+					});
+				}else {
+					MessageBox.error("Erro ao remover a peça.", {
+					emphasizedAction: MessageBox.Action.CLOSE
+					});
+				}
+			})
 		},
 
 		aoClicarRemover: function(){
-			const peca = this.getView().getModel(modeloPeca).getData();
-
 			MessageBox.confirm("Deseja mesmo remover essa peça ?", {
                 emphasizedAction: MessageBox.Action.YES,
                 initialFocus: MessageBox.Action.NO,
@@ -52,23 +66,7 @@ sap.ui.define([
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: (acao) => {
                     if (acao === MessageBox.Action.YES) {
-                        this._removePeca(peca)
-                        .then(res => {
-                            if (res.status == 200) {
-                                MessageBox.success("Peça removido com sucesso !", {
-                                    emphasizedAction: MessageBox.Action.OK,
-                                    actions: [MessageBox.Action.OK], onClose : (acao) => {
-                                        if (acao == MessageBox.Action.OK) {
-                                            this.aoClicarEmVoltar();
-                                        }
-                                    }
-                            	});
-                        	}else {
-								MessageBox.error("Erro ao remover a peça.", {
-								emphasizedAction: MessageBox.Action.CLOSE
-								});
-							}
-                        });
+                        this._removePeca()
                     }
                 }
             });

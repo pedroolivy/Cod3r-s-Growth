@@ -98,7 +98,7 @@ sap.ui.define([
             Object.keys(peca).forEach(prop => {
 
                 if(prop == propId){
-                    return undefined;
+                    return;
                 }
 
                 const inputData = this.getView().byId(idDataFabricacao);
