@@ -96,6 +96,7 @@ sap.ui.define([
             const propId = "id";
             
             Object.keys(peca).forEach(prop => {
+
                 if(prop == propId){
                     return;
                 }

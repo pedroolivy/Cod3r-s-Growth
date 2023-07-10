@@ -5,6 +5,18 @@ sap.ui.define([
       existeValor(valor){
         return !!valor;
       },
+      
+      validaNome(nome) {
+        return this.existeValor(nome)
+      },
+      
+      validaCategoria(categoria) {
+        return this.existeValor(categoria)
+      },
+
+      validaDescricao(descricao) {
+        return this.existeValor(descricao)
+      },
 
       validaData: function (elementoData) {
         const valorCampo = elementoData.getValue()
@@ -19,7 +31,9 @@ sap.ui.define([
       },
       
       ehCamposValidos: function (peca, elementoData){
-        return (this.existeValor(peca.nome, peca.categoria, peca.descricao) 
+        return (this.validaNome(peca.nome)
+        && this.validaCategoria(peca.categoria)
+        && this.validaDescricao(peca.descricao) 
         && this.validaData(elementoData)
         && this.validaEstoque(peca.estoque)); 
       }

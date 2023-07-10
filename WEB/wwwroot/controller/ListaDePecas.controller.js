@@ -7,7 +7,7 @@ sap.ui.define([
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
-	const rotaCadastro = "cadastro"
+	const rotaCadastro = "cadastro";
 	const rotaDetalhe = "detalhe";
 
 	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
