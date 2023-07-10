@@ -40,9 +40,8 @@ sap.ui.define([
                 icon: MessageBox.Icon.WARNING,
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: (acao) => {
-                    if (acao === MessageBox.Action.YES) {
+                    if (acao === MessageBox.Action.YES) 
                         this._removePeca()
-                    }
                 }
             });
 		},
@@ -64,9 +63,8 @@ sap.ui.define([
 					MessageBox.success(msgSuceso, {
 						emphasizedAction: MessageBox.Action.OK,
 						actions: [MessageBox.Action.OK], onClose : (acao) => {
-							if (acao == MessageBox.Action.OK) {
+							if (acao == MessageBox.Action.OK) 
 								this._navegar(rotaListaDePecas);
-							}
 						}
 					});
 				}else {
