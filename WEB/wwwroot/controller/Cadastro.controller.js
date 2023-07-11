@@ -115,7 +115,7 @@ sap.ui.define([
 			RepositorioPeca.Editar(api, peca)
                 .then(response => response.json())
                 .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
-        },
+        }, 
 
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);

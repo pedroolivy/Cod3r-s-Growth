@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"../services/RepositorioPeca"
-], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca) {
+	"../services/RepositorioPeca",
+	"../services/ProcessaEvento"
+], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ProcessaEvento) {
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
@@ -53,6 +54,19 @@ sap.ui.define([
 
 		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
 		},
+		
+		_processarEvento: function(action){
+            const tipoDaPromise = "catch",
+                       tipoBuscado = "function";
+            try {
+                    var promise = action();
+                    if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
+                            promise.catch(error => MessageBox.error(error.message));
+                    }
+            } catch (error) {
+                    MessageBox.error(error.message);
+            }
+        }
 
 	});
 });
