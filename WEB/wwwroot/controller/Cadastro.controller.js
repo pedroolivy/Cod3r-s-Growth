@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "../services/Validacao",
-    "../services/Formatador"
-], function (Controller, JSONModel, Validacao, Formatador) {
+    "../services/Formatacao",
+    "../services/RepositorioPeca"
+], function (Controller, JSONModel, Validacao, Formatacao, RepositorioPeca) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -40,7 +41,7 @@ sap.ui.define([
         },
         
         _carregarPeca: function(idPeca){
-			fetch(`${api}/${idPeca}`)
+			RepositorioPeca.ObterPorId(api, idPeca)
 				.then(response => response.json())
 				.then(json => {
 					var oModel = new JSONModel(json);
@@ -105,27 +106,15 @@ sap.ui.define([
         },
 
         _salvarPeca: function (peca) {
-			fetch(api, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(peca)
-            })
-            .then(response => response.json())
-            .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
+			RepositorioPeca.Adicionar(api, peca)
+                .then(response => response.json())
+                .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
         },
 
         _editarPeca: function (peca) {
-			fetch(`${api}/${peca.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(peca)
-            })
-            .then(response => response.json())
-            .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+			RepositorioPeca.Editar(api, peca)
+                .then(response => response.json())
+                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
 
         resetarInput: function(idCampo){
@@ -163,12 +152,12 @@ sap.ui.define([
 
         aoMudarCampoCategoria: function() {
             let campoCategoria = this.getView().byId(idCategoria);
-            Formatador.formatarCategoria(campoCategoria);
+            Formatacao.formatarCategoria(campoCategoria);
         },
 
         aoMudarCampoEstoque: function() {
             let campoEstoque = this.getView().byId(idEstoque);
-            Formatador.formatarEstoque(campoEstoque);
+            Formatacao.formatarEstoque(campoEstoque);
         },
         
 		aoClicarVoltar: function () {
@@ -178,7 +167,6 @@ sap.ui.define([
         aoClicarCancelar: function () {
 			this._navegar(rotaListaDePecas);
 		}
-
 
 	});
 });

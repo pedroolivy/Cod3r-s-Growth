@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, JSONModel, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"../services/RepositorioPeca"
+], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca) {
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
@@ -21,12 +22,12 @@ sap.ui.define([
 		},
 
 		_carregaPecas: function(){
-			fetch(api)
-			.then(resp => resp.json())
-			.then(data => {
-				let oModel = new JSONModel(data);
-				this.getView().setModel(oModel, modeloPeca)
-			})
+			RepositorioPeca.ObterTodos(api)
+				.then(resp => resp.json())
+				.then(data => {
+					let oModel = new JSONModel(data);
+					this.getView().setModel(oModel, modeloPeca)
+				})
 		},
 
 		_navegar: function(rota, id){

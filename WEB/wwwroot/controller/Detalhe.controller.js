@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"../services/RepositorioPeca"
+], function (Controller, JSONModel, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";
@@ -23,7 +24,7 @@ sap.ui.define([
         },
 
 		_carregarPeca: function(idPeca){
-			fetch(`${api}/${idPeca}`)
+			RepositorioPeca.ObterPorId(api, idPeca)
 				.then(response => response.json())
 				.then(json => {
 					var oModel = new JSONModel(json);
@@ -36,28 +37,23 @@ sap.ui.define([
 			const msgErro = "Erro ao remover a peça.";
 			const pecaId = this.obterIdPeca();
 
-			fetch(`${api}/${pecaId}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			})
-			.then(res => {
-				const statusNoContent = 204;
-				if (res.status == statusNoContent) {
-					MessageBox.success(msgSuceso, {
-						emphasizedAction: MessageBox.Action.OK,
-						actions: [MessageBox.Action.OK], onClose : (acao) => {
-							if (acao == MessageBox.Action.OK) 
-								this._navegar(rotaListaDePecas);
-						}
-					});
-				}else {
-					MessageBox.error(msgErro, {
-						emphasizedAction: MessageBox.Action.CLOSE
-					});
-				}
-			})
+			RepositorioPeca.Remover(api, pecaId)
+				.then(res => {
+					const statusNoContent = 204;
+					if (res.status == statusNoContent) {
+						MessageBox.success(msgSuceso, {
+							emphasizedAction: MessageBox.Action.OK,
+							actions: [MessageBox.Action.OK], onClose : (acao) => {
+								if (acao == MessageBox.Action.OK) 
+									this._navegar(rotaListaDePecas);
+							}
+						});
+					}else {
+						MessageBox.error(msgErro, {
+							emphasizedAction: MessageBox.Action.CLOSE
+						});
+					}
+				})
 		},
 
 		_navegar: function(rota, id){
