@@ -21,7 +21,7 @@ sap.ui.define([
 			if(idPeca)
 				this._carregarPeca(idPeca);
         },
-		
+
 		_carregarPeca: function(idPeca){
 			fetch(`${api}/${idPeca}`)
 				.then(response => response.json())
@@ -29,21 +29,6 @@ sap.ui.define([
 					var oModel = new JSONModel(json);
 					this.getView().setModel(oModel, modeloPeca);
 			})
-		},
-
-		aoClicarRemover: function(){
-			const msgAviso = "Deseja mesmo remover essa peça ?";
-
-			MessageBox.confirm(msgAviso, {
-                emphasizedAction: MessageBox.Action.YES,
-                initialFocus: MessageBox.Action.NO,
-                icon: MessageBox.Icon.WARNING,
-                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                onClose: (acao) => {
-                    if (acao === MessageBox.Action.YES) 
-                        this._removePeca();
-                }
-            });
 		},
 
 		_removePeca: function(){
@@ -75,6 +60,27 @@ sap.ui.define([
 			})
 		},
 
+		_navegar: function(rota, id){
+			let oRouter = this.getOwnerComponent().getRouter();
+			
+			oRouter.navTo(rota, {id});
+		},
+
+		aoClicarRemover: function(){
+			const msgAviso = "Deseja mesmo remover essa peça ?";
+
+			MessageBox.confirm(msgAviso, {
+                emphasizedAction: MessageBox.Action.YES,
+                initialFocus: MessageBox.Action.NO,
+                icon: MessageBox.Icon.WARNING,
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: (acao) => {
+                    if (acao === MessageBox.Action.YES) 
+                        this._removePeca();
+                }
+            });
+		},
+
 		aoClicarEditar:  function () {
 			const idPeca = this.obterIdPeca();
 
@@ -83,12 +89,6 @@ sap.ui.define([
 
 		aoClicarVoltar: function () {
 			this._navegar(rotaListaDePecas);
-		},
-
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			
-			oRouter.navTo(rota, {id});
 		},
 
 		obterIdPeca: function() {

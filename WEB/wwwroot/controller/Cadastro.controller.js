@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "../services/Validacao"
-], function (Controller, JSONModel, Validacao) {
+    "../services/Validacao",
+    "../services/Formatador"
+], function (Controller, JSONModel, Validacao, Formatador) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -12,6 +13,7 @@ sap.ui.define([
     const idDataFabricacao = "dataDeFabricacao";
     const idEstoque = "estoque";
     const idCategoria = "categoria";
+    const stringVazia = "";
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
@@ -21,17 +23,19 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-            let idPeca = oEvent.getParameter("arguments").id;
+            const idPeca = oEvent.getParameter("arguments").id;
 
             this.setarValorPadraoInputs();
             this.setarIntervaloData();
             
             if(idPeca){
                 this._carregarPeca(idPeca);
-                this.byId("titulo").setTitle("Edição");
+                const tituloEdicao = "Edição";
+                this.byId("titulo").setTitle(tituloEdicao);
             } else{
                 this.setarModeloPeca();
-                this.byId("titulo").setTitle("Cadastro");
+                const tituloCadastro = "Cadastro";
+                this.byId("titulo").setTitle(tituloCadastro);
             }          
         },
         
@@ -45,7 +49,6 @@ sap.ui.define([
 		},
 
         setarModeloPeca: function () {
-            const stringVazia = "";
             let peca = {
                 nome: stringVazia,
                 descricao: stringVazia,
@@ -66,31 +69,14 @@ sap.ui.define([
 
         setarValorPadraoInputs: function(){
             const valorPadrao = "None";
-            const  string_vazia = "";
             let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
             
             campos.forEach(res =>{
                 campodefinido = this.getView().byId(res)
                 campodefinido.setValueState(valorPadrao)
-                campodefinido.setValue(string_vazia)
+                campodefinido.setValue(stringVazia)
             })
         },
-
-        aoClicarSalvar: function () {
-            const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-                
-            this.validarCampos(peca);
-            
-            const campoData = this.getView().byId(idDataFabricacao);
-            
-            if(Validacao.ehCamposValidos(peca, campoData)){
-                peca.id
-                    ?this._editarPeca(peca)
-                    :this._salvarPeca(peca);
-            }
-        }, 
 
         validarCampos: function(peca){
             const propId = "id";
@@ -142,28 +128,6 @@ sap.ui.define([
             .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
 
-        formatarCategoria: function(campoCategoria){
-            const regexLetras = /[^\D]/g;
-            let valorDoCampo = campoCategoria.getValue();
-            campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
-        },
-
-        formatarEstoque: function(campoEstoque){
-            const regexLetras = /[^\d]/g;
-            let valorDoCampo = campoEstoque.getValue();
-            campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
-        },
-
-        aoMudarCampoCategoria: function() {
-            let campoCategoria = this.getView().byId(idCategoria);
-            this.formatarCategoria(campoCategoria);
-        },
-
-        aoMudarCampoEstoque: function() {
-            let campoEstoque = this.getView().byId(idEstoque);
-            this.formatarEstoque(campoEstoque);
-        },
-        
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);
             input.setValueState(sap.ui.core.ValueState.None);
@@ -175,6 +139,37 @@ sap.ui.define([
             input.setValueState(sap.ui.core.ValueState.Error);
             input.setValueStateText(mensagemErro);
         },
+
+        _navegar: function(rota, id){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo(rota, {id});
+        },
+
+        aoClicarSalvar: function () {
+            const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+                
+            this.validarCampos(peca);
+            
+            const campoData = this.getView().byId(idDataFabricacao);
+            
+            if(Validacao.ehCamposValidos(peca, campoData)){
+                peca.id
+                    ?this._editarPeca(peca)
+                    :this._salvarPeca(peca);
+            }
+        }, 
+
+        aoMudarCampoCategoria: function() {
+            let campoCategoria = this.getView().byId(idCategoria);
+            Formatador.formatarCategoria(campoCategoria);
+        },
+
+        aoMudarCampoEstoque: function() {
+            let campoEstoque = this.getView().byId(idEstoque);
+            Formatador.formatarEstoque(campoEstoque);
+        },
         
 		aoClicarVoltar: function () {
             this._navegar(rotaListaDePecas);
@@ -182,11 +177,8 @@ sap.ui.define([
 
         aoClicarCancelar: function () {
 			this._navegar(rotaListaDePecas);
-		},
+		}
 
-        _navegar: function(rota, id){
-            let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo(rota, {id});
-        }
+
 	});
 });

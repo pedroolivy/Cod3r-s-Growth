@@ -49,9 +49,9 @@ sap.ui.define([
 			if (nomePeca) {
 				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
 			}
-			let oList = this.byId("pecasDaTabela");
-			let oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-		}
+
+		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
+		},
+
 	});
 });
