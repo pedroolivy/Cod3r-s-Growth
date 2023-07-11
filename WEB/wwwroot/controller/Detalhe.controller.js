@@ -21,7 +21,7 @@ sap.ui.define([
 
 			if(idPeca)
 				this._carregarPeca(idPeca);
-        },
+        }, 
 
 		_carregarPeca: function(idPeca){
 			RepositorioPeca.ObterPorId(api, idPeca)
