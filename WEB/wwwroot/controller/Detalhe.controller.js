@@ -63,32 +63,50 @@ sap.ui.define([
 		},
 
 		aoClicarRemover: function(){
-			const msgAviso = "Deseja mesmo remover essa peça ?";
-
-			MessageBox.confirm(msgAviso, {
-                emphasizedAction: MessageBox.Action.YES,
-                initialFocus: MessageBox.Action.NO,
-                icon: MessageBox.Icon.WARNING,
-                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                onClose: (acao) => {
-                    if (acao === MessageBox.Action.YES) 
-                        this._removePeca();
-                }
-            });
+			this._processarEvento(() => {
+				const msgAviso = "Deseja mesmo remover essa peça ?";
+				MessageBox.confirm(msgAviso, {
+					emphasizedAction: MessageBox.Action.YES,
+					initialFocus: MessageBox.Action.NO,
+					icon: MessageBox.Icon.WARNING,
+					actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+					onClose: (acao) => {
+						if (acao === MessageBox.Action.YES) 
+							this._removePeca();
+					}
+				});
+			});
 		},
 
 		aoClicarEditar:  function () {
-			const idPeca = this.obterIdPeca();
-
-			this._navegar(rotaEdicao, idPeca);
+			this._processarEvento(() => {
+				const idPeca = this.obterIdPeca();
+				this._navegar(rotaEdicao, idPeca);
+			});
 		},
 
 		aoClicarVoltar: function () {
-			this._navegar(rotaListaDePecas);
+			this._processarEvento(() => {
+				this._navegar(rotaListaDePecas);
+			});
 		},
 
 		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
 		},
+
+		_processarEvento: function(action){
+			const tipoDaPromise = "catch",
+				tipoBuscado = "function";
+			try {
+				var promise = action();
+				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			} catch (error) {
+				MessageBox.error(error.message);
+			}
+		}	
+
 	});
 });

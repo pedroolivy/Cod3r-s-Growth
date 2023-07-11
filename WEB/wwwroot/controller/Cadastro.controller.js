@@ -80,28 +80,30 @@ sap.ui.define([
         },
 
         validarCampos: function(peca){
-            const propId = "id";
+            this._processarEvento(() => {
+                const propId = "id";
             
-            Object.keys(peca).forEach(prop => {
+                Object.keys(peca).forEach(prop => {
 
-                if(prop == propId){
-                    return;
-                }
+                    if(prop == propId){
+                        return;
+                    }
 
-                const inputData = this.getView().byId(idDataFabricacao);
-                let ehValido = false;
+                    const inputData = this.getView().byId(idDataFabricacao);
+                    let ehValido = false;
 
-                if(prop == idDataFabricacao){
-                    ehValido = Validacao.validaData(inputData)
-                }
-                else if(prop == idEstoque){
-                    ehValido = Validacao.validaEstoque(peca[prop])
-                }else {
-                    ehValido = Validacao.existeValor(peca[prop])
-                }
-                ehValido
-                    ? this.resetarInput(prop) 
-                    : this.definirInputErro(prop);
+                    if(prop == idDataFabricacao){
+                        ehValido = Validacao.validaData(inputData)
+                    }
+                    else if(prop == idEstoque){
+                        ehValido = Validacao.validaEstoque(peca[prop])
+                    }else {
+                        ehValido = Validacao.existeValor(peca[prop])
+                    }
+                    ehValido
+                        ? this.resetarInput(prop) 
+                        : this.definirInputErro(prop);
+                });
             });
         },
 
@@ -115,7 +117,7 @@ sap.ui.define([
 			RepositorioPeca.Editar(api, peca)
                 .then(response => response.json())
                 .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
-        }, 
+        },
 
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);
@@ -135,19 +137,21 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
-            const peca = this.getView()
+            this._processarEvento(() => {
+                const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
                 
-            this.validarCampos(peca);
-            
-            const campoData = this.getView().byId(idDataFabricacao);
-            
-            if(Validacao.ehCamposValidos(peca, campoData)){
-                peca.id
-                    ?this._editarPeca(peca)
-                    :this._salvarPeca(peca);
-            }
+                this.validarCampos(peca);
+                
+                const campoData = this.getView().byId(idDataFabricacao);
+                
+                if(Validacao.ehCamposValidos(peca, campoData)){
+                    peca.id
+                        ?this._editarPeca(peca)
+                        :this._salvarPeca(peca);
+                }
+            });
         }, 
 
         aoMudarCampoCategoria: function() {
@@ -161,11 +165,28 @@ sap.ui.define([
         },
         
 		aoClicarVoltar: function () {
-            this._navegar(rotaListaDePecas);
+            this._processarEvento(() => {
+                this._navegar(rotaListaDePecas);
+            });
 		},
 
         aoClicarCancelar: function () {
-			this._navegar(rotaListaDePecas);
+            this._processarEvento(() => {
+                this._navegar(rotaListaDePecas);
+            });
+		},
+
+        _processarEvento: function(action){
+			const tipoDaPromise = "catch",
+				tipoBuscado = "function";
+			try {
+				var promise = action();
+				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			} catch (error) {
+				MessageBox.error(error.message);
+			}
 		}
 
 	});

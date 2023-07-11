@@ -3,9 +3,8 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"../services/RepositorioPeca",
-	"../services/ProcessaEvento"
-], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ProcessaEvento) {
+	"../services/RepositorioPeca"
+], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ) {
 	const rotaListaPecas = "listaDePecas";
 	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
@@ -37,12 +36,16 @@ sap.ui.define([
 		},
 		
 		aoClicarAdicionar: function () {
-			this._navegar(rotaCadastro);
+			this._processarEvento(() => {
+				this._navegar(rotaCadastro);
+			});
 		},
 
 		aoClicarNaLinha: function (oEvent) {
-			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			this._navegar(rotaDetalhe, idPeca);
+			this._processarEvento(() => {
+				let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
+				this._navegar(rotaDetalhe, idPeca);
+			});
 		},
 
 		aoClicarProcurarPeca : function (peca) {
@@ -54,19 +57,19 @@ sap.ui.define([
 
 		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
 		},
-		
+
 		_processarEvento: function(action){
-            const tipoDaPromise = "catch",
-                       tipoBuscado = "function";
-            try {
-                    var promise = action();
-                    if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
-                            promise.catch(error => MessageBox.error(error.message));
-                    }
-            } catch (error) {
-                    MessageBox.error(error.message);
-            }
-        }
+			const tipoDaPromise = "catch",
+				tipoBuscado = "function";
+			try {
+				var promise = action();
+				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			} catch (error) {
+				MessageBox.error(error.message);
+			}
+		}	
 
 	});
 });
