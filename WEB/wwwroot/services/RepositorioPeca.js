@@ -1,15 +1,17 @@
 sap.ui.define([
 ], function () {
+    const api = "https://localhost:7028/api/Peca";
+
     return {
-        ObterTodos: function(api){
+        ObterTodos: function(){
 			return fetch(api);
 		},
 
-        ObterPorId: function (api, idPeca) {
+        ObterPorId: function (idPeca) {
             return fetch(`${api}/${idPeca}`);
         },
 
-        Adicionar: function (api, peca) {
+        Adicionar: function (peca) {
             return fetch(api, {
                 method: "POST",
                 headers: {
@@ -19,7 +21,7 @@ sap.ui.define([
             });
         },
 
-        Editar: function (api, peca) {
+        Editar: function (peca) {
             return fetch(`${api}/${peca.id}`, {
                 method: "PUT",
                 headers: {
@@ -29,7 +31,7 @@ sap.ui.define([
             })
         },
         
-        Remover: function (api, pecaId) {
+        Remover: function (pecaId) {
             return fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {

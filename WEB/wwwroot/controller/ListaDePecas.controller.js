@@ -6,7 +6,6 @@ sap.ui.define([
 	"../services/RepositorioPeca"
 ], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ) {
 	const rotaListaPecas = "listaDePecas";
-	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
 	const rotaCadastro = "cadastro";
 	const rotaDetalhe = "detalhe";
@@ -22,7 +21,7 @@ sap.ui.define([
 		},
 
 		_carregaPecas: function(){
-			RepositorioPeca.ObterTodos(api)
+			RepositorioPeca.ObterTodos()
 				.then(resp => resp.json())
 				.then(data => {
 					let oModel = new JSONModel(data);

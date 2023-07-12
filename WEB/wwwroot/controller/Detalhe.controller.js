@@ -5,7 +5,6 @@ sap.ui.define([
 	"../services/RepositorioPeca"
 ], function (Controller, JSONModel, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
-	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
 	const rotaEdicao = "edicao";
@@ -24,7 +23,7 @@ sap.ui.define([
         }, 
 
 		_carregarPeca: function(idPeca){
-			RepositorioPeca.ObterPorId(api, idPeca)
+			RepositorioPeca.ObterPorId(idPeca)
 				.then(response => response.json())
 				.then(json => {
 					var oModel = new JSONModel(json);
@@ -37,7 +36,7 @@ sap.ui.define([
 			const msgErro = "Erro ao remover a peça.";
 			const pecaId = this.obterIdPeca();
 
-			RepositorioPeca.Remover(api, pecaId)
+			RepositorioPeca.Remover(pecaId)
 				.then(res => {
 					const statusNoContent = 204;
 					if (res.status == statusNoContent) {

@@ -9,7 +9,6 @@ sap.ui.define([
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
     const rotaEdicao = "edicao";
-    const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
     const idDataFabricacao = "dataDeFabricacao";
     const idEstoque = "estoque";
@@ -41,7 +40,7 @@ sap.ui.define([
         },
         
         _carregarPeca: function(idPeca){
-			RepositorioPeca.ObterPorId(api, idPeca)
+			RepositorioPeca.ObterPorId(idPeca)
 				.then(response => response.json())
 				.then(json => {
 					var oModel = new JSONModel(json);
@@ -108,13 +107,13 @@ sap.ui.define([
         },
 
         _salvarPeca: function (peca) {
-			RepositorioPeca.Adicionar(api, peca)
+			RepositorioPeca.Adicionar(peca)
                 .then(response => response.json())
                 .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
         },
 
         _editarPeca: function (peca) {
-			RepositorioPeca.Editar(api, peca)
+			RepositorioPeca.Editar(peca)
                 .then(response => response.json())
                 .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
@@ -156,12 +155,12 @@ sap.ui.define([
 
         aoMudarCampoCategoria: function() {
             let campoCategoria = this.getView().byId(idCategoria);
-            Formatacao.formatarCategoria(campoCategoria);
+            Formatacao.formatarCategoriaSemNumeros(campoCategoria);
         },
 
         aoMudarCampoEstoque: function() {
             let campoEstoque = this.getView().byId(idEstoque);
-            Formatacao.formatarEstoque(campoEstoque);
+            Formatacao.formatarEstoqueSemLetras(campoEstoque);
         },
         
 		aoClicarVoltar: function () {
