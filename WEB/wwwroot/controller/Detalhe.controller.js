@@ -9,6 +9,7 @@ sap.ui.define([
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
 	const rotaEdicao = "edicao";
+	const rotaNotFound = "notFound"
 
 	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
@@ -24,8 +25,14 @@ sap.ui.define([
         }, 
 
 		_carregarPeca: function(idPeca){
+			const statusNotFound = 500;
+
 			RepositorioPeca.ObterPorId(idPeca)
-				.then(response => response.json())
+				.then(response => {
+					if(response.status === statusNotFound) {
+						this._navegar(rotaNotFound)
+					}
+				 return response.json()})
 				.then(json => {
 					var oModel = new JSONModel(json);
 					this.getView().setModel(oModel, modeloPeca);

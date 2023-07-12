@@ -15,6 +15,7 @@ sap.ui.define([
     const idEstoque = "estoque";
     const idCategoria = "categoria";
     const stringVazia = "";
+    const rotaNotFound = "notFound";
 
 	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
@@ -41,8 +42,14 @@ sap.ui.define([
         },
         
         _carregarPeca: function(idPeca){
+			const statusNotFound = 500;
+
 			RepositorioPeca.ObterPorId(idPeca)
-				.then(response => response.json())
+				.then(response => {
+					if(response.status === statusNotFound) {
+						this._navegar(rotaNotFound)
+					}
+				 return response.json()})
 				.then(json => {
 					var oModel = new JSONModel(json);
 					this.getView().setModel(oModel, modeloPeca);

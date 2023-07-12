@@ -58,7 +58,10 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"transition": "slide",
-            	"async": true				
+            	"async": true,
+				"bypassed":{
+                    "target":"notFound"
+                }				
 			},
 			"routes": [
 				{
@@ -80,6 +83,11 @@
 					"pattern": "edicao/{id}",
 					"name": "edicao",
 					"target": "edicao"
+				},
+				{
+					"pattern": "notFound",
+					"name": "notFound",
+					"target": "notFound"
 				}
 			],
 			"targets": {
@@ -98,6 +106,10 @@
 				"edicao": {
 					"id": "edicao",
 					"name": "Cadastro"
+				},
+				"notFound": {
+					"id": "notFound",
+					"name": "NotFound"
 				}
 			}
 		}
