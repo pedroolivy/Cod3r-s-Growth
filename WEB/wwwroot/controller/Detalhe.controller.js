@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"../services/RepositorioPeca"
-], function (Controller, JSONModel, MessageBox, RepositorioPeca) {
+	"../services/RepositorioPeca",
+	"../services/ProcessaEvento"
+], function (Controller, JSONModel, MessageBox, RepositorioPeca, ProcessaEvento) {
 	const rotaDetalhe = "detalhe";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
@@ -62,7 +63,7 @@ sap.ui.define([
 		},
 
 		aoClicarRemover: function(){
-			this._processarEvento(() => {
+			ProcessaEvento.processarEvento(() => {
 				const msgAviso = "Deseja mesmo remover essa peça ?";
 				MessageBox.confirm(msgAviso, {
 					emphasizedAction: MessageBox.Action.YES,
@@ -78,14 +79,14 @@ sap.ui.define([
 		},
 
 		aoClicarEditar:  function () {
-			this._processarEvento(() => {
+			ProcessaEvento.processarEvento(() => {
 				const idPeca = this.obterIdPeca();
 				this._navegar(rotaEdicao, idPeca);
 			});
 		},
 
 		aoClicarVoltar: function () {
-			this._processarEvento(() => {
+			ProcessaEvento.processarEvento(() => {
 				this._navegar(rotaListaDePecas);
 			});
 		},
@@ -93,19 +94,6 @@ sap.ui.define([
 		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
 		},
-
-		_processarEvento: function(action){
-			const tipoDaPromise = "catch",
-				tipoBuscado = "function";
-			try {
-				var promise = action();
-				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
-					promise.catch(error => MessageBox.error(error.message));
-				}
-			} catch (error) {
-				MessageBox.error(error.message);
-			}
-		}	
 
 	});
 });

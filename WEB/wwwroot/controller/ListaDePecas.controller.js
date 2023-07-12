@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"../services/RepositorioPeca"
-], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ) {
+	"../services/RepositorioPeca",
+	"../services/ProcessaEvento"
+], function (Controller, JSONModel, Filter, FilterOperator, RepositorioPeca, ProcessaEvento) {
 	const rotaListaPecas = "listaDePecas";
 	const modeloPeca = "pecas";
 	const rotaCadastro = "cadastro";
@@ -35,13 +36,13 @@ sap.ui.define([
 		},
 		
 		aoClicarAdicionar: function () {
-			this._processarEvento(() => {
+			ProcessaEvento.processarEvento(() => {
 				this._navegar(rotaCadastro);
 			});
 		},
 
 		aoClicarNaLinha: function (oEvent) {
-			this._processarEvento(() => {
+			ProcessaEvento.processarEvento(() => {
 				let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
 				this._navegar(rotaDetalhe, idPeca);
 			});
@@ -55,20 +56,7 @@ sap.ui.define([
 			}
 
 		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
-		},
-
-		_processarEvento: function(action){
-			const tipoDaPromise = "catch",
-				tipoBuscado = "function";
-			try {
-				var promise = action();
-				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
-					promise.catch(error => MessageBox.error(error.message));
-				}
-			} catch (error) {
-				MessageBox.error(error.message);
-			}
-		}	
+		}
 
 	});
 });

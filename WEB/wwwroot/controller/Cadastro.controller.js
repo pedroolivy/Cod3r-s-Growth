@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "../services/Validacao",
     "../services/Formatacao",
-    "../services/RepositorioPeca"
-], function (Controller, JSONModel, Validacao, Formatacao, RepositorioPeca) {
+    "../services/RepositorioPeca",
+    "../services/ProcessaEvento"
+], function (Controller, JSONModel, Validacao, Formatacao, RepositorioPeca, ProcessaEvento) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -79,7 +80,7 @@ sap.ui.define([
         },
 
         validarCampos: function(peca){
-            this._processarEvento(() => {
+            ProcessaEvento.processarEvento(() => {
                 const propId = "id";
             
                 Object.keys(peca).forEach(prop => {
@@ -136,7 +137,7 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
-            this._processarEvento(() => {
+            ProcessaEvento.processarEvento(() => {
                 const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
@@ -164,28 +165,15 @@ sap.ui.define([
         },
         
 		aoClicarVoltar: function () {
-            this._processarEvento(() => {
+            ProcessaEvento.processarEvento(() => {
                 this._navegar(rotaListaDePecas);
             });
 		},
 
         aoClicarCancelar: function () {
-            this._processarEvento(() => {
+            ProcessaEvento.processarEvento(() => {
                 this._navegar(rotaListaDePecas);
             });
-		},
-
-        _processarEvento: function(action){
-			const tipoDaPromise = "catch",
-				tipoBuscado = "function";
-			try {
-				var promise = action();
-				if(promise && typeof(promise[tipoDaPromise]) == tipoBuscado){
-					promise.catch(error => MessageBox.error(error.message));
-				}
-			} catch (error) {
-				MessageBox.error(error.message);
-			}
 		}
 
 	});
