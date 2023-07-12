@@ -1,7 +1,7 @@
 sap.ui.define([
-
-], function () {
-    return {
+      "sap/ui/core/mvc/Controller"
+    ], function (Controller) {
+      return Controller.extend("PedroAutoPecas.controller.BaseController", {
         processarEvento: function(action){
 			const tipoDaPromise = "catch",
 				tipoBuscado = "function";
@@ -13,7 +13,13 @@ sap.ui.define([
 			} catch (error) {
 				MessageBox.error(error.message);
 			}
-		}
-    };  
-  });
-  
+		},
+
+		navegar: function(rota, id){
+			let oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo(rota, {id});
+		},
+
+      });
+    }
+  );

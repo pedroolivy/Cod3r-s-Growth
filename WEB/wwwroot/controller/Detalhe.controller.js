@@ -1,17 +1,16 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"./BaseController.controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"../services/RepositorioPeca",
-	"../services/ProcessaEvento"
-], function (Controller, JSONModel, MessageBox, RepositorioPeca, ProcessaEvento) {
+	"../services/RepositorioPeca"
+], function (BaseController, JSONModel, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
 	const rotaEdicao = "edicao";
 	const rotaNotFound = "notFound"
 
-	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
+	return BaseController.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
@@ -30,7 +29,7 @@ sap.ui.define([
 			RepositorioPeca.ObterPorId(idPeca)
 				.then(response => {
 					if(response.status === statusNotFound) {
-						this._navegar(rotaNotFound)
+						this.navegar(rotaNotFound)
 					}
 				 return response.json()})
 				.then(json => {
@@ -52,7 +51,7 @@ sap.ui.define([
 							emphasizedAction: MessageBox.Action.OK,
 							actions: [MessageBox.Action.OK], onClose : (acao) => {
 								if (acao == MessageBox.Action.OK) 
-									this._navegar(rotaListaDePecas);
+									this.navegar(rotaListaDePecas);
 							}
 						});
 					}else {
@@ -63,14 +62,8 @@ sap.ui.define([
 				})
 		},
 
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			
-			oRouter.navTo(rota, {id});
-		},
-
 		aoClicarRemover: function(){
-			ProcessaEvento.processarEvento(() => {
+			this.processarEvento(() => {
 				const msgAviso = "Deseja mesmo remover essa peça ?";
 				MessageBox.confirm(msgAviso, {
 					emphasizedAction: MessageBox.Action.YES,
@@ -86,21 +79,21 @@ sap.ui.define([
 		},
 
 		aoClicarEditar:  function () {
-			ProcessaEvento.processarEvento(() => {
+			this.processarEvento(() => {
 				const idPeca = this.obterIdPeca();
-				this._navegar(rotaEdicao, idPeca);
+				this.navegar(rotaEdicao, idPeca);
 			});
 		},
 
 		aoClicarVoltar: function () {
-			ProcessaEvento.processarEvento(() => {
-				this._navegar(rotaListaDePecas);
+			this.processarEvento(() => {
+				this.navegar(rotaListaDePecas);
 			});
 		},
 
 		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
-		},
+		}
 
 	});
 });

@@ -1,11 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+    "./BaseController.controller",
     "sap/ui/model/json/JSONModel",
     "../services/Validacao",
     "../services/Formatacao",
-    "../services/RepositorioPeca",
-    "../services/ProcessaEvento"
-], function (Controller, JSONModel, Validacao, Formatacao, RepositorioPeca, ProcessaEvento) {
+    "../services/RepositorioPeca"
+], function (BaseController, JSONModel, Validacao, Formatacao, RepositorioPeca) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -17,7 +16,7 @@ sap.ui.define([
     const stringVazia = "";
     const rotaNotFound = "notFound";
 
-	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
+	return BaseController.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
@@ -47,7 +46,7 @@ sap.ui.define([
 			RepositorioPeca.ObterPorId(idPeca)
 				.then(response => {
 					if(response.status === statusNotFound) {
-						this._navegar(rotaNotFound)
+						this.navegar(rotaNotFound)
 					}
 				 return response.json()})
 				.then(json => {
@@ -87,7 +86,7 @@ sap.ui.define([
         },
 
         validarCampos: function(peca){
-            ProcessaEvento.processarEvento(() => {
+            this.processarEvento(() => {
                 const propId = "id";
             
                 Object.keys(peca).forEach(prop => {
@@ -117,13 +116,7 @@ sap.ui.define([
         _salvarPeca: function (peca) {
 			RepositorioPeca.Adicionar(peca)
                 .then(response => response.json())
-                .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
-        },
-
-        _editarPeca: function (peca) {
-			RepositorioPeca.Editar(peca)
-                .then(response => response.json())
-                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+                .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
         },
 
         resetarInput: function(idCampo){
@@ -144,7 +137,7 @@ sap.ui.define([
         },
 
         aoClicarSalvar: function () {
-            ProcessaEvento.processarEvento(() => {
+            this.processarEvento(() => {
                 const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
@@ -172,14 +165,14 @@ sap.ui.define([
         },
         
 		aoClicarVoltar: function () {
-            ProcessaEvento.processarEvento(() => {
-                this._navegar(rotaListaDePecas);
+            this.processarEvento(() => {
+                this.navegar(rotaListaDePecas);
             });
 		},
 
         aoClicarCancelar: function () {
-            ProcessaEvento.processarEvento(() => {
-                this._navegar(rotaListaDePecas);
+            this.processarEvento(() => {
+                this.navegar(rotaListaDePecas);
             });
 		}
 
