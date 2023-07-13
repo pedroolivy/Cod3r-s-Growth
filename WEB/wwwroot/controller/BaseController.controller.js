@@ -1,6 +1,7 @@
 sap.ui.define([
-      "sap/ui/core/mvc/Controller"
-    ], function (Controller) {
+      "sap/ui/core/mvc/Controller",
+	  "sap/m/MessageBox"
+    ], function (Controller, MessageBox) {
       return Controller.extend("PedroAutoPecas.controller.BaseController", {
         processarEvento: function(action){
 			const tipoDaPromise = "catch",

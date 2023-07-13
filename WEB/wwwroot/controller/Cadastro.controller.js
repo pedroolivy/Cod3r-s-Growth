@@ -119,6 +119,12 @@ sap.ui.define([
                 .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
         },
 
+        _editarPeca: function (peca) {
+			RepositorioPeca.Editar(peca)
+                .then(response => response.json())
+                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+        },
+
         resetarInput: function(idCampo){
             let input = this.getView().byId(idCampo);
             input.setValueState(sap.ui.core.ValueState.None);

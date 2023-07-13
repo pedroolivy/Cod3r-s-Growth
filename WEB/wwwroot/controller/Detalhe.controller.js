@@ -47,17 +47,9 @@ sap.ui.define([
 				.then(res => {
 					const statusNoContent = 204;
 					if (res.status == statusNoContent) {
-						MessageBox.success(msgSuceso, {
-							emphasizedAction: MessageBox.Action.OK,
-							actions: [MessageBox.Action.OK], onClose : (acao) => {
-								if (acao == MessageBox.Action.OK) 
-									this.navegar(rotaListaDePecas);
-							}
-						});
+						this.mensagemSucesso(msgSuceso, this.navegar.bind(this), [rotaListaDePecas])
 					}else {
-						MessageBox.error(msgErro, {
-							emphasizedAction: MessageBox.Action.CLOSE
-						});
+						this.mensagemfalha(msgErro);
 					}
 				})
 		},
@@ -65,16 +57,36 @@ sap.ui.define([
 		aoClicarRemover: function(){
 			this.processarEvento(() => {
 				const msgAviso = "Deseja mesmo remover essa peça ?";
-				MessageBox.confirm(msgAviso, {
-					emphasizedAction: MessageBox.Action.YES,
-					initialFocus: MessageBox.Action.NO,
-					icon: MessageBox.Icon.WARNING,
-					actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-					onClose: (acao) => {
-						if (acao === MessageBox.Action.YES) 
-							this._removePeca();
+				this.mensagemConfirmar(msgAviso, this._removePeca.bind(this))
+			});
+		},
+
+		mensagemSucesso: function (mensagem, callback, args = null) {
+			return MessageBox.success(mensagem, {
+			emphasizedAction: MessageBox.Action.OK,
+			actions: [MessageBox.Action.OK], onClose : (acao) => {
+				if (acao == MessageBox.Action.OK) 
+					return callback.apply(this, args);
+			}
+			});
+		},
+
+		mensagemfalha: function (mensagem) {
+			return MessageBox.error(mensagem, {
+				emphasizedAction: MessageBox.Action.CLOSE
+			});
+		},
+
+		mensagemConfirmar: function (mensagem, callback) {
+			return MessageBox.confirm(mensagem, {
+				emphasizedAction: MessageBox.Action.YES,
+				initialFocus: MessageBox.Action.NO,
+				icon: MessageBox.Icon.WARNING,
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: (acao) => {
+					if (acao === MessageBox.Action.YES)
+						return callback();
 					}
-				});
 			});
 		},
 
