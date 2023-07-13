@@ -1,16 +1,16 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"./BaseController.controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, JSONModel, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"../services/RepositorioPeca"
+], function (BaseController, JSONModel, Filter, FilterOperator, RepositorioPeca) {
 	const rotaListaPecas = "listaDePecas";
-	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
 	const rotaCadastro = "cadastro";
 	const rotaDetalhe = "detalhe";
 
-	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
+	return BaseController.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaListaPecas).attachPatternMatched(this._aoCoincidirRota, this);
@@ -21,26 +21,25 @@ sap.ui.define([
 		},
 
 		_carregaPecas: function(){
-			fetch(api)
-			.then(resp => resp.json())
-			.then(data => {
-				let oModel = new JSONModel(data);
-				this.getView().setModel(oModel, modeloPeca)
-			})
-		},
-
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rota, {id});
+			RepositorioPeca.ObterTodos()
+				.then(resp => resp.json())
+				.then(data => {
+					let oModel = new JSONModel(data);
+					this.getView().setModel(oModel, modeloPeca)
+				})
 		},
 		
 		aoClicarAdicionar: function () {
-			this._navegar(rotaCadastro);
+			this.processarEvento(() => {
+				this.navegar(rotaCadastro);
+			});
 		},
 
 		aoClicarNaLinha: function (oEvent) {
-			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			this._navegar(rotaDetalhe, idPeca);
+			this.processarEvento(() => {
+				let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
+				this.navegar(rotaDetalhe, idPeca);
+			});
 		},
 
 		aoClicarProcurarPeca : function (peca) {
@@ -49,9 +48,9 @@ sap.ui.define([
 			if (nomePeca) {
 				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
 			}
-			let oList = this.byId("pecasDaTabela");
-			let oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+
+		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
 		}
+
 	});
 });

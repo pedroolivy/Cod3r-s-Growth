@@ -1,15 +1,16 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"./BaseController.controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"../services/RepositorioPeca"
+], function (BaseController, JSONModel, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
-	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
 	const rotaEdicao = "edicao";
+	const rotaNotFound = "notFound"
 
-	return Controller.extend("PedroAutoPecas.controller.Detalhe", {
+	return BaseController.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
@@ -20,30 +21,21 @@ sap.ui.define([
 
 			if(idPeca)
 				this._carregarPeca(idPeca);
-        },
-		
+        }, 
+
 		_carregarPeca: function(idPeca){
-			fetch(`${api}/${idPeca}`)
-				.then(response => response.json())
+			const statusNotFound = 500;
+
+			RepositorioPeca.ObterPorId(idPeca)
+				.then(response => {
+					if(response.status === statusNotFound) {
+						this.navegar(rotaNotFound)
+					}
+				 return response.json()})
 				.then(json => {
 					var oModel = new JSONModel(json);
 					this.getView().setModel(oModel, modeloPeca);
 			})
-		},
-
-		aoClicarRemover: function(){
-			const msgAviso = "Deseja mesmo remover essa peça ?";
-
-			MessageBox.confirm(msgAviso, {
-                emphasizedAction: MessageBox.Action.YES,
-                initialFocus: MessageBox.Action.NO,
-                icon: MessageBox.Icon.WARNING,
-                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                onClose: (acao) => {
-                    if (acao === MessageBox.Action.YES) 
-                        this._removePeca();
-                }
-            });
 		},
 
 		_removePeca: function(){
@@ -51,48 +43,69 @@ sap.ui.define([
 			const msgErro = "Erro ao remover a peça.";
 			const pecaId = this.obterIdPeca();
 
-			fetch(`${api}/${pecaId}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			})
-			.then(res => {
-				const statusNoContent = 204;
-				if (res.status == statusNoContent) {
-					MessageBox.success(msgSuceso, {
-						emphasizedAction: MessageBox.Action.OK,
-						actions: [MessageBox.Action.OK], onClose : (acao) => {
-							if (acao == MessageBox.Action.OK) 
-								this._navegar(rotaListaDePecas);
-						}
-					});
-				}else {
-					MessageBox.error(msgErro, {
-						emphasizedAction: MessageBox.Action.CLOSE
-					});
-				}
-			})
+			RepositorioPeca.Remover(pecaId)
+				.then(res => {
+					const statusNoContent = 204;
+					if (res.status == statusNoContent) {
+						this.mensagemSucesso(msgSuceso, this.navegar.bind(this), [rotaListaDePecas])
+					}else {
+						this.mensagemfalha(msgErro);
+					}
+				})
+		},
+
+		aoClicarRemover: function(){
+			this.processarEvento(() => {
+				const msgAviso = "Deseja mesmo remover essa peça ?";
+				this.mensagemConfirmar(msgAviso, this._removePeca.bind(this))
+			});
+		},
+
+		mensagemSucesso: function (mensagem, callback, args = null) {
+			return MessageBox.success(mensagem, {
+			emphasizedAction: MessageBox.Action.OK,
+			actions: [MessageBox.Action.OK], onClose : (acao) => {
+				if (acao == MessageBox.Action.OK) 
+					return callback.apply(this, args);
+			}
+			});
+		},
+
+		mensagemfalha: function (mensagem) {
+			return MessageBox.error(mensagem, {
+				emphasizedAction: MessageBox.Action.CLOSE
+			});
+		},
+
+		mensagemConfirmar: function (mensagem, callback) {
+			return MessageBox.confirm(mensagem, {
+				emphasizedAction: MessageBox.Action.YES,
+				initialFocus: MessageBox.Action.NO,
+				icon: MessageBox.Icon.WARNING,
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: (acao) => {
+					if (acao === MessageBox.Action.YES)
+						return callback();
+					}
+			});
 		},
 
 		aoClicarEditar:  function () {
-			const idPeca = this.obterIdPeca();
-
-			this._navegar(rotaEdicao, idPeca);
+			this.processarEvento(() => {
+				const idPeca = this.obterIdPeca();
+				this.navegar(rotaEdicao, idPeca);
+			});
 		},
 
 		aoClicarVoltar: function () {
-			this._navegar(rotaListaDePecas);
-		},
-
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			
-			oRouter.navTo(rota, {id});
+			this.processarEvento(() => {
+				this.navegar(rotaListaDePecas);
+			});
 		},
 
 		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
-		},
+		}
+
 	});
 });
