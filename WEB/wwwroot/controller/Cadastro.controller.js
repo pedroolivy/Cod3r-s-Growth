@@ -67,7 +67,7 @@ sap.ui.define([
                 estoque: stringVazia
             }
             this.getView().setModel(new JSONModel(peca), modeloPeca);
-        },
+        },   
 
         setarIntervaloData:  function(){
             const dataMinimaValida = "1755-01-01T12:00:00.000Z"; 
