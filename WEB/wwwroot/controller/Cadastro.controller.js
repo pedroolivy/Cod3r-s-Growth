@@ -81,7 +81,7 @@ sap.ui.define([
 
         setarValorPadraoInputs: function(){
             const valorPadrao = "None";
-            let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
+            const campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"];
             
             campos.forEach(res =>{
                 campodefinido = this.getView().byId(res)
@@ -90,67 +90,9 @@ sap.ui.define([
             })
         },
 
-        validarCampos: function(peca){
-            this.processarEvento(() => {
-                const propId = "id";
-
-                //lista com todos os inputs
-                //validarTodosOsCampos(campos)
-                Object.keys(peca).forEach(prop => {
-
-                    if(prop == propId){
-                        return;
-                    }
-
-                    const inputData = this.getView().byId(idDataFabricacao);
-                    let ehValido = false;
-
-                    if(prop == idDataFabricacao){
-                        ehValido = Validacao.validaData(inputData)
-                    }
-                    else if(prop == idEstoque){
-                        ehValido = Validacao.validaEstoque(peca[prop])
-                    }else {
-                        ehValido = Validacao.existeValor(peca[prop])
-                    }
-                    ehValido
-                        ? this.resetarInput(prop) 
-                        : this.definirInputErro(prop);
-                });
-            });
-        },
-
-        _salvarPeca: function (peca) {
-			return RepositorioPeca.Adicionar(peca)
-                .then(response => response.json())
-                .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
-        },
-
-        _editarPeca: function (peca) {
-			RepositorioPeca.Editar(peca)
-                .then(response => response.json())
-                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
-        },
-
-        resetarInput: function(idCampo){
-            let input = this.getView().byId(idCampo);
-            input.setValueState(sap.ui.core.ValueState.None);
-        },
-
-        definirInputErro: function(idCampo){
-            const mensagemErro = "MensagemErroNoCampo";
-            let input = this.getView().byId(idCampo);
-            input.setValueState(sap.ui.core.ValueState.Error);
-            input.setValueStateText(oResourceBundle.getText(mensagemErro));
-        },
-
-        _navegar: function(rota, id){
-            let oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo(rota, {id});
-        },
-
         aoClicarSalvar: function () {
             this.processarEvento(() => {
+                debugger
                 const peca = this.getView()
                 .getModel(modeloPeca)
                 .getData();
@@ -166,6 +108,38 @@ sap.ui.define([
                 }
             });
         }, 
+
+        validarCampos: function(peca){
+            this.processarEvento(() => {
+                debugger
+                //lista com todos os inputs
+                const inputData = this.getView().byId("dataDeFabricacao");
+                const inputNome = this.getView().byId("nome");
+                const listaPeca = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"];
+                //validarTodosOsCampos(campos)
+                return Validacao.validarTodosOsCampos(peca, inputData, inputNome);
+            });
+        },
+
+        resetarInput: function(){
+            
+        },
+    
+        definirInputErro: function(){
+              
+        },
+
+        _salvarPeca: function (peca) {
+			return RepositorioPeca.Adicionar(peca)
+                .then(response => response.json())
+                .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
+        },
+
+        _editarPeca: function (peca) {
+			RepositorioPeca.Editar(peca)
+                .then(response => response.json())
+                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+        },
 
         aoMudarCampoCategoria: function() {
             this.processarEvento(() => {

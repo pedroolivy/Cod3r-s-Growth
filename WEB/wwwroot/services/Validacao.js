@@ -2,11 +2,6 @@ sap.ui.define([
 
 ], function () {
     return {
-      //validação
-      //funções simples -> unitária
-      //função x e y -> z
-      //-c# -> metodo e atributos;
-      //-javaScript -> função e propriedades;
       existeValor(valor){
         return !!valor;
       },
@@ -33,6 +28,42 @@ sap.ui.define([
         const valorMinimo =  1;
         const valorMaximo = 10000;
         return (this.existeValor(inputEstoque) && ((valorinputEstoque >= valorMinimo) && (valorinputEstoque <= valorMaximo)))
+      },
+
+      validarTodosOsCampos: function (peca, inputData, inputNome) {
+        Object.keys(peca).forEach(prop => {
+          debugger
+          const propId = "id";
+
+          if(prop == propId){
+              return;
+          }
+
+          let ehValido = false;
+
+          if(prop == "dataDeFabricacao"){
+              ehValido = this.validaData(inputData)
+          }
+          else if(prop == "idEstoque"){
+              ehValido = this.validaEstoque(peca[prop])
+          }else {
+              ehValido = this.existeValor(peca[prop])
+          }
+          ehValido
+              ? this.resetarInput(prop, inputNome) 
+              : this.definirInputErro(prop, inputNome);
+        });
+      },
+
+      resetarInput: function(idCampo, inputNome){
+        debugger
+        inputNome.setValueState(sap.ui.core.ValueState.None);
+      },
+
+      definirInputErro: function(idCampo, inputNome){
+        debugger
+        inputNome.setValueState(sap.ui.core.ValueState.Error);
+        inputNome.setValueStateText((mensagemErro));
       },
       
       ehCamposValidos: function (peca, elementoData){
