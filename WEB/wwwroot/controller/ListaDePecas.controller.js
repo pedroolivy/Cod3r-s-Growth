@@ -17,7 +17,9 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function () {
-			this._carregaPecas();
+			this.processarEvento(() => {
+				this._carregaPecas();
+			});
 		},
 
 		_carregaPecas: function(){
@@ -43,13 +45,17 @@ sap.ui.define([
 		},
 
 		aoClicarProcurarPeca : function (peca) {
-			let aFilter = [];
-			let nomePeca = peca.getParameter("newValue");
-			if (nomePeca) {
-				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
-			}
+			this.processarEvento(() => {
+				const propNomeTabela = "nome";
+				const idTabela = "pecasDaTabela";
+				let aFilter = [];
+				let nomePeca = peca.getParameter("newValue");
+				if (nomePeca) {
+					aFilter.push(new Filter(propNomeTabela, FilterOperator.Contains, nomePeca));
+				}
 
-		 	this.byId("pecasDaTabela").getBinding("items").filter(aFilter);
+		 		this.byId(idTabela).getBinding("items").filter(aFilter);
+			});
 		}
 
 	});

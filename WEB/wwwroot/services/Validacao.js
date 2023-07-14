@@ -2,10 +2,15 @@ sap.ui.define([
 
 ], function () {
     return {
+      //validação
+      //funções simples -> unitária
+      //função x e y -> z
+      //-c# -> metodo e atributos;
+      //-javaScript -> função e propriedades;
       existeValor(valor){
         return !!valor;
       },
-      
+
       validaNome(nome) {
         return this.existeValor(nome)
       },
@@ -35,7 +40,7 @@ sap.ui.define([
         && this.validaCategoria(peca.categoria)
         && this.validaDescricao(peca.descricao) 
         && this.validaData(elementoData)
-        && this.validaEstoque(peca.estoque)); 
+        && this.validaEstoque(peca.estoque));
       }
     };  
   });

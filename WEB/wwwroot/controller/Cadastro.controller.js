@@ -24,20 +24,23 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-            const idPeca = oEvent.getParameter("arguments").id;
+            this.processarEvento(() => {
+                const idPeca = oEvent.getParameter("arguments").id;
+                const idTitulo = "titulo";
 
-            this.setarValorPadraoInputs();
-            this.setarIntervaloData();
+                this.setarValorPadraoInputs();
+                this.setarIntervaloData();
             
-            if(idPeca){
-                this._carregarPeca(idPeca);
-                const tituloEdicao = "Edição";
-                this.byId("titulo").setTitle(tituloEdicao);
-            } else{
-                this.setarModeloPeca();
-                const tituloCadastro = "Cadastro";
-                this.byId("titulo").setTitle(tituloCadastro);
-            }          
+                if(idPeca){
+                    const tituloEdicao = "Edição";
+                    this._carregarPeca(idPeca);
+                    this.byId(idTitulo).setTitle(tituloEdicao);
+                } else{
+                    this.setarModeloPeca();
+                    const tituloCadastro = "Cadastro";
+                    this.byId(idTitulo).setTitle(tituloCadastro);
+                } 
+            });
         },
         
         _carregarPeca: function(idPeca){
@@ -89,6 +92,8 @@ sap.ui.define([
             this.processarEvento(() => {
                 const propId = "id";
             
+                //lista com todos os inputs
+                //validarTodosOsCampos(campos)
                 Object.keys(peca).forEach(prop => {
 
                     if(prop == propId){
@@ -114,7 +119,7 @@ sap.ui.define([
         },
 
         _salvarPeca: function (peca) {
-			RepositorioPeca.Adicionar(peca)
+			return RepositorioPeca.Adicionar(peca)
                 .then(response => response.json())
                 .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
         },
@@ -161,13 +166,17 @@ sap.ui.define([
         }, 
 
         aoMudarCampoCategoria: function() {
-            let campoCategoria = this.getView().byId(idCategoria);
-            Formatacao.formatarCategoriaSemNumeros(campoCategoria);
+            this.processarEvento(() => {
+                let campoCategoria = this.getView().byId(idCategoria);
+                Formatacao.formatarCategoriaSemNumeros(campoCategoria);
+            });
         },
 
         aoMudarCampoEstoque: function() {
-            let campoEstoque = this.getView().byId(idEstoque);
-            Formatacao.formatarEstoqueSemLetras(campoEstoque);
+            this.processarEvento(() => {
+                let campoEstoque = this.getView().byId(idEstoque);
+                Formatacao.formatarEstoqueSemLetras(campoEstoque);
+            });
         },
         
 		aoClicarVoltar: function () {

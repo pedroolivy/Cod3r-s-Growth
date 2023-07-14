@@ -8,7 +8,10 @@ sap.ui.define([
        },
 
       aoClicarEmVoltar: function () {
-         this.navegar(rotaListaDePecas);
+         this.processarEvento(() => {
+            this.navegar(rotaListaDePecas);
+         });
       }
+      
     });
  });

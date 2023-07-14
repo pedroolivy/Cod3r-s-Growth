@@ -17,10 +17,12 @@ sap.ui.define([
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-			const idPeca = oEvent.getParameter("arguments").id;
+			this.processarEvento(() => {
+				const idPeca = oEvent.getParameter("arguments").id;
 
-			if(idPeca)
-				this._carregarPeca(idPeca);
+				if(idPeca)
+					this._carregarPeca(idPeca);
+			});
         }, 
 
 		_carregarPeca: function(idPeca){
