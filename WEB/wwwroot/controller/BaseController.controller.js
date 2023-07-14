@@ -21,6 +21,15 @@ sap.ui.define([
 			oRouter.navTo(rota, {id});
 		},
 
+		carregarRecursoI18n: function () {
+			const oResourceBundle = this.getOwnerComponent()
+			  .getModel("i18n")
+			  .getResourceBundle();
+	
+			return oResourceBundle;
+		  }
+
       });
     }
   );
+  

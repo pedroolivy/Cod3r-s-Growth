@@ -15,9 +15,11 @@ sap.ui.define([
     const idCategoria = "categoria";
     const stringVazia = "";
     const rotaNotFound = "notFound";
+    let oResourceBundle;
 
 	return BaseController.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
+            oResourceBundle = this.carregarRecursoI18n();
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
@@ -30,7 +32,7 @@ sap.ui.define([
 
                 this.setarValorPadraoInputs();
                 this.setarIntervaloData();
-            
+           
                 if(idPeca){
                     const tituloEdicao = "Edição";
                     this._carregarPeca(idPeca);
@@ -91,7 +93,7 @@ sap.ui.define([
         validarCampos: function(peca){
             this.processarEvento(() => {
                 const propId = "id";
-            
+
                 //lista com todos os inputs
                 //validarTodosOsCampos(campos)
                 Object.keys(peca).forEach(prop => {
@@ -136,10 +138,10 @@ sap.ui.define([
         },
 
         definirInputErro: function(idCampo){
-            const mensagemErro = `Por favor preecha o campo`;
+            const mensagemErro = "MensagemErroNoCampo";
             let input = this.getView().byId(idCampo);
             input.setValueState(sap.ui.core.ValueState.Error);
-            input.setValueStateText(mensagemErro);
+            input.setValueStateText(oResourceBundle.getText(mensagemErro));
         },
 
         _navegar: function(rota, id){
@@ -178,7 +180,7 @@ sap.ui.define([
                 Formatacao.formatarEstoqueSemLetras(campoEstoque);
             });
         },
-        
+
 		aoClicarVoltar: function () {
             this.processarEvento(() => {
                 this.navegar(rotaListaDePecas);

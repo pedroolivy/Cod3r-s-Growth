@@ -8,10 +8,12 @@ sap.ui.define([
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
 	const rotaEdicao = "edicao";
-	const rotaNotFound = "notFound"
+	const rotaNotFound = "notFound";
+	let oResourceBundle;
 
 	return BaseController.extend("PedroAutoPecas.controller.Detalhe", {
 		onInit: function () {
+			oResourceBundle = this.carregarRecursoI18n();
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaDetalhe).attachPatternMatched(this._aoCoincidirRota, this);
 		},
@@ -41,25 +43,25 @@ sap.ui.define([
 		},
 
 		_removePeca: function(){
-			const msgSuceso = "Peça removido com sucesso !";
-			const msgErro = "Erro ao remover a peça.";
+			const msgSucesso = "MensagemSucesso";
+			const msgErro = "MensagemErro";
 			const pecaId = this.obterIdPeca();
 
 			RepositorioPeca.Remover(pecaId)
 				.then(res => {
 					const statusNoContent = 204;
 					if (res.status == statusNoContent) {
-						this.mensagemSucesso(msgSuceso, this.navegar.bind(this), [rotaListaDePecas])
+						this.mensagemSucesso(oResourceBundle.getText(msgSucesso), this.navegar.bind(this), [rotaListaDePecas])
 					}else {
-						this.mensagemfalha(msgErro);
+						this.mensagemfalha(oResourceBundle.getText(msgErro));
 					}
 				})
 		},
 
 		aoClicarRemover: function(){
 			this.processarEvento(() => {
-				const msgAviso = "Deseja mesmo remover essa peça ?";
-				this.mensagemConfirmar(msgAviso, this._removePeca.bind(this))
+				const msgAviso = "MensagemAviso";
+				this.mensagemConfirmar(oResourceBundle.getText(msgAviso), this._removePeca.bind(this))
 			});
 		},
 
