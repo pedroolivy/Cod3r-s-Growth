@@ -81,7 +81,7 @@ sap.ui.define([
 
         setarValorPadraoInputs: function(){
             const valorPadrao = "None";
-            const campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"];
+            let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
             
             campos.forEach(res =>{
                 campodefinido = this.getView().byId(res)
@@ -90,44 +90,6 @@ sap.ui.define([
             })
         },
 
-        aoClicarSalvar: function () {
-            this.processarEvento(() => {
-                debugger
-                const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-                
-                this.validarCampos(peca);
-                
-                const campoData = this.getView().byId(idDataFabricacao);
-                
-                if(Validacao.ehCamposValidos(peca, campoData)){
-                    peca.id
-                        ?this._editarPeca(peca)
-                        :this._salvarPeca(peca);
-                }
-            });
-        }, 
-
-        validarCampos: function(peca){
-            this.processarEvento(() => {
-                debugger
-                //lista com todos os inputs
-                const inputData = this.getView().byId("dataDeFabricacao");
-                const inputNome = this.getView().byId("nome");
-                const listaPeca = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"];
-                //validarTodosOsCampos(campos)
-                return Validacao.validarTodosOsCampos(peca, inputData, inputNome);
-            });
-        },
-
-        resetarInput: function(){
-            
-        },
-    
-        definirInputErro: function(){
-              
-        },
 
         _salvarPeca: function (peca) {
 			return RepositorioPeca.Adicionar(peca)
@@ -140,6 +102,39 @@ sap.ui.define([
                 .then(response => response.json())
                 .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
+
+
+
+        _navegar: function(rota, id){
+            let oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo(rota, {id});
+        },
+
+        aoClicarSalvar: function () {
+            this.processarEvento(() => {
+                debugger
+                let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
+            
+                campos.forEach(res =>{
+                    debugger
+                    campodefinido = this.getView().byId(res)
+                    Validacao.validarTodosOsCampos(campodefinido);
+                })
+                
+                const peca = this.getView()
+                .getModel(modeloPeca)
+                .getData();
+
+                const campoData = this.getView().byId(idDataFabricacao);
+                
+                if(Validacao.ehCamposValidos(peca, campoData)){
+                    debugger
+                    peca.id
+                        ?this._editarPeca(peca)
+                        :this._salvarPeca(peca);
+                }
+            });
+        }, 
 
         aoMudarCampoCategoria: function() {
             this.processarEvento(() => {
