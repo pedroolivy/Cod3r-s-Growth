@@ -12,6 +12,5 @@ sap.ui.define([
             this.navegar(rotaListaDePecas);
          });
       }
-      
     });
  });

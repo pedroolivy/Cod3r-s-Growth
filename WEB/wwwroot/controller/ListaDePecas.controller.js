@@ -57,6 +57,5 @@ sap.ui.define([
 		 		this.byId(idTabela).getBinding("items").filter(aFilter);
 			});
 		}
-
 	});
 });

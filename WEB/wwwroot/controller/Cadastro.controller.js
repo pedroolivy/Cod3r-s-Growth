@@ -20,7 +20,10 @@ sap.ui.define([
 	return BaseController.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
             oResourceBundle = this.carregarRecursoI18n();
+            Validacao.ModeloI18n(oResourceBundle);
+
 			let oRouter = this.getOwnerComponent().getRouter();
+
 			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
@@ -153,6 +156,5 @@ sap.ui.define([
                 this.navegar(rotaListaDePecas);
             });
 		}
-
 	});
 });

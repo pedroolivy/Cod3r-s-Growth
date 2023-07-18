@@ -110,6 +110,5 @@ sap.ui.define([
 		obterIdPeca: function() {
 			return this.getView().getModel(modeloPeca).getData().id
 		}
-
 	});
 });

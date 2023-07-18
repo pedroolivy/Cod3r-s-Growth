@@ -2,19 +2,24 @@ sap.ui.define([
 
 ], function () {
     return {
-      existeValor(valorDoCampo){
+      _i18n: null,
+      ModeloI18n: function (i18nModel) {
+        this._i18n = i18nModel;
+      },
+
+      existeValor: function(valorDoCampo){
         return !!valorDoCampo;
       },
 
-      validaNome(valorDoCampoNome) {
+      validaNome: function(valorDoCampoNome) {
         return this.existeValor(valorDoCampoNome)
       },
       
-      validaCategoria(valorDoCampoCategoria) {
+      validaCategoria: function(valorDoCampoCategoria) {
         return this.existeValor(valorDoCampoCategoria)
       },
 
-      validaDescricao(valorDoCampoDescricao) {
+      validaDescricao: function(valorDoCampoDescricao) {
         return this.existeValor(valorDoCampoDescricao)
       },
 
@@ -37,7 +42,7 @@ sap.ui.define([
       definirInputErro: function(campoDefinido){
         const mensagemErro = "MensagemErroNoCampo";
         campoDefinido.setValueState(sap.ui.core.ValueState.Error);
-        campoDefinido.setValueStateText((mensagemErro));
+        campoDefinido.setValueStateText(this._i18n.getText(mensagemErro));
       },
 
       validarTodosOsCampos: function (campoDefinido) {

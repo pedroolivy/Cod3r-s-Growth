@@ -27,8 +27,7 @@ sap.ui.define([
 			  .getResourceBundle();
 	
 			return oResourceBundle;
-		  }
-
+		}
       });
     }
   );
