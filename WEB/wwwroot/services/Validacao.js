@@ -14,7 +14,7 @@ sap.ui.define([
       validaNome: function(valorDoCampoNome) {
         return this.existeValor(valorDoCampoNome)
       },
-      
+
       validaCategoria: function(valorDoCampoCategoria) {
         return this.existeValor(valorDoCampoCategoria)
       },
@@ -24,8 +24,16 @@ sap.ui.define([
       },
 
       validaData: function (campoData) {
-        const valorDoCampoData = campoData.getValue()
-        return (this.existeValor(valorDoCampoData) && campoData.isValidValue());
+        let propriedadeIdDoCampoData = "container-PedroAutoPecas---cadastro--dataDeFabricacao";
+
+        if(campoData.sId == propriedadeIdDoCampoData){
+          const valorDoCampoData = campoData.getValue();
+          return this.existeValor(valorDoCampoData) && campoData.isValidValue();
+        }
+        else{
+          const valorDoCampoData = campoData;
+          return this.existeValor(valorDoCampoData);
+        }
       },
 
       validaEstoque: function (valorDoCampoEstoque) {
@@ -69,12 +77,12 @@ sap.ui.define([
           ? this.resetarInput(campoDefinido) 
           : this.definirInputErro(campoDefinido);
       },
-      
-      ehCamposValidos: function (peca, campoData){
+    
+      ehCamposValidos: function (peca){
         return (this.validaNome(peca.nome)
         && this.validaCategoria(peca.categoria)
         && this.validaDescricao(peca.descricao) 
-        && this.validaData(campoData)
+        && this.validaData(peca.dataDeFabricacao)
         && this.validaEstoque(peca.estoque));
       }
     };  

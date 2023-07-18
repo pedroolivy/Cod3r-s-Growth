@@ -116,20 +116,19 @@ sap.ui.define([
                 const peca = this.getView()
                     .getModel(modeloPeca)
                     .getData();
-                const campoData = this.getView().byId(idDataFabricacao);
 
                 campos.forEach(idDoCampo =>{
                     campodefinido = this.getView().byId(idDoCampo)
                     Validacao.validarTodosOsCampos(campodefinido);
                 })
  
-                if(Validacao.ehCamposValidos(peca, campoData)){
+                if(Validacao.ehCamposValidos(peca)){
                     peca.id
                         ?this._editarPeca(peca)
                         :this._salvarPeca(peca);
                 }
             });
-        }, 
+        },
 
         aoMudarCampoCategoria: function() {
             this.processarEvento(() => {
