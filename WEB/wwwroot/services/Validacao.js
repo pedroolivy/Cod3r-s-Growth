@@ -2,55 +2,46 @@ sap.ui.define([
 
 ], function () {
     return {
-      existeValor(valor){
-        debugger
-        return !!valor;
+      existeValor(valorDoCampo){
+        return !!valorDoCampo;
       },
 
-      validaNome(nome) {
-        debugger
-        return this.existeValor(nome)
+      validaNome(valorDoCampoNome) {
+        return this.existeValor(valorDoCampoNome)
       },
       
-      validaCategoria(categoria) {
-        debugger
-        return this.existeValor(categoria)
+      validaCategoria(valorDoCampoCategoria) {
+        return this.existeValor(valorDoCampoCategoria)
       },
 
-      validaDescricao(descricao) {
-        debugger
-        return this.existeValor(descricao)
+      validaDescricao(valorDoCampoDescricao) {
+        return this.existeValor(valorDoCampoDescricao)
       },
 
-      validaData: function (elementoData) {
-        debugger
-        const valorCampo = elementoData.getValue()
-        return (this.existeValor(valorCampo) && elementoData.isValidValue());
+      validaData: function (campoData) {
+        const valorDoCampoData = campoData.getValue()
+        return (this.existeValor(valorDoCampoData) && campoData.isValidValue());
       },
 
-      validaEstoque: function (inputEstoque) {
-        debugger
-        let valorinputEstoque = parseInt(inputEstoque);
+      validaEstoque: function (valorDoCampoEstoque) {
+        let valorDoCampoEstoqueInteiro = parseInt(valorDoCampoEstoque);
         const valorMinimo =  1;
         const valorMaximo = 10000;
-        return (this.existeValor(inputEstoque) && ((valorinputEstoque >= valorMinimo) && (valorinputEstoque <= valorMaximo)))
+        return (this.existeValor(valorDoCampoEstoque) && ((valorDoCampoEstoqueInteiro >= valorMinimo) && (valorDoCampoEstoqueInteiro <= valorMaximo)))
       },
 
-      resetarInput: function(input){
-        debugger
-        input.setValueState(sap.ui.core.ValueState.None);
+      resetarInput: function(campoDefinido){
+        campoDefinido.setValueState(sap.ui.core.ValueState.None);
       },
 
-      definirInputErro: function(input){
-        debugger
-          const mensagemErro = "MensagemErroNoCampo";
-          input.setValueState(sap.ui.core.ValueState.Error);
-          input.setValueStateText((mensagemErro));
+      definirInputErro: function(campoDefinido){
+        const mensagemErro = "MensagemErroNoCampo";
+        campoDefinido.setValueState(sap.ui.core.ValueState.Error);
+        campoDefinido.setValueStateText((mensagemErro));
       },
 
-      validarTodosOsCampos: function (campo) {
-        debugger
-        let valorDoCampo = campo.getValue();
+      validarTodosOsCampos: function (campoDefinido) {
+        let valorDoCampo = campoDefinido.getValue();
         const campoId = "id";
 
         if(valorDoCampo == campoId){
@@ -58,28 +49,27 @@ sap.ui.define([
         }
 
         let ehValido = false;
-        let idDoCampoData = "container-PedroAutoPecas---cadastro--dataDeFabricacao";
-        let idDocampoEstoque = "container-PedroAutoPecas---cadastro--estoque";
+        let propriedadeIdDoCampoData = "container-PedroAutoPecas---cadastro--dataDeFabricacao";
+        let propriedadeIdDoCampoEstoque = "container-PedroAutoPecas---cadastro--estoque";
 
-        if(campo.sId == idDoCampoData){
-          ehValido = this.validaData(campo)
+        if(campoDefinido.sId == propriedadeIdDoCampoData){
+          ehValido = this.validaData(campoDefinido)
         }
-        else if(campo.sId == idDocampoEstoque){
+        else if(campoDefinido.sId == propriedadeIdDoCampoEstoque){
           ehValido = this.validaEstoque(valorDoCampo)
         }else {
           ehValido = this.existeValor(valorDoCampo)
         }
         ehValido
-          ? this.resetarInput(campo) 
-          : this.definirInputErro(campo);
+          ? this.resetarInput(campoDefinido) 
+          : this.definirInputErro(campoDefinido);
       },
       
-      ehCamposValidos: function (peca, elementoData){
-        debugger
+      ehCamposValidos: function (peca, campoData){
         return (this.validaNome(peca.nome)
         && this.validaCategoria(peca.categoria)
         && this.validaDescricao(peca.descricao) 
-        && this.validaData(elementoData)
+        && this.validaData(campoData)
         && this.validaEstoque(peca.estoque));
       }
     };  

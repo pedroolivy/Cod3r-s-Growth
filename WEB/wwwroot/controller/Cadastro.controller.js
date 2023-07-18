@@ -83,13 +83,12 @@ sap.ui.define([
             const valorPadrao = "None";
             let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
             
-            campos.forEach(res =>{
-                campodefinido = this.getView().byId(res)
+            campos.forEach(idCampo =>{
+                campodefinido = this.getView().byId(idCampo)
                 campodefinido.setValueState(valorPadrao)
                 campodefinido.setValue(stringVazia)
             })
         },
-
 
         _salvarPeca: function (peca) {
 			return RepositorioPeca.Adicionar(peca)
@@ -103,8 +102,6 @@ sap.ui.define([
                 .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
         },
 
-
-
         _navegar: function(rota, id){
             let oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo(rota, {id});
@@ -112,23 +109,18 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             this.processarEvento(() => {
-                debugger
-                let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
-            
-                campos.forEach(res =>{
-                    debugger
-                    campodefinido = this.getView().byId(res)
+                const campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
+                const peca = this.getView()
+                    .getModel(modeloPeca)
+                    .getData();
+                const campoData = this.getView().byId(idDataFabricacao);
+
+                campos.forEach(idDoCampo =>{
+                    campodefinido = this.getView().byId(idDoCampo)
                     Validacao.validarTodosOsCampos(campodefinido);
                 })
-                
-                const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-
-                const campoData = this.getView().byId(idDataFabricacao);
-                
+ 
                 if(Validacao.ehCamposValidos(peca, campoData)){
-                    debugger
                     peca.id
                         ?this._editarPeca(peca)
                         :this._salvarPeca(peca);
