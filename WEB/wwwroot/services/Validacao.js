@@ -8,7 +8,7 @@ sap.ui.define([
       },
 
       existeValor: function(valorDoCampo){
-        return !!valorDoCampo;
+        return Boolean(valorDoCampo);
       },
 
       validaNome: function(valorDoCampoNome) {
@@ -24,9 +24,8 @@ sap.ui.define([
       },
 
       validaData: function (campoData) {
-        let propriedadeIdDoCampoData = "container-PedroAutoPecas---cadastro--dataDeFabricacao";
-
-        if(campoData.sId == propriedadeIdDoCampoData){
+        const objetoCampoData = "object";
+        if(typeof campoData === objetoCampoData){
           const valorDoCampoData = campoData.getValue();
           return this.existeValor(valorDoCampoData) && campoData.isValidValue();
         }
@@ -54,21 +53,15 @@ sap.ui.define([
       },
 
       validarTodosOsCampos: function (campoDefinido) {
-        let valorDoCampo = campoDefinido.getValue();
-        const campoId = "id";
-
-        if(valorDoCampo == campoId){
-          return;
-        }
-
         let ehValido = false;
-        let propriedadeIdDoCampoData = "container-PedroAutoPecas---cadastro--dataDeFabricacao";
-        let propriedadeIdDoCampoEstoque = "container-PedroAutoPecas---cadastro--estoque";
+        let valorDoCampo = campoDefinido.getValue();
+        let idDoCampoData = "dataDeFabricacao";
+        let idDoCampoEstoque = "estoque";
 
-        if(campoDefinido.sId == propriedadeIdDoCampoData){
+        if(campoDefinido.sId.includes(idDoCampoData)){
           ehValido = this.validaData(campoDefinido)
         }
-        else if(campoDefinido.sId == propriedadeIdDoCampoEstoque){
+        else if(campoDefinido.sId.includes(idDoCampoEstoque)){
           ehValido = this.validaEstoque(valorDoCampo)
         }else {
           ehValido = this.existeValor(valorDoCampo)
@@ -87,3 +80,4 @@ sap.ui.define([
       }
     };  
   });
+  
