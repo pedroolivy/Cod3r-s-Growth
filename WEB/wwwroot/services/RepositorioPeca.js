@@ -1,10 +1,11 @@
 sap.ui.define([
-], function () {
+    "sap/ui/model/json/JSONModel"
+], function (JSONModel) {
     const api = "https://localhost:7028/api/Peca";
 
     return {
-        ObterTodos: function(){
-			return fetch(api);
+        ObterTodos: async function(){
+	        return (await fetch(api)).json();
 		},
 
         ObterPorId: function (idPeca) {

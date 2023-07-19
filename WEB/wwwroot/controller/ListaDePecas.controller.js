@@ -22,19 +22,19 @@ sap.ui.define([
 			});
 		},
 
-		_carregaPecas: function(){
-			RepositorioPeca.ObterTodos()
-				.then(resp => resp.json())
-				.then(data => {
-					let oModel = new JSONModel(data);
-					this.getView().setModel(oModel, modeloPeca)
-				})
+		_carregaPecas: async function(){
+			let listaPecas = await RepositorioPeca.ObterTodos();
+			this.getView().setModel(this.criarModeloPeca(listaPecas), modeloPeca);
 		},
 		
 		aoClicarAdicionar: function () {
 			this.processarEvento(() => {
 				this.navegar(rotaCadastro);
 			});
+		},
+
+		criarModeloPeca: function (peca){
+			return new JSONModel(peca)
 		},
 
 		aoClicarNaLinha: function (oEvent) {

@@ -112,15 +112,20 @@ sap.ui.define([
 
         aoClicarSalvar: function () {
             this.processarEvento(() => {
-                const campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
                 const peca = this.getView()
                     .getModel(modeloPeca)
                     .getData();
+                let listaCampos = [];
+                let id = "id"
+                
+                Object.keys(peca).forEach(prop => {
+                    if(prop == id)
+                        return;
 
-                campos.forEach(idDoCampo =>{
-                    campodefinido = this.getView().byId(idDoCampo)
-                    Validacao.validarTodosOsCampos(campodefinido);
-                })
+                    listaCampos.push(this.getView().byId(prop));
+                });
+
+                Validacao.validarTodosOsCampos(listaCampos)
  
                 if(Validacao.ehCamposValidos(peca)){
                     peca.id

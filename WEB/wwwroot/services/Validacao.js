@@ -24,6 +24,7 @@ sap.ui.define([
       },
 
       validaData: function (campoData) {
+        debugger
         const objetoCampoData = "object";
         if(typeof campoData === objetoCampoData){
           const valorDoCampoData = campoData.getValue();
@@ -52,23 +53,30 @@ sap.ui.define([
         campoDefinido.setValueStateText(this._i18n.getText(mensagemErro));
       },
 
-      validarTodosOsCampos: function (campoDefinido) {
+      validarTodosOsCampos: function (listaCampos) {
+        debugger
         let ehValido = false;
-        let valorDoCampo = campoDefinido.getValue();
-        let idDoCampoData = "dataDeFabricacao";
-        let idDoCampoEstoque = "estoque";
 
-        if(campoDefinido.sId.includes(idDoCampoData)){
-          ehValido = this.validaData(campoDefinido)
-        }
-        else if(campoDefinido.sId.includes(idDoCampoEstoque)){
-          ehValido = this.validaEstoque(valorDoCampo)
-        }else {
-          ehValido = this.existeValor(valorDoCampo)
-        }
-        ehValido
-          ? this.resetarInput(campoDefinido) 
-          : this.definirInputErro(campoDefinido);
+        listaCampos.forEach(campo => {
+          debugger
+          let valorDoCampo = campo.getValue();
+          let idDoCampoData = "dataDeFabricacao";
+          let idDoCampoEstoque = "estoque";
+  
+          const idCampo = campo.getId().split("--").reverse()[0]; 
+          if(idCampo === idDoCampoData){
+            ehValido = this.validaData(campo)
+          }
+          else if(idCampo === idDoCampoEstoque){
+            ehValido = this.validaEstoque(valorDoCampo)
+          }else {
+            ehValido = this.existeValor(valorDoCampo)
+          }
+
+          ehValido
+            ? this.resetarInput(campo) 
+            : this.definirInputErro(campo);
+        })
       },
     
       ehCamposValidos: function (peca){
