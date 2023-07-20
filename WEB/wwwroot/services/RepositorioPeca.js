@@ -1,44 +1,61 @@
 sap.ui.define([
-    "sap/ui/model/json/JSONModel"
-], function (JSONModel) {
+], function () {
     const api = "https://localhost:7028/api/Peca";
 
     return {
         ObterTodos: async function(){
-	        return (await fetch(api)).json();
+	        let response = await fetch(api);
+
+            return response.status != 200
+                ?response.status
+                :response.json();
 		},
 
-        ObterPorId: function (idPeca) {
-            return fetch(`${api}/${idPeca}`);
+        ObterPorId: async function (idPeca) {
+            let response = await (fetch(`${api}/${idPeca}`));
+
+            return response.status !== 500 
+                ?response.json() 
+                :response.status;
         },
 
-        Adicionar: function (peca) {
-            return fetch(api, {
+        Adicionar: async function (peca) {
+            let response = await fetch(api, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(peca)
             });
+
+            return response.status != 200
+                ?response.status
+                :response.json();
         },
 
-        Editar: function (peca) {
-            return fetch(`${api}/${peca.id}`, {
+        Editar: async function (peca) {
+            let response = await fetch(`${api}/${peca.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(peca)
-            })
+            });
+
+            return response.status != 200
+                ?response.status
+                :response.json();
         },
         
-        Remover: function (pecaId) {
-            return fetch(`${api}/${pecaId}`, {
+        Remover: async function (pecaId) {
+            let response = await fetch(`${api}/${pecaId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
 			})
+            
+            return response.status;
         }
     };  
   });

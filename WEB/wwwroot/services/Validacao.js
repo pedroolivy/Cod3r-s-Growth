@@ -24,14 +24,16 @@ sap.ui.define([
       },
 
       validaData: function (campoData) {
-        debugger
         const objetoCampoData = "object";
+
         if(typeof campoData === objetoCampoData){
           const valorDoCampoData = campoData.getValue();
+
           return this.existeValor(valorDoCampoData) && campoData.isValidValue();
         }
         else{
           const valorDoCampoData = campoData;
+
           return this.existeValor(valorDoCampoData);
         }
       },
@@ -40,6 +42,7 @@ sap.ui.define([
         let valorDoCampoEstoqueInteiro = parseInt(valorDoCampoEstoque);
         const valorMinimo =  1;
         const valorMaximo = 10000;
+
         return (this.existeValor(valorDoCampoEstoque) && ((valorDoCampoEstoqueInteiro >= valorMinimo) && (valorDoCampoEstoqueInteiro <= valorMaximo)))
       },
 
@@ -49,21 +52,21 @@ sap.ui.define([
 
       definirInputErro: function(campoDefinido){
         const mensagemErro = "MensagemErroNoCampo";
+
         campoDefinido.setValueState(sap.ui.core.ValueState.Error);
         campoDefinido.setValueStateText(this._i18n.getText(mensagemErro));
       },
 
       validarTodosOsCampos: function (listaCampos) {
-        debugger
         let ehValido = false;
 
         listaCampos.forEach(campo => {
-          debugger
           let valorDoCampo = campo.getValue();
           let idDoCampoData = "dataDeFabricacao";
           let idDoCampoEstoque = "estoque";
   
           const idCampo = campo.getId().split("--").reverse()[0]; 
+          
           if(idCampo === idDoCampoData){
             ehValido = this.validaData(campo)
           }

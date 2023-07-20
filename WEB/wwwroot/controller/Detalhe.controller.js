@@ -1,9 +1,8 @@
 sap.ui.define([
 	"./BaseController.controller",
-	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"../services/RepositorioPeca"
-], function (BaseController, JSONModel, MessageBox, RepositorioPeca) {
+], function (BaseController, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
 	const modeloPeca = "peca";
 	const rotaListaDePecas = "listaDePecas";
@@ -27,35 +26,27 @@ sap.ui.define([
 			});
         }, 
 
-		_carregarPeca: function(idPeca){
-			const statusNotFound = 500;
-
-			RepositorioPeca.ObterPorId(idPeca)
-				.then(response => {
-					if(response.status === statusNotFound) {
-						this.navegar(rotaNotFound)
-					}
-				 return response.json()})
-				.then(json => {
-					var oModel = new JSONModel(json);
-					this.getView().setModel(oModel, modeloPeca);
-			})
+		_carregarPeca: async function(idPeca){
+			let peca =  await RepositorioPeca.ObterPorId(idPeca);
+			let statusCode = 500;
+			
+			peca == statusCode
+				?this.navegar(rotaNotFound)
+				:this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
 		},
 
-		_removePeca: function(){
+		_removePeca: async function(){
 			const msgSucesso = "MensagemSucesso";
 			const msgErro = "MensagemErro";
 			const pecaId = this.obterIdPeca();
 
-			RepositorioPeca.Remover(pecaId)
-				.then(res => {
-					const statusNoContent = 204;
-					if (res.status == statusNoContent) {
-						this.mensagemSucesso(oResourceBundle.getText(msgSucesso), this.navegar.bind(this), [rotaListaDePecas])
-					}else {
-						this.mensagemfalha(oResourceBundle.getText(msgErro));
-					}
-				})
+			let status = await RepositorioPeca.Remover(pecaId);
+			const statusNoContent = 204;
+			if (status == statusNoContent) {
+				this.mensagemSucesso(oResourceBundle.getText(msgSucesso), this.navegar.bind(this), [rotaListaDePecas])
+			}else {
+				this.mensagemfalha(oResourceBundle.getText(msgErro));
+			}
 		},
 
 		aoClicarRemover: function(){

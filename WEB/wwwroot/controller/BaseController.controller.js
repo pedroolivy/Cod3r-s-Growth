@@ -1,7 +1,8 @@
 sap.ui.define([
       "sap/ui/core/mvc/Controller",
-	  "sap/m/MessageBox"
-    ], function (Controller, MessageBox) {
+	  "sap/m/MessageBox",
+	  "sap/ui/model/json/JSONModel"
+    ], function (Controller, MessageBox, JSONModel) {
       return Controller.extend("PedroAutoPecas.controller.BaseController", {
         processarEvento: function(action){
 			const tipoDaPromise = "catch",
@@ -27,7 +28,12 @@ sap.ui.define([
 			  .getResourceBundle();
 	
 			return oResourceBundle;
+		},
+
+		criarModeloPeca: function (peca){
+			return new JSONModel(peca);
 		}
+
       });
     }
   );

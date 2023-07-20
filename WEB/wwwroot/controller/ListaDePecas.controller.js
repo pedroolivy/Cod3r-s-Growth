@@ -1,17 +1,19 @@
 sap.ui.define([
 	"./BaseController.controller",
-	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"../services/RepositorioPeca"
-], function (BaseController, JSONModel, Filter, FilterOperator, RepositorioPeca) {
+	"../services/RepositorioPeca",
+	'sap/m/MessageToast'
+], function (BaseController, Filter, FilterOperator, RepositorioPeca, MessageToast) {
 	const rotaListaPecas = "listaDePecas";
 	const modeloPeca = "pecas";
 	const rotaCadastro = "cadastro";
 	const rotaDetalhe = "detalhe";
+	let oResourceBundle;
 
 	return BaseController.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
+			oResourceBundle = this.carregarRecursoI18n();
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaListaPecas).attachPatternMatched(this._aoCoincidirRota, this);
 		},
@@ -24,17 +26,20 @@ sap.ui.define([
 
 		_carregaPecas: async function(){
 			let listaPecas = await RepositorioPeca.ObterTodos();
+			let TipoDeListaPecas = "number";
+
+			if(typeof listaPecas == TipoDeListaPecas){
+				var msg = 'ErroAoObterTodos';
+				
+				MessageToast.show(oResourceBundle.getText(msg));
+			}
 			this.getView().setModel(this.criarModeloPeca(listaPecas), modeloPeca);
 		},
-		
+
 		aoClicarAdicionar: function () {
 			this.processarEvento(() => {
 				this.navegar(rotaCadastro);
 			});
-		},
-
-		criarModeloPeca: function (peca){
-			return new JSONModel(peca)
 		},
 
 		aoClicarNaLinha: function (oEvent) {
@@ -50,6 +55,7 @@ sap.ui.define([
 				const idTabela = "pecasDaTabela";
 				let aFilter = [];
 				let nomePeca = peca.getParameter("newValue");
+				
 				if (nomePeca) {
 					aFilter.push(new Filter(propNomeTabela, FilterOperator.Contains, nomePeca));
 				}

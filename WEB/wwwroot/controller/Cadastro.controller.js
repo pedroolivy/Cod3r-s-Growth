@@ -1,10 +1,10 @@
 sap.ui.define([
     "./BaseController.controller",
-    "sap/ui/model/json/JSONModel",
     "../services/Validacao",
     "../services/Formatacao",
-    "../services/RepositorioPeca"
-], function (BaseController, JSONModel, Validacao, Formatacao, RepositorioPeca) {
+    "../services/RepositorioPeca",
+    'sap/m/MessageToast'
+], function (BaseController, Validacao, Formatacao, RepositorioPeca, MessageToast) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
@@ -35,8 +35,8 @@ sap.ui.define([
 
                 this.setarValorPadraoInputs();
                 this.setarIntervaloData();
-           
-                if(idPeca){
+
+                if(idPeca || (idPeca == 0)){
                     const tituloEdicao = "Edição";
                     this._carregarPeca(idPeca);
                     this.byId(idTitulo).setTitle(tituloEdicao);
@@ -48,19 +48,13 @@ sap.ui.define([
             });
         },
         
-        _carregarPeca: function(idPeca){
-			const statusNotFound = 500;
-
-			RepositorioPeca.ObterPorId(idPeca)
-				.then(response => {
-					if(response.status === statusNotFound) {
-						this.navegar(rotaNotFound)
-					}
-				 return response.json()})
-				.then(json => {
-					var oModel = new JSONModel(json);
-					this.getView().setModel(oModel, modeloPeca);
-			})
+        _carregarPeca: async function(idPeca){
+            let peca =  await RepositorioPeca.ObterPorId(idPeca);
+			let statusCode = 500;
+			
+			peca == statusCode
+				?this.navegar(rotaNotFound)
+				:this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
 		},
 
         setarModeloPeca: function () {
@@ -71,7 +65,7 @@ sap.ui.define([
                 dataDeFabricacao: stringVazia,
                 estoque: stringVazia
             }
-            this.getView().setModel(new JSONModel(peca), modeloPeca);
+            this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
         },   
  
         setarIntervaloData:  function(){
@@ -93,16 +87,24 @@ sap.ui.define([
             })
         },
 
-        _salvarPeca: function (peca) {
-			return RepositorioPeca.Adicionar(peca)
-                .then(response => response.json())
-                .then(novaPeca => this.navegar(rotaDetalhe, novaPeca.id))
+        _salvarPeca: async function (peca) {
+			let novaPeca = await RepositorioPeca.Adicionar(peca);
+            let TipoDeNovaPeca = "number"
+            let msg = "ErroAoAdicionar";
+
+            typeof novaPeca === TipoDeNovaPeca
+                ?MessageToast.show(oResourceBundle.getText(msg))
+                :this.navegar(rotaDetalhe, novaPeca.id);
         },
 
-        _editarPeca: function (peca) {
-			RepositorioPeca.Editar(peca)
-                .then(response => response.json())
-                .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+        _editarPeca: async function (peca) {
+			let pecaEditada = await RepositorioPeca.Editar(peca);
+            let tipoDePeca = "number"
+            let msg = "ErroAoEditar";
+
+            typeof pecaEditada === tipoDePeca
+                ?MessageToast.show(oResourceBundle.getText(msg))
+                :this._navegar(rotaDetalhe, pecaEditada.id);
         },
 
         _navegar: function(rota, id){
