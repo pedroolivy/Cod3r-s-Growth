@@ -1,10 +1,10 @@
-using System.Configuration;
 using DOMINIO;
 using FluentMigrator.Runner;
 using INFRA;
 using INFRA.Repositorio;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
 
 namespace CRUD
 {
@@ -36,7 +36,7 @@ namespace CRUD
 
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddScoped<IRepositorio, RepositorioComBancoSql>();
+                    services.AddScoped<IRepositorio, RepositorioLinq2Db>();
                     services.AddFluentMigratorCore()
                         .ConfigureRunner(rb => rb
                                 .AddSqlServer()

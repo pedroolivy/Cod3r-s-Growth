@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
         "projectName": "DOMINIO",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -4,39 +4,43 @@ namespace CRUD
 {
     public partial class CadastroDePecas : Form
     {
-        public Peca _peca = new();
+        public Peca peca = new();
 
         public CadastroDePecas(Peca? peca)
         {
             InitializeComponent();
 
-            _peca = peca == null 
+            this.peca = peca == null
                 ? new Peca()
                 : PreencherCampos(peca);
-
-            dateTimePicker1.MaxDate = DateTime.Today;
         }
 
         private Peca PreencherCampos(Peca peca)
         {
+            Text = "Editar Peça";
             textBox1.Text = peca.Descricao;
             textBox2.Text = peca.Nome;
-            numericUpDown1.Value = peca.Estoque;
+            inputEstoque.Text = peca.Estoque.ToString();
             textBox6.Text = peca.Categoria;
             dateTimePicker1.Value = peca.DataDeFabricacao;
+
             return peca;
         }
 
         private void AoClicarEmSalvar(object sender, EventArgs e)
         {
+            const string valorPadraoEstoque = "0";
             try
             {
+                if (string.IsNullOrEmpty(inputEstoque.Text))
+                    inputEstoque.Text = valorPadraoEstoque;
+
                 var pecaParaAdicionar = new Peca()
                 {
                     Nome = textBox2.Text,
                     Categoria = textBox6.Text,
                     Descricao = textBox1.Text,
-                    Estoque = (int)numericUpDown1.Value,
+                    Estoque = int.Parse(inputEstoque.Text),
                     DataDeFabricacao = dateTimePicker1.Value,
                 };
 
@@ -48,7 +52,7 @@ namespace CRUD
                     return;
                 }
 
-                _peca = pecaParaAdicionar;
+                peca = pecaParaAdicionar;
 
                 DialogResult = DialogResult.OK;
 
@@ -65,5 +69,10 @@ namespace CRUD
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+       private void PermitirApenasNumeros(object sender, KeyPressEventArgs e)
+       {
+            if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Space)) e.Handled = true;
+       }
     }
 }

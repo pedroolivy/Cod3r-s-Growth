@@ -1,5 +1,4 @@
-﻿
-namespace DOMINIO
+﻿namespace DOMINIO
 {
     public interface IRepositorio 
     {

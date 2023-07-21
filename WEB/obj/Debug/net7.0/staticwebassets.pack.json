@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\Component.js",
+      "PackagePath": "staticwebassets\\Component.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\App.controller.js",
+      "PackagePath": "staticwebassets\\controller\\App.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\BaseController.controller.js",
+      "PackagePath": "staticwebassets\\controller\\BaseController.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Cadastro.controller.js",
+      "PackagePath": "staticwebassets\\controller\\Cadastro.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Detalhe.controller.js",
+      "PackagePath": "staticwebassets\\controller\\Detalhe.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\ListaDePecas.controller.js",
+      "PackagePath": "staticwebassets\\controller\\ListaDePecas.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\NotFound.controller.js",
+      "PackagePath": "staticwebassets\\controller\\NotFound.controller.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\i18n\\i18n.properties",
+      "PackagePath": "staticwebassets\\i18n\\i18n.properties"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\manifest.json",
+      "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\Formatacao.js",
+      "PackagePath": "staticwebassets\\services\\Formatacao.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\RepositorioPeca.js",
+      "PackagePath": "staticwebassets\\services\\RepositorioPeca.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\Validacao.js",
+      "PackagePath": "staticwebassets\\services\\Validacao.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\App.view.xml",
+      "PackagePath": "staticwebassets\\view\\App.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Cadastro.view.xml",
+      "PackagePath": "staticwebassets\\view\\Cadastro.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\Detalhe.view.xml",
+      "PackagePath": "staticwebassets\\view\\Detalhe.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\ListaDePecas.view.xml",
+      "PackagePath": "staticwebassets\\view\\ListaDePecas.view.xml"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\NotFound.view.xml",
+      "PackagePath": "staticwebassets\\view\\NotFound.view.xml"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WEB.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.WEB.props",
+      "PackagePath": "build\\WEB.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.WEB.props",
+      "PackagePath": "buildMultiTargeting\\WEB.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.WEB.props",
+      "PackagePath": "buildTransitive\\WEB.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

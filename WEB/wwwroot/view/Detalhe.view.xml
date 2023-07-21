@@ -1,0 +1,55 @@
+<mvc:View
+    controllerName="PedroAutoPecas.controller.Detalhe"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+    <Page title="{i18n>TituloDeDetalhe}" showNavButton="true" navButtonPress=".aoClicarVoltar" titleAlignment="Center">
+        <headerContent>
+            <Button text="{i18n>BotaoEditar}" icon="sap-icon://edit" width="auto" type="Accept" press="aoClicarEditar"/>
+            <Button text="{i18n>BotaoRemover}" icon="sap-icon://delete" width="auto" type="Reject" press="aoClicarRemover"/>
+        </headerContent>
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                title="Peça"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                <f:content>
+                    <Label text="{i18n>CampoNome}" />
+                    <Text text="{peca>/nome}" />
+                    <Label text="{i18n>CampoDescricao}" />
+                    <Text text="{peca>/descricao}" />
+                    <Label text="{i18n>CampoCategoria}" />
+                    <Text text="{peca>/categoria}" />
+                    <Label text="{i18n>CampoDataDeFabricacao}" />
+                    <Text text="{
+                        path: 'peca>/dataDeFabricacao',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: {
+                        style: 'short',
+                            source: {
+                                pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+                            }
+                        }
+                    }" />
+                    <Label text="{i18n>CampoEstoque}" />
+                    <Text text="{peca>/estoque}" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+    </Page>
+</mvc:View>

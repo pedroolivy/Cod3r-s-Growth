@@ -1,0 +1,117 @@
+{
+	"_version": "1.21.0",
+	"sap.app": {
+		"id": "PedroAutoPecas",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			],
+			"fallbackLocale": ""
+		},
+		"title": "appTitle",
+		"description": "appDescription",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "PedroAutoPecas.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.98.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "PedroAutoPecas.i18n.i18n",
+					"supportedLocales": [
+						""
+					],
+					"fallbackLocale": ""
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"type": "View",
+				"viewType": "XML",
+				"path": "PedroAutoPecas.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition": "slide",
+            	"async": true,
+				"bypassed":{
+                    "target":"notFound"
+                }				
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "listaDePecas",
+					"target": "listaDePecas"
+				},
+				{
+					"pattern": "cadastro",
+					"name": "cadastro",
+					"target": "cadastro"		
+				},
+				{
+					"pattern": "detalhe/{id}",
+					"name": "detalhe",
+					"target": "detalhe"
+				},
+				{
+					"pattern": "edicao/{id}",
+					"name": "edicao",
+					"target": "edicao"
+				},
+				{
+					"pattern": "notFound",
+					"name": "notFound",
+					"target": "notFound"
+				}
+			],
+			"targets": {
+				"listaDePecas": {
+					"id": "listaDePecas",
+					"name": "ListaDePecas"
+				},
+				"cadastro": {
+					"id": "cadastro",
+					"name": "Cadastro"	
+				},
+				"detalhe": {
+					"id": "detalhe",
+					"name": "Detalhe"
+				},
+				"edicao": {
+					"id": "edicao",
+					"name": "Cadastro"
+				},
+				"notFound": {
+					"id": "notFound",
+					"name": "NotFound"
+				}
+			}
+		}
+	}
+}

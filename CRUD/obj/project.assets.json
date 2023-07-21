@@ -3773,11 +3773,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
       "projectName": "CRUD",
-      "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\CRUD.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\CRUD\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\CRUD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3794,11 +3794,11 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
+            "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\DOMINIO\\DOMINIO.csproj"
             },
-            "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\treinamento\\Nova pasta\\Cod3r-s-Growth\\INFRA\\INFRA.csproj"
+            "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\INFRA\\INFRA.csproj"
             }
           }
         }
@@ -3845,7 +3845,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
