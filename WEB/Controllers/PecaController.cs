@@ -37,6 +37,8 @@ namespace WEB.Controllers
         {
             try
             {
+                //throw new Exception("asdf");
+
                 var peca = _repositorio.ObterPorId(id);
 
                 return peca == null
@@ -85,9 +87,9 @@ namespace WEB.Controllers
                 pecaEditada.Id = pecaObtidaPeloId.Id;
                 var erros = Servico.ValidarCampos(pecaEditada);
 
-                if (!string.IsNullOrEmpty(erros))
+                if (erros.Any())
                 {
-                    return Conflict(erros);
+                    throw new ValidationException(erros);
                 }
 
                 _repositorio.Editar(id, pecaEditada);

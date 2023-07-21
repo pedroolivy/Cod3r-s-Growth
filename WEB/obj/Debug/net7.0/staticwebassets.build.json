@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l0byvGU6HXCljtsq8ijaxPJchBLvIVvx6X6FLyGpOcg=",
+  "Hash": "UrpteA9zGcz0pMHt5OV4JLMgapMXLlWSgEOeAWvwfnY=",
   "Source": "WEB",
   "BasePath": "_content/WEB",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\BaseController.controller.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "controller/BaseController.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\BaseController.controller.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\Cadastro.controller.js",
@@ -102,6 +119,23 @@
       "OriginalItemSpec": "wwwroot\\controller\\ListaDePecas.controller.js"
     },
     {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\controller\\NotFound.controller.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "controller/NotFound.controller.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\NotFound.controller.js"
+    },
+    {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\i18n\\i18n.properties",
       "SourceId": "WEB",
       "SourceType": "Discovered",
@@ -151,6 +185,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\Formatacao.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "services/Formatacao.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\services\\Formatacao.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\RepositorioPeca.js",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "services/RepositorioPeca.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\services\\RepositorioPeca.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\services\\Validacao.js",
@@ -236,6 +304,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\view\\ListaDePecas.view.xml"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\view\\NotFound.view.xml",
+      "SourceId": "WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3r-s-Growth\\WEB\\wwwroot\\",
+      "BasePath": "_content/WEB",
+      "RelativePath": "view/NotFound.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\NotFound.view.xml"
     }
   ]
 }

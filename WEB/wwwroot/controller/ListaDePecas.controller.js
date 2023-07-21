@@ -1,57 +1,68 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel",
+	"./BaseController.controller",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, JSONModel, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"../services/RepositorioPeca",
+	'sap/m/MessageToast'
+], function (BaseController, Filter, FilterOperator, RepositorioPeca, MessageToast) {
 	const rotaListaPecas = "listaDePecas";
-	const api = "https://localhost:7028/api/Peca";
 	const modeloPeca = "pecas";
 	const rotaCadastro = "cadastro";
 	const rotaDetalhe = "detalhe";
+	let oResourceBundle;
 
-	return Controller.extend("PedroAutoPecas.controller.ListaDePecas", {
+	return BaseController.extend("PedroAutoPecas.controller.ListaDePecas", {
 		onInit: function () {
+			oResourceBundle = this.carregarRecursoI18n();
 			let oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rotaListaPecas).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function () {
-			this._carregaPecas();
+			this.processarEvento(() => {
+				this._carregaPecas();
+			});
 		},
 
-		_carregaPecas: function(){
-			fetch(api)
-			.then(resp => resp.json())
-			.then(data => {
-				let oModel = new JSONModel(data);
-				this.getView().setModel(oModel, modeloPeca)
-			})
+		_carregaPecas: async function(){
+			let listaPecas = await RepositorioPeca.ObterTodos();
+			const tipoNumero = "number";
+
+			if(typeof listaPecas == tipoNumero){
+				var msg = 'ErroAoObterTodos';
+				
+				MessageToast.show(oResourceBundle.getText(msg));
+			}
+			
+			this.getView().setModel(this.criarModeloPeca(listaPecas), modeloPeca);
 		},
 
-		_navegar: function(rota, id){
-			let oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo(rota, {id});
-		},
-		
 		aoClicarAdicionar: function () {
-			this._navegar(rotaCadastro);
+			this.processarEvento(() => {
+				this.navegar(rotaCadastro);
+			});
 		},
 
 		aoClicarNaLinha: function (oEvent) {
-			let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
-			this._navegar(rotaDetalhe, idPeca);
+			this.processarEvento(() => {
+				let idPeca = oEvent.getSource().getBindingContext(modeloPeca).getObject().id
+				this.navegar(rotaDetalhe, idPeca);
+			});
 		},
 
 		aoClicarProcurarPeca : function (peca) {
-			let aFilter = [];
-			let nomePeca = peca.getParameter("newValue");
-			if (nomePeca) {
-				aFilter.push(new Filter("nome", FilterOperator.Contains, nomePeca));
-			}
-			let oList = this.byId("pecasDaTabela");
-			let oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+			this.processarEvento(() => {
+				const propNomeTabela = "nome";
+				const idTabela = "pecasDaTabela";
+				let aFilter = [];
+				let nomePeca = peca.getParameter("newValue");
+				
+				if (nomePeca) {
+					aFilter.push(new Filter(propNomeTabela, FilterOperator.Contains, nomePeca));
+				}
+
+		 		this.byId(idTabela).getBinding("items").filter(aFilter);
+			});
 		}
 	});
 });

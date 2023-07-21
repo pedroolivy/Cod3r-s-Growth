@@ -1,51 +1,63 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
-    "../services/Validacao"
-], function (Controller, JSONModel, Validacao) {
+    "./BaseController.controller",
+    "../services/Validacao",
+    "../services/Formatacao",
+    "../services/RepositorioPeca",
+    'sap/m/MessageToast'
+], function (BaseController, Validacao, Formatacao, RepositorioPeca, MessageToast) {
     const rotaCadastro = "cadastro";
     const rotaListaDePecas = "listaDePecas";
     const rotaDetalhe = "detalhe";
     const rotaEdicao = "edicao";
-    const api = "https://localhost:7028/api/Peca";
     const modeloPeca = "pecas";
     const idDataFabricacao = "dataDeFabricacao";
     const idEstoque = "estoque";
     const idCategoria = "categoria";
+    const stringVazia = "";
+    const rotaNotFound = "notFound";
+    let oResourceBundle;
 
-	return Controller.extend("PedroAutoPecas.controller.Cadastro", {
+	return BaseController.extend("PedroAutoPecas.controller.Cadastro", {
 		onInit: function () {
+            oResourceBundle = this.carregarRecursoI18n();
+            Validacao.ModeloI18n(oResourceBundle);
+
 			let oRouter = this.getOwnerComponent().getRouter();
+
 			oRouter.getRoute(rotaEdicao).attachPatternMatched(this._aoCoincidirRota, this);
 			oRouter.getRoute(rotaCadastro).attachPatternMatched(this._aoCoincidirRota, this);
 		},
 
 		_aoCoincidirRota: function (oEvent) {
-            let idPeca = oEvent.getParameter("arguments").id;
+            this.processarEvento(() => {
+                const idPeca = oEvent.getParameter("arguments").id;
+                const idTitulo = "titulo";
 
-            this.setarValorPadraoInputs();
-            this.setarIntervaloData();
-            
-            if(idPeca){
-                this._carregarPeca(idPeca);
-                this.byId("titulo").setTitle("Edição");
-            } else{
-                this.setarModeloPeca();
-                this.byId("titulo").setTitle("Cadastro");
-            }          
+                this.setarValorPadraoInputs();
+                this.setarIntervaloData();
+
+                if(idPeca || (idPeca == 0)){
+                    const tituloEdicao = "Edição";
+                    this._carregarPeca(idPeca);
+                    this.byId(idTitulo).setTitle(tituloEdicao);
+                } else{
+                    this.setarModeloPeca();
+                    const tituloCadastro = "Cadastro";
+                    this.byId(idTitulo).setTitle(tituloCadastro);
+                } 
+            });
         },
         
-        _carregarPeca: function(idPeca){
-			fetch(`${api}/${idPeca}`)
-				.then(response => response.json())
-				.then(json => {
-					var oModel = new JSONModel(json);
-					this.getView().setModel(oModel, modeloPeca);
-			})
+        _carregarPeca: async function(idPeca){
+            let peca =  await RepositorioPeca.ObterPorId(idPeca);
+			let statusCode = 500;
+			
+			peca == statusCode
+				?this.navegar(rotaNotFound)
+				:this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
 		},
 
         setarModeloPeca: function () {
-            const stringVazia = "";
             let peca = {
                 nome: stringVazia,
                 descricao: stringVazia,
@@ -53,9 +65,9 @@ sap.ui.define([
                 dataDeFabricacao: stringVazia,
                 estoque: stringVazia
             }
-            this.getView().setModel(new JSONModel(peca), modeloPeca);
-        },
-
+            this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
+        },   
+ 
         setarIntervaloData:  function(){
             const dataMinimaValida = "1755-01-01T12:00:00.000Z"; 
             const dataMaxima = new Date();
@@ -66,127 +78,89 @@ sap.ui.define([
 
         setarValorPadraoInputs: function(){
             const valorPadrao = "None";
-            const  string_vazia = "";
             let campos = ["nome", "descricao", "categoria", "dataDeFabricacao", "estoque"]
             
-            campos.forEach(res =>{
-                campodefinido = this.getView().byId(res)
+            campos.forEach(idCampo =>{
+                campodefinido = this.getView().byId(idCampo)
                 campodefinido.setValueState(valorPadrao)
-                campodefinido.setValue(string_vazia)
+                campodefinido.setValue(stringVazia)
             })
         },
 
-        aoClicarSalvar: function () {
-            const peca = this.getView()
-                .getModel(modeloPeca)
-                .getData();
-                
-            this.validarCampos(peca);
-            
-            const campoData = this.getView().byId(idDataFabricacao);
-            
-            if(Validacao.ehCamposValidos(peca, campoData)){
-                peca.id
-                    ?this._editarPeca(peca)
-                    :this._salvarPeca(peca);
-            }
-        }, 
+        _salvarPeca: async function (peca) {
+			let novaPeca = await RepositorioPeca.Adicionar(peca);
+            let TipoDeNovaPeca = "number"
+            let msg = "ErroAoAdicionar";
 
-        validarCampos: function(peca){
-            const propId = "id";
-            
-            Object.keys(peca).forEach(prop => {
-
-                if(prop == propId){
-                    return;
-                }
-
-                const inputData = this.getView().byId(idDataFabricacao);
-                let ehValido = false;
-
-                if(prop == idDataFabricacao){
-                    ehValido = Validacao.validaData(inputData)
-                }
-                else if(prop == idEstoque){
-                    ehValido = Validacao.validaEstoque(peca[prop])
-                }else {
-                    ehValido = Validacao.existeValor(peca[prop])
-                }
-                ehValido
-                    ? this.resetarInput(prop) 
-                    : this.definirInputErro(prop);
-            });
+            typeof novaPeca === TipoDeNovaPeca
+                ?MessageToast.show(oResourceBundle.getText(msg))
+                :this.navegar(rotaDetalhe, novaPeca.id);
         },
 
-        _salvarPeca: function (peca) {
-			fetch(api, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(peca)
-            })
-            .then(response => response.json())
-            .then(novaPeca => this._navegar(rotaDetalhe, novaPeca.id))
-        },
+        _editarPeca: async function (peca) {
+			let pecaEditada = await RepositorioPeca.Editar(peca);
+            let tipoDePeca = "number"
+            let msg = "ErroAoEditar";
 
-        _editarPeca: function (peca) {
-			fetch(`${api}/${peca.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(peca)
-            })
-            .then(response => response.json())
-            .then(pecaEditada => this._navegar(rotaDetalhe, pecaEditada.id))
+            typeof pecaEditada === tipoDePeca
+                ?MessageToast.show(oResourceBundle.getText(msg))
+                :this._navegar(rotaDetalhe, pecaEditada.id);
         },
-
-        formatarCategoria: function(campoCategoria){
-            const regexLetras = /[^\D]/g;
-            let valorDoCampo = campoCategoria.getValue();
-            campoCategoria.setValue(valorDoCampo.replaceAll(regexLetras, "").substring(0, 19));
-        },
-
-        formatarEstoque: function(campoEstoque){
-            const regexLetras = /[^\d]/g;
-            let valorDoCampo = campoEstoque.getValue();
-            campoEstoque.setValue(valorDoCampo.replaceAll(regexLetras, ""));
-        },
-
-        aoMudarCampoCategoria: function() {
-            let campoCategoria = this.getView().byId(idCategoria);
-            this.formatarCategoria(campoCategoria);
-        },
-
-        aoMudarCampoEstoque: function() {
-            let campoEstoque = this.getView().byId(idEstoque);
-            this.formatarEstoque(campoEstoque);
-        },
-        
-        resetarInput: function(idCampo){
-            let input = this.getView().byId(idCampo);
-            input.setValueState(sap.ui.core.ValueState.None);
-        },
-
-        definirInputErro: function(idCampo){
-            const mensagemErro = `Por favor preecha o campo`;
-            let input = this.getView().byId(idCampo);
-            input.setValueState(sap.ui.core.ValueState.Error);
-            input.setValueStateText(mensagemErro);
-        },
-        
-		aoClicarVoltar: function () {
-            this._navegar(rotaListaDePecas);
-		},
-
-        aoClicarCancelar: function () {
-			this._navegar(rotaListaDePecas);
-		},
 
         _navegar: function(rota, id){
             let oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo(rota, {id});
-        }
+        },
+
+        aoClicarSalvar: function () {
+            this.processarEvento(() => {
+                const peca = this.getView()
+                    .getModel(modeloPeca)
+                    .getData();
+                let listaCampos = [];
+                let id = "id"
+                
+                Object.keys(peca).forEach(prop => {
+                    if(prop == id)
+                        return;
+
+                    listaCampos.push(this.getView().byId(prop));
+                });
+
+                Validacao.validarTodosOsCampos(listaCampos)
+ 
+                if(Validacao.ehCamposValidos(peca)){
+                    peca.id
+                        ?this._editarPeca(peca)
+                        :this._salvarPeca(peca);
+                }
+            });
+        },
+
+        aoMudarCampoCategoria: function() {
+            this.processarEvento(() => {
+                let campoCategoria = this.getView().byId(idCategoria);
+                Formatacao.formatarCategoriaSemNumeros(campoCategoria);
+            });
+        },
+
+        aoMudarCampoEstoque: function() {
+            this.processarEvento(() => {
+                let campoEstoque = this.getView().byId(idEstoque);
+                Formatacao.formatarEstoqueSemLetras(campoEstoque);
+            });
+        },
+
+		aoClicarVoltar: function () {
+            this.processarEvento(() => {
+                this.navegar(rotaListaDePecas);
+            });
+		},
+
+        aoClicarCancelar: function () {
+            this.processarEvento(() => {
+                this.navegar(rotaListaDePecas);
+            });
+		}
 	});
 });
