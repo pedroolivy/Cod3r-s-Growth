@@ -26,13 +26,14 @@ sap.ui.define([
 
 		_carregaPecas: async function(){
 			let listaPecas = await RepositorioPeca.ObterTodos();
-			let TipoDeListaPecas = "number";
+			const tipoNumero = "number";
 
-			if(typeof listaPecas == TipoDeListaPecas){
+			if(typeof listaPecas == tipoNumero){
 				var msg = 'ErroAoObterTodos';
 				
 				MessageToast.show(oResourceBundle.getText(msg));
 			}
+			
 			this.getView().setModel(this.criarModeloPeca(listaPecas), modeloPeca);
 		},
 

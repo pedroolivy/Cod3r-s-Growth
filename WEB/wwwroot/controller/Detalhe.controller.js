@@ -1,7 +1,7 @@
 sap.ui.define([
 	"./BaseController.controller",
 	"sap/m/MessageBox",
-	"../services/RepositorioPeca"
+	"../services/RepositorioPeca",
 ], function (BaseController, MessageBox, RepositorioPeca) {
 	const rotaDetalhe = "detalhe";
 	const modeloPeca = "peca";
@@ -31,8 +31,8 @@ sap.ui.define([
 			let statusCode = 500;
 			
 			peca == statusCode
-				?this.navegar(rotaNotFound)
-				:this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
+				? this.navegar(rotaNotFound)
+				: this.getView().setModel(this.criarModeloPeca(peca), modeloPeca);
 		},
 
 		_removePeca: async function(){
@@ -42,11 +42,10 @@ sap.ui.define([
 
 			let status = await RepositorioPeca.Remover(pecaId);
 			const statusNoContent = 204;
-			if (status == statusNoContent) {
-				this.mensagemSucesso(oResourceBundle.getText(msgSucesso), this.navegar.bind(this), [rotaListaDePecas])
-			}else {
-				this.mensagemfalha(oResourceBundle.getText(msgErro));
-			}
+
+			status == statusNoContent
+				? this.mensagemSucesso(oResourceBundle.getText(msgSucesso), this.navegar.bind(this), [rotaListaDePecas])
+				: this.mensagemfalha(oResourceBundle.getText(msgErro));
 		},
 
 		aoClicarRemover: function(){
@@ -58,11 +57,11 @@ sap.ui.define([
 
 		mensagemSucesso: function (mensagem, callback, args = null) {
 			return MessageBox.success(mensagem, {
-			emphasizedAction: MessageBox.Action.OK,
-			actions: [MessageBox.Action.OK], onClose : (acao) => {
-				if (acao == MessageBox.Action.OK) 
-					return callback.apply(this, args);
-			}
+				emphasizedAction: MessageBox.Action.OK,
+				actions: [MessageBox.Action.OK], onClose : (acao) => {
+					if (acao == MessageBox.Action.OK) 
+						return callback.apply(this, args);
+				}
 			});
 		},
 
