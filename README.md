@@ -1,3 +1,2 @@
-CRUD Windows Forms e SAPUI5 com SQL Server, Singleton, Clean Architecture e SOLID
-
-O objetivo deste projeto é desenvolver um sistema CRUD, utilizando Windows Forms em C# para a interface desktop e SAPUI5 para a interface web, ambos conectados a um banco de dados SQL Server. Adicionalmente, aplicando conceitos de design e arquitetura de software, como Singleton, Clean Architecture e SOLID, para garantir que o código seja organizado, reutilizável e sustentável ao longo do tempo.
+CRUD Windows Forms and SAPUI5 with SQL Server, Singleton, Clean Architecture, and SOLID
+The aim of this project is to develop a CRUD system, using Windows Forms in C# for the desktop interface and SAPUI5 for the web interface, both connected to a SQL Server database. Additionally, applying software design and architecture concepts such as Singleton, Clean Architecture, and SOLID to ensure that the code is organized, reusable, and sustainable over time.
